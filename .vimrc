@@ -26,6 +26,11 @@ filetype on
 filetype plugin on
 filetype indent on
 
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+call plug#end()
 
 " base
 set nocompatible                " don't bother with vi compatibility
