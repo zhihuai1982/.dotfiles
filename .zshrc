@@ -116,3 +116,7 @@ function install_powerline_precmd() {
 if [ "$TERM" != "linux" ]; then
     install_powerline_precmd
 fi
+
+# zsh 自动补全插件
+source ~/.dotfiles/incr-0.2.zsh
+
