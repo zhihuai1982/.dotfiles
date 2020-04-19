@@ -120,3 +120,4 @@ fi
 # zsh 自动补全插件
 source ~/.dotfiles/incr-0.2.zsh
 
+export EDITOR=/usr/bin/vim
