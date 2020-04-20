@@ -10,6 +10,37 @@
 " Desc: simple vim config for server, without any plugins.
 "==========================================
 
+
+" base
+set nocompatible                " don't bother with vi compatibility
+set autoread                    " reload files when changed on disk, i.e. via `git checkout`
+set shortmess=atI
+
+set magic                       " For regular expressions turn magic on
+set title                       " change the terminal's title
+set nobackup                    " do not keep a backup file
+set wrap
+
+set novisualbell                " turn off visual bell
+set noerrorbells                " don't beep
+set visualbell t_vb=            " turn off error beep/flash
+set t_vb=
+set tm=500
+set t_Co=256                    "启用 256 色
+
+set relativenumber
+set cursorline
+set linebreak
+set wrapmargin=2
+set showmatch
+
+set noswapfile
+set undofile
+set undodir=~/.vim/.undo//
+
+set nofoldenable                " 启动时关闭代码折叠
+"za，打开或关闭当前折叠；zM，关闭所有折叠；zR，打开所有折叠
+
 " leader
 let mapleader = '<space>'
 let g:mapleader = '<space>'
@@ -26,37 +57,14 @@ filetype on
 filetype plugin on
 filetype indent on
 
+" Vim-plug
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
-" base
-set nocompatible                " don't bother with vi compatibility
-set autoread                    " reload files when changed on disk, i.e. via `git checkout`
-set shortmess=atI
-
-set magic                       " For regular expressions turn magic on
-set title                       " change the terminal's title
-set nobackup                    " do not keep a backup file
-
-set novisualbell                " turn off visual bell
-set noerrorbells                " don't beep
-set visualbell t_vb=            " turn off error beep/flash
-set t_vb=
-set tm=500
-
-set relativenumber
-set cursorline
-set linebreak
-set wrapmargin=2
-set showmatch
-
-" warp
-set wrap
-
-" show location
 set nocursorcolumn
 set nocursorline
 
@@ -72,7 +80,7 @@ set showcmd                     " display incomplete commands
 set showmode                    " display current modes
 set showmatch                   " jump to matches when entering parentheses
 set matchtime=2                 " tenths of a second to show the matching parenthesis
-set listchars=tab:»■,trail:■
+set listchars=tab:»▫,trail:▫
 set list
 
 " search
@@ -145,8 +153,12 @@ endif
 " ============================ theme and status line ============================
 
 " theme
-set background=dark
-colorscheme desert
+" seoul256 (dark):
+" "   Range:   233 (darkest) ~ 239 (lightest)
+" "   Default: 237
+let g:seoul256_background = 236
+colo seoul256
+
 
 " set mark column color
 hi! link SignColumn   LineNr
@@ -278,12 +290,15 @@ let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 "Cursor settings:
 
 "1 -> blinking block
-""2 -> solid block
+"2 -> solid block
 "3 -> blinking underscore
-""4 -> solid underscore
+"4 -> solid underscore
 "5 -> blinking vertical bar
-""6 -> solid vertical bar
+"6 -> solid vertical bar
 
 "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-""let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+"let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 "let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" 折叠辅助显示
+let g:indent_guides_enable_on_vim_startup = 1
