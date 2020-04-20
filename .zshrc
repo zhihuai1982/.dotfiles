@@ -121,3 +121,7 @@ fi
 source ~/.dotfiles/incr-0.2.zsh
 
 export EDITOR=/usr/bin/vim
+
+
+
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
