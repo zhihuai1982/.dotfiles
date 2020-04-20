@@ -117,11 +117,9 @@ if [ "$TERM" != "linux" ]; then
     install_powerline_precmd
 fi
 
-# zsh 自动补全插件
-source ~/.dotfiles/incr-0.2.zsh
 
+# 修改默认编辑器
 export EDITOR=/usr/bin/vim
 
 
-
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+[[ -s /usr/local/etc/profile.d/autojump.sh ]] && . /usr/local/etc/profile.d/autojump.sh
