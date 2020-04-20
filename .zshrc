@@ -121,7 +121,7 @@ fi
 # 修改默认编辑器
 export EDITOR=/usr/bin/vim
 
-[[ -s /home/zhihuai1982/.autojump/etc/profile.d/autojump.sh ]] && source /home/zhihuai1982/.autojump/etc/profile.d/autojump.sh
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
 	autoload -U compinit && compinit -u
 
