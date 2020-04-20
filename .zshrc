@@ -122,4 +122,4 @@ fi
 export EDITOR=/usr/bin/vim
 
 
-[[ -s /usr/local/etc/profile.d/autojump.sh ]] && . /usr/local/etc/profile.d/autojump.sh
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.atuojump/etc/profile.d/autojump.sh
