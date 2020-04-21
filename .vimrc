@@ -42,8 +42,21 @@ set nofoldenable                " 启动时关闭代码折叠
 "za，打开或关闭当前折叠；zM，关闭所有折叠；zR，打开所有折叠
 
 " leader
-let mapleader = '<space>'
-let g:mapleader = '<space>'
+let mapleader = "\<space>"
+let g:mapleader = "\<space>"
+
+"定义以下快捷键，用于删除当前文件中所有的行尾多余空格：
+
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+"定义以下快捷键，用于快速编辑和重载vimrc配置文件：
+
+nnoremap <leader>ev :vsp $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+"定义以下快捷键，使用前缀键和数字键快速切换缓冲区：
+
+nnoremap <leader>1 :1b<CR>
+nnoremap <leader>2 :2b<CR>
+nnoremap <leader>3 :3b<CR>
 
 " syntax
 syntax on
@@ -63,6 +76,7 @@ Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'jalvesaq/Nvim-R'
 call plug#end()
 
 set nocursorcolumn
