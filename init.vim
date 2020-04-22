@@ -1,15 +1,3 @@
-"==========================================
-" ProjectLink: https://github.com/wklken/vim-for-server
-" Author:  wklken
-" Version: 0.2
-" Email: wklken@yeah.net
-" BlogPost: http://www.wklken.me
-" Donation: http://www.wklken.me/pages/donation.html
-" ReadMe: README.md
-" Last_modify: 2015-07-07
-" Desc: simple vim config for server, without any plugins.
-"==========================================
-
 
 " base
 set nocompatible                " don't bother with vi compatibility
@@ -23,11 +11,11 @@ set wrap
 
 set novisualbell                " turn off visual bell
 set noerrorbells                " don't beep
-set visualbell t_vb=            " turn off error beep/flash
+set visualbell                  " turn off error beep/flash
 set t_vb=
 set tm=500
 set relativenumber
-set cursorline
+
 set linebreak
 set wrapmargin=2
 set showmatch
@@ -43,14 +31,13 @@ set nofoldenable                " 启动时关闭代码折叠
 let mapleader = "\<space>"
 
 "定义以下快捷键，用于删除当前文件中所有的行尾多余空格：
-
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-"定义以下快捷键，用于快速编辑和重载vimrc配置文件：
 
+"定义以下快捷键，用于快速编辑和重载vimrc配置文件：
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
-"定义以下快捷键，使用前缀键和数字键快速切换缓冲区：
 
+"定义以下快捷键，使用前缀键和数字键快速切换缓冲区：
 nnoremap <leader>1 :1b<CR>
 nnoremap <leader>2 :2b<CR>
 nnoremap <leader>3 :3b<CR>
@@ -73,7 +60,8 @@ Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'jalvesaq/Nvim-R'
-
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'majutsushi/tagbar'
@@ -84,7 +72,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
-
 Plug 'mhinz/vim-startify'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -114,8 +101,6 @@ set hlsearch                    " highlight searches
 set incsearch                   " do incremental searching, search as you type
 set ignorecase                  " ignore case when searching
 set smartcase                   " no ignorecase if Uppercase char present
-set wildmenu
-set wildmode=longest:list,full
 
 " tab
 set expandtab                   " expand tabs to spaces
@@ -128,9 +113,7 @@ set shiftwidth=4
 set tabstop=4
 set softtabstop=4                " insert mode tab and backspace use 4 spaces
 
-" NOT SUPPORT
 " fold
-set foldenable
 set foldmethod=indent
 set foldlevel=99
 let g:FoldMethod = 0
@@ -155,7 +138,6 @@ set formatoptions+=B
 
 " select & complete
 set selection=inclusive
-set selectmode=mouse,key
 
 set completeopt=longest,menu
 set wildmenu                           " show a navigable menu for tab completion"
@@ -173,7 +155,7 @@ endif
 
 " NOT SUPPORT
 " Enable basic mouse behavior such as resizing buffers.
-" set mouse=a
+set mouse=a
 
 
 " ============================ theme and status line ============================
@@ -199,7 +181,6 @@ set laststatus=2   " Always show the status line - use 2 lines for the status ba
 " ============================ specific file type ===========================
 
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
-autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
 
 autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
@@ -257,21 +238,8 @@ nnoremap <leader>q :q<CR>
 " Quickly save the current file
 nnoremap <leader>w :w<CR>
 
-" select all
-map <Leader>sa ggVG"
-
 " remap U to <C-r> for easier redo
 nnoremap U <C-r>
-
-" Swap implementations of ` and ' jump to markers
-" By default, ' jumps to the marked line, ` jumps to the marked line and
-" column, so swap them
-nnoremap ' `
-nnoremap ` '
-
-" switch # *
-" nnoremap # *
-" nnoremap * #
 
 "Keep search pattern at the center of the screen."
 nnoremap <silent> n nzz
@@ -325,12 +293,6 @@ let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 "let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 "let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
-" 折叠辅助显示
-let g:indent_guides_enable_on_vim_startup = 1
-
-" search word under cursor
-noremap <Leader>s :Rg <cword><cr>
 
 
 " 解决 tmux 真彩问题 
