@@ -26,8 +26,6 @@ set noerrorbells                " don't beep
 set visualbell t_vb=            " turn off error beep/flash
 set t_vb=
 set tm=500
-set t_Co=256                    "启用 256 色
-
 set relativenumber
 set cursorline
 set linebreak
@@ -74,7 +72,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'jalvesaq/Nvim-R'
 
 Plug 'scrooloose/nerdtree'
@@ -88,6 +85,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
 
+Plug 'mhinz/vim-startify'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
@@ -333,3 +331,11 @@ let g:indent_guides_enable_on_vim_startup = 1
 
 " search word under cursor
 noremap <Leader>s :Rg <cword><cr>
+
+
+" 解决 tmux 真彩问题 
+set termguicolors
+if &term =~# '^screen'
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
