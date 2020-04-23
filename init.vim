@@ -73,8 +73,19 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mhinz/vim-startify'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+
+Plug 'ncm2/ncm2'           " snippet engine
+Plug 'roxma/nvim-yarp'      " dependency
+    " enable ncm2 for all buffers
+    "autocmd BufEnter * call ncm2#enable_for_buffer()
+
+    "IMPORTANT: :help Ncm2PopupOpen for more information
+    "set completeopt=noinsert,menuone,noselect
+Plug 'gaalcaras/ncm-R'     " snippets
+Plug 'ncm2/ncm2-ultisnips' " ncm and ultisnips integration
+Plug 'SirVer/ultisnips'    " snippet engine
+Plug 'keelii/vim-snippets'
+Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
 
 call plug#end()
 
@@ -182,6 +193,7 @@ set laststatus=2   " Always show the status line - use 2 lines for the status ba
 
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
+autocmd BufNewFile,BufRead *.Rmd set filetype=rmd
 
 autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
 function! AutoSetFileHead()
@@ -300,5 +312,74 @@ if &term =~# '^screen'
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-" Goyo 
+" Goyo
 nnoremap <leader>g :Goyo<CR>
+
+let g:goyo_width = 120
+let g:goyo_margin_top = 2
+let g:goyo_margin_bottom = 2
+
+function! s:goyo_enter()
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status off
+    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  endif
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  Limelight
+  " ...
+endfunction
+
+function! s:goyo_leave()
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status on
+    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  endif
+  set showmode
+  set showcmd
+  set scrolloff=7
+  Limelight!
+  " ...
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+
+" R setup
+
+" First use tab and shift tab to browse the popup menu and use enter to expand:
+inoremap ncm2_ultisnips#expand_or("<CR>”, 'n')
+inoremap pumvisible() ? "<C-n>" : "<Tab>"
+inoremap pumvisible() ? "<C-p>" : "<S-Tab>"
+" However the previous lines alone won’t work, we must disable the UltiSnips Expand Trigger, I set it to ctrl-0
+let g:UltiSnipsExpandTrigger="<c-0>"
+
+"let maplocalleader = ","
+" the default is , you can also set it to <\space> if you don’t like my setting
+" make R starts automatically when .R or .Rmd file open and only starts one time
+autocmd FileType r if string(g:SendCmdToR) == “function(‘SendCmdToR_fake’)” | call StartR(“R”) | endif
+autocmd FileType rmd if string(g:SendCmdToR) == “function(‘SendCmdToR_fake’)” | call StartR(“R”) | endif
+" make R vertical split at start
+let R_rconsole_width = 57
+let R_min_editor_width = 18
+" some nice keybindding, D = cursor down one line when finished the code
+" localleader+rv = view data, +rg = plot(graphic), +rs = summary, all without sending lines to R buffer, very useful
+" Other useful features like Rformat and R RBuildTags aren’t covered here, see Nvim-R for more info.
+" useful when in Rmarkdown, send chunk
+nmap sc RDSendChunk
+" directly send line to R buffer when nothing selected
+nmap ss RDSendLine
+" st = send test, this function shows the output in comment, since it’s in vim we can simply press u to make the output disappear
+nmap st RDSendLineAndInsertOutput
+" send selection in visual mode
+vmap ss REDSendSelection
+" rq would be mapped to RClose so we replace RClearConsole by some random strings
+vmap test RClearConsole 
+nmap test RClearConsole "idem
+nmap rr RStart "rr is easier than rf
+vmap rr RStart "idem
+nmap rq RClose "rq = rquit, easier to remember
+vmap rq RClose "idem
+" map ctrl a (all screen) to goyo to have a fullscreen R editing and Rmarkdown writing experience
