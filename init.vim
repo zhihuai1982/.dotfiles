@@ -356,11 +356,11 @@ inoremap pumvisible() ? "<C-p>" : "<S-Tab>"
 " However the previous lines alone won’t work, we must disable the UltiSnips Expand Trigger, I set it to ctrl-0
 let g:UltiSnipsExpandTrigger="<c-0>"
 
-"let maplocalleader = ","
+let maplocalleader = ","
 " the default is , you can also set it to <\space> if you don’t like my setting
 " make R starts automatically when .R or .Rmd file open and only starts one time
-autocmd FileType r if string(g:SendCmdToR) == “function(‘SendCmdToR_fake’)” | call StartR(“R”) | endif
-autocmd FileType rmd if string(g:SendCmdToR) == “function(‘SendCmdToR_fake’)” | call StartR(“R”) | endif
+" autocmd FileType r if string(g:SendCmdToR) == “function(‘SendCmdToR_fake’)” | call StartR(“R”) | endif
+" autocmd FileType rmd if string(g:SendCmdToR) == “function(‘SendCmdToR_fake’)” | call StartR(“R”) | endif
 " make R vertical split at start
 let R_rconsole_width = 57
 let R_min_editor_width = 18
