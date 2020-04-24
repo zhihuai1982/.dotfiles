@@ -383,3 +383,7 @@ vmap rr RStart "idem
 nmap rq RClose "rq = rquit, easier to remember
 vmap rq RClose "idem
 " map ctrl a (all screen) to goyo to have a fullscreen R editing and Rmarkdown writing experience
+
+" Swap up and down
+nmap <C-k> :m-2<CR>
+nmap <C-j> :m+1<CR>
