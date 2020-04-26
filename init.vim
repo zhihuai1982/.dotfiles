@@ -77,10 +77,10 @@ Plug 'mhinz/vim-startify'
 Plug 'ncm2/ncm2'           " snippet engine
 Plug 'roxma/nvim-yarp'      " dependency
     " enable ncm2 for all buffers
-    "autocmd BufEnter * call ncm2#enable_for_buffer()
+    autocmd BufEnter * call ncm2#enable_for_buffer()
 
     "IMPORTANT: :help Ncm2PopupOpen for more information
-    "set completeopt=noinsert,menuone,noselect
+    set completeopt=noinsert,menuone,noselect
 Plug 'gaalcaras/ncm-R'     " snippets
 Plug 'ncm2/ncm2-ultisnips' " ncm and ultisnips integration
 Plug 'SirVer/ultisnips'    " snippet engine
@@ -91,7 +91,7 @@ call plug#end()
 
 set nocursorcolumn
 set nocursorline
-
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " movement
 set scrolloff=7                 " keep 7 lines when scrolling
