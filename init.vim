@@ -1,5 +1,4 @@
 
-" base
 set nocompatible                " don't bother with vi compatibility
 set autoread                    " reload files when changed on disk, i.e. via `git checkout`
 set shortmess=atI
@@ -30,17 +29,9 @@ set nofoldenable                " 启动时关闭代码折叠
 " leader
 let mapleader = "\<space>"
 
-"定义以下快捷键，用于删除当前文件中所有的行尾多余空格：
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-
 "定义以下快捷键，用于快速编辑和重载vimrc配置文件：
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
-
-"定义以下快捷键，使用前缀键和数字键快速切换缓冲区：
-nnoremap <leader>1 :1b<CR>
-nnoremap <leader>2 :2b<CR>
-nnoremap <leader>3 :3b<CR>
 
 " syntax
 syntax on
@@ -59,21 +50,48 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'jalvesaq/Nvim-R'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'majutsushi/tagbar'
+    map <leader>n :NERDTreeToggle<CR>
+    Plug 'scrooloose/nerdcommenter'
+    " Add spaces after comment delimiters by default
+    let g:NERDSpaceDelims = 1
+    " Use compact syntax for prettified multi-line comments
+    let g:NERDCompactSexyComs = 1
+    " Align line-wise comment delimiters flush left instead of following code indentation
+    let g:NERDDefaultAlign = 'left'
+    " Add your own custom formats or override the defaults
+    let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+    " Allow commenting and inverting empty lines (useful when commenting a region)
+    let g:NERDCommentEmptyLines = 1
+    " Enable trimming of trailing whitespace when uncommenting
+    let g:NERDTrimTrailingWhitespace = 1
+    " Enable NERDCommenterToggle to check all selected lines is commented or not
+    let g:NERDToggleCheckAllLines = 1
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'terryma/vim-multiple-cursors'
+    let g:EasyMotion_do_mapping = 0 " Disable default mappings
+    " Jump to anywhere you want with minimal keystrokes, with just one key binding.
+    " `s{char}{char}{label}`
+    " Need one more keystroke, but on average, it may be more comfortable.
+    nmap <Leader>s <Plug>(easymotion-overwin-f2)
+    " Turn on case-insensitive feature
+    let g:EasyMotion_smartcase = 1
+    " JK motions: Line motions
+    map <Leader>j <Plug>(easymotion-j)
+    map <Leader>k <Plug>(easymotion-k)
+Plug 'terryma/vim-multiple-cursors'      " ctrl+n, ctrl+p, ctrl+x, Esc
 Plug 'mhinz/vim-startify'
-
+Plug 'Yggdroot/LeaderF'
+    let g:Lf_ReverseOrder = 1
+    let g:Lf_IgnoreCurrentBufferName = 1 "搜索结果中不显示当前 buffer
+    noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+Plug 'jalvesaq/Nvim-R'
 Plug 'ncm2/ncm2'           " snippet engine
 Plug 'roxma/nvim-yarp'      " dependency
     " enable ncm2 for all buffers
@@ -86,8 +104,11 @@ Plug 'ncm2/ncm2-ultisnips' " ncm and ultisnips integration
 Plug 'SirVer/ultisnips'    " snippet engine
 Plug 'keelii/vim-snippets'
 Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
-
+" Plug 'iamcco/markdown-preview.vim' " Vim 寫 MarkDown 並在瀏覽器同步並檢視文件
+" Plug 'w0rp/ale' " 程式碼靜態檢查，程式碼格式修正"
+" Plug 'lfv89/vim-interestingwords' " 高亮感興趣的當前單詞
 call plug#end()
+
 
 set nocursorcolumn
 set nocursorline
@@ -96,6 +117,8 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 " movement
 set scrolloff=7                 " keep 7 lines when scrolling
 
+" Vim 的默认寄存器和系统剪贴板共享
+set clipboard+=unnamed
 
 " show
 set ruler                       " show the current row and column
@@ -124,21 +147,6 @@ set shiftwidth=4
 set tabstop=4
 set softtabstop=4                " insert mode tab and backspace use 4 spaces
 
-" fold
-set foldmethod=indent
-set foldlevel=99
-let g:FoldMethod = 0
-map <leader>zz :call ToggleFold()<cr>
-fun! ToggleFold()
-    if g:FoldMethod == 0
-        exe "normal! zM"
-        let g:FoldMethod = 1
-    else
-        exe "normal! zR"
-        let g:FoldMethod = 0
-    endif
-endfun
-
 " encoding
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
@@ -148,7 +156,7 @@ set formatoptions+=m
 set formatoptions+=B
 
 " select & complete
-set selection=inclusive
+set selection=inclusive  "指定在选择文本时，光标所在位置也属于被选中的范围。如果指定 selection=exclusive 的话，可能会出现某些文本无法被选中的情况。
 
 set completeopt=longest,menu
 set wildmenu                           " show a navigable menu for tab completion"
@@ -160,6 +168,7 @@ set backspace=indent,eol,start  " make that backspace key work the way it should
 set whichwrap+=<,>,h,l
 
 " if this not work ,make sure .viminfo is writable for you
+" 记住上次退出光标位置
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
@@ -167,7 +176,6 @@ endif
 " NOT SUPPORT
 " Enable basic mouse behavior such as resizing buffers.
 set mouse=a
-
 
 " ============================ theme and status line ============================
 
@@ -178,8 +186,7 @@ set mouse=a
 let g:seoul256_background = 236
 colo seoul256
 
-
-" set mark column color
+" set mark column color 设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr
 hi! link ShowMarksHLl DiffAdd
 hi! link ShowMarksHLu DiffChange
@@ -195,47 +202,13 @@ autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
 autocmd BufNewFile,BufRead *.Rmd set filetype=rmd
 
-autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
-function! AutoSetFileHead()
-    " .sh
-    if &filetype == 'sh'
-        call setline(1, "\#!/bin/bash")
-    endif
-
-    " python
-    if &filetype == 'python'
-        call setline(1, "\#!/usr/bin/env python")
-        call append(1, "\# encoding: utf-8")
-    endif
-
-    normal G
-    normal o
-    normal o
-endfunc
-
-autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-
 " ============================ key map ============================
-
+" 折叠后移动快捷键修改
 nnoremap k gk
 nnoremap gk k
 nnoremap j gj
 nnoremap gj j
 
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-nnoremap <F2> :set nu! nu?<CR>
-nnoremap <F3> :set list! list?<CR>
-nnoremap <F4> :set wrap! wrap?<CR>
 set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
                                 "    paste mode, where you can paste mass data
                                 "    that won't be autoindented
@@ -245,11 +218,9 @@ inoremap jk <Esc>
 
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
+"nnoremap <leader>Q :q!<CR>
 " Quickly save the current file
 nnoremap <leader>w :w<CR>
-
-" remap U to <C-r> for easier redo
-nnoremap U <C-r>
 
 "Keep search pattern at the center of the screen."
 nnoremap <silent> n nzz
@@ -264,9 +235,6 @@ noremap <silent><leader>/ :nohls<CR>
 "Reselect visual block after indent/outdent.调整缩进后自动选中，方便再次操作
 vnoremap < <gv
 vnoremap > >gv
-
-" y$ -> Y Make Y behave like other capitals
-map Y y$
 
 "Map ; to : and save a million keystrokes
 " ex mode commands made easy 用于快速进入命令行
@@ -305,7 +273,7 @@ let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 "let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 
-" 解决 tmux 真彩问题 
+" 解决 tmux 真彩问题
 set termguicolors
 if &term =~# '^screen'
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -346,40 +314,8 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-
-" R setup
-
-" First use tab and shift tab to browse the popup menu and use enter to expand:
-inoremap ncm2_ultisnips#expand_or("<CR>”, 'n')
-inoremap pumvisible() ? "<C-n>" : "<Tab>"
-inoremap pumvisible() ? "<C-p>" : "<S-Tab>"
-" However the previous lines alone won’t work, we must disable the UltiSnips Expand Trigger, I set it to ctrl-0
 let g:UltiSnipsExpandTrigger="<c-0>"
 
-"let maplocalleader = ","
-" the default is , you can also set it to <\space> if you don’t like my setting
-" make R starts automatically when .R or .Rmd file open and only starts one time
-autocmd FileType r if string(g:SendCmdToR) == “function(‘SendCmdToR_fake’)” | call StartR(“R”) | endif
-autocmd FileType rmd if string(g:SendCmdToR) == “function(‘SendCmdToR_fake’)” | call StartR(“R”) | endif
-" make R vertical split at start
-let R_rconsole_width = 57
-let R_min_editor_width = 18
-" some nice keybindding, D = cursor down one line when finished the code
-" localleader+rv = view data, +rg = plot(graphic), +rs = summary, all without sending lines to R buffer, very useful
-" Other useful features like Rformat and R RBuildTags aren’t covered here, see Nvim-R for more info.
-" useful when in Rmarkdown, send chunk
-nmap sc RDSendChunk
-" directly send line to R buffer when nothing selected
-nmap ss RDSendLine
-" st = send test, this function shows the output in comment, since it’s in vim we can simply press u to make the output disappear
-nmap st RDSendLineAndInsertOutput
-" send selection in visual mode
-vmap ss REDSendSelection
-" rq would be mapped to RClose so we replace RClearConsole by some random strings
-vmap test RClearConsole 
-nmap test RClearConsole "idem
-nmap rr RStart "rr is easier than rf
-vmap rr RStart "idem
-nmap rq RClose "rq = rquit, easier to remember
-vmap rq RClose "idem
-" map ctrl a (all screen) to goyo to have a fullscreen R editing and Rmarkdown writing experience
+" Swap up and down
+nmap <C-k> :m-2<CR>
+nmap <C-j> :m+1<CR>
