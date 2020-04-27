@@ -106,7 +106,7 @@ Plug 'roxma/nvim-yarp'      " dependency
     " When the <Enter> key is pressed while the popup menu is visible, it only
     " hides the menu. Use this mapping to close the menu and also start a new
     " line.
-    inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+    " inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
     " Use <TAB> to select the popup menu:
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -126,6 +126,11 @@ Plug 'roxma/nvim-yarp'      " dependency
             \ 'complete_pattern': ':\s*',
             \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
             \ })
+Plug 'ncm2/ncm2-ultisnips'
+    " Press enter key to trigger snippet expansion
+    " The parameters are the same as `:help feedkeys()`
+    inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'gaalcaras/ncm-R'     " snippets
