@@ -98,27 +98,42 @@ Plug 'roxma/nvim-yarp'      " dependency
     autocmd BufEnter * call ncm2#enable_for_buffer()
     " IMPORTANT: :help Ncm2PopupOpen for more information
     set completeopt=noinsert,menuone,noselect
+        " suppress the annoying 'match x of y', 'The only match' and 'Pattern not
+    " found' messages
     set shortmess+=c
+    " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
     inoremap <c-c> <ESC>
+    " When the <Enter> key is pressed while the popup menu is visible, it only
+    " hides the menu. Use this mapping to close the menu and also start a new
+    " line.
+    inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+    " Use <TAB> to select the popup menu:
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    " wrap existing omnifunc
+    " Note that omnifunc does not run in background and may probably block the
+    " editor. If you don't want to be blocked by omnifunc too often, you could
+    " add 180ms delay before the omni wrapper:
+    "  'on_complete': ['ncm2#on_complete#delay', 180,
+    "               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+    au User Ncm2Plugin call ncm2#register_source({
+            \ 'name' : 'css',
+            \ 'priority': 9,
+            \ 'subscope_enable': 1,
+            \ 'scope': ['css','scss'],
+            \ 'mark': 'css',
+            \ 'word_pattern': '[\w\-]+',
+            \ 'complete_pattern': ':\s*',
+            \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+            \ })
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
 Plug 'gaalcaras/ncm-R'     " snippets
-Plug 'ncm2/ncm2-match-highlight'
-Plug 'ncm2/ncm2-ultisnips' " ncm and ultisnips integration
 Plug 'SirVer/ultisnips'    " snippet engine
+    let g:UltiSnipsExpandTrigger="<c-0>"
 Plug 'honza/vim-snippets'
-    inoremap <silent> <expr> <CR> ((pumvisible() && empty(v:completed_item)) ?  "\<c-y>\<cr>" : (!empty(v:completed_item) ? ncm2_ultisnips#expand_or("", 'n') : "\<CR>" ))
-    " c-j c-k for moving in snippet
-    imap <expr> <c-u> ncm2_ultisnips#expand_or("\<Plug>(ultisnips_expand)", 'm')
-    smap <c-u> <Plug>(ultisnips_expand)
-    let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
-    let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
-    let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
-    let g:UltiSnipsRemoveSelectModeMappings = 0
-    Plug 'ncm2/ncm2-html-subscope'
-    Plug 'ncm2/ncm2-markdown-subscope'
-
-" Plug 'iamcco/markdown-preview.vim' " Vim 寫 MarkDown 並在瀏覽器同步並檢視文件
+Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
+"Plug 'iamcco/markdown-preview.vim' " Vim 寫 MarkDown 並在瀏覽器同步並檢視文件
 " Plug 'w0rp/ale' " 程式碼靜態檢查，程式碼格式修正"
 " Plug 'lfv89/vim-interestingwords' " 高亮感興趣的當前單詞
 call plug#end()

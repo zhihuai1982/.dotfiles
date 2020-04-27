@@ -1,7 +1,9 @@
 data:q
 date
 datajjjijj:
-
-2020-04-27
-
-:q
+li
+data,rf
+data.frame(row.names<-
+:)
+date
+library(dplyr)
