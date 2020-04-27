@@ -92,6 +92,13 @@ Plug 'Yggdroot/LeaderF'
     let g:Lf_IgnoreCurrentBufferName = 1 "搜索结果中不显示当前 buffer
     noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 Plug 'jalvesaq/Nvim-R'
+    " let maplocalleader = ","
+    " make R vertical split at start
+    let R_rconsole_width = 57
+    let R_min_editor_width = 18
+    " some nice keybindding, D = cursor down one line when finished the code
+    " localleader+rv = view data, +rg = plot(graphic), +rs = summary, all without sending lines to R buffer, very useful
+    " Other useful features like Rformat and R RBuildTags aren’t covered here, see Nvim-R for more info.
 Plug 'ncm2/ncm2'           " snippet engine
 Plug 'roxma/nvim-yarp'      " dependency
     " enable ncm2 for all buffers
@@ -116,7 +123,7 @@ Plug 'roxma/nvim-yarp'      " dependency
     " add 180ms delay before the omni wrapper:
     "  'on_complete': ['ncm2#on_complete#delay', 180,
     "               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-    au User Ncm2Plugin call ncm2#register_source({
+    au user Ncm2Plugin call ncm2#register_source({
             \ 'name' : 'css',
             \ 'priority': 9,
             \ 'subscope_enable': 1,
@@ -124,19 +131,24 @@ Plug 'roxma/nvim-yarp'      " dependency
             \ 'mark': 'css',
             \ 'word_pattern': '[\w\-]+',
             \ 'complete_pattern': ':\s*',
-            \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+            \ 'on_complete': ['ncm2#on_complete#delay', 180,
+             \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
             \ })
-Plug 'ncm2/ncm2-ultisnips'
-    " Press enter key to trigger snippet expansion
-    " The parameters are the same as `:help feedkeys()`
-    inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
-
+Plug 'sirVer/ultisnips'    " snippet engine
+Plug 'ncm2/ncm2-ultisnips' " based on ultisnips
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
-Plug 'gaalcaras/ncm-R'     " snippets
-Plug 'SirVer/ultisnips'    " snippet engine
+    " press enter key to trigger snippet expansion
+    " the parameters are the same as `:help feedkeys()`
+    inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+    " c-j c-k for moving in snippet
+    " let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
     let g:UltiSnipsExpandTrigger="<c-0>"
-Plug 'honza/vim-snippets'
+    let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+    let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+    " let g:UltiSnipsRemoveSelectModeMappings = 0k
+Plug 'gaalcaras/ncm-R'     " It relies on the great plugin nvim-R to get the completion data and extends ncm2 for the completion.
+Plug 'honza/vim-snippets'  " snippets repository
 Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
 "Plug 'iamcco/markdown-preview.vim' " Vim 寫 MarkDown 並在瀏覽器同步並檢視文件
 " Plug 'w0rp/ale' " 程式碼靜態檢查，程式碼格式修正"
@@ -232,7 +244,8 @@ set laststatus=2   " Always show the status line - use 2 lines for the status ba
 
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
-autocmd BufNewFile,BufRead *.Rmd set filetype=rmd
+autocmd BufRead,BufNew *.Rmd set filetype=rmd
+autocmd BufRead,BufNew *.R set filetype=r
 
 " ============================ key map ============================
 " 折叠后移动快捷键修改
@@ -267,10 +280,6 @@ noremap <silent><leader>/ :nohls<CR>
 "Reselect visual block after indent/outdent.调整缩进后自动选中，方便再次操作
 vnoremap < <gv
 vnoremap > >gv
-
-"Map ; to : and save a million keystrokes
-" ex mode commands made easy 用于快速进入命令行
-nnoremap ; :
 
 " Shift+H goto head of the line, Shift+L goto end of the line
 nnoremap H ^
@@ -342,5 +351,20 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 
 " Swap up and down
-nmap <C-k> :m-2<CR>
-nmap <C-j> :m+1<CR>
+nnoremap <S-j> :m .+1<CR>==
+nnoremap <S-k> :m .-2<CR>==
+inoremap <S-j> <Esc>:m .+1<CR>==gi
+inoremap <S-k> <Esc>:m .-2<CR>==gi
+vnoremap <S-j> :m '>+1<CR>gv=gv
+vnoremap <S-k> :m '<-2<CR>gv=gv
+
+" window change
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Putting the Nivm-R options after vim-plug totally works.
+" autocmd FileType r if string(g:SendCmdToR) == "function('SendCmdToR_fake')" | call StartR("R") | endif
+" autocmd FileType rmd if string(g:SendCmdToR) == "function('SendCmdToR_fake')" | call StartR("R") | endif
+" autocmd VimLeave * if exists("g:SendCmdToR") && string(g:SendCmdToR) != "function('SendCmdToR_fake')" | call RQuit("nosave") | endif
