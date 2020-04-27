@@ -96,14 +96,28 @@ Plug 'ncm2/ncm2'           " snippet engine
 Plug 'roxma/nvim-yarp'      " dependency
     " enable ncm2 for all buffers
     autocmd BufEnter * call ncm2#enable_for_buffer()
-
-    "IMPORTANT: :help Ncm2PopupOpen for more information
+    " IMPORTANT: :help Ncm2PopupOpen for more information
     set completeopt=noinsert,menuone,noselect
+    set shortmess+=c
+    inoremap <c-c> <ESC>
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 Plug 'gaalcaras/ncm-R'     " snippets
+Plug 'ncm2/ncm2-match-highlight'
 Plug 'ncm2/ncm2-ultisnips' " ncm and ultisnips integration
 Plug 'SirVer/ultisnips'    " snippet engine
-Plug 'keelii/vim-snippets'
-Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
+Plug 'honza/vim-snippets'
+    inoremap <silent> <expr> <CR> ((pumvisible() && empty(v:completed_item)) ?  "\<c-y>\<cr>" : (!empty(v:completed_item) ? ncm2_ultisnips#expand_or("", 'n') : "\<CR>" ))
+    " c-j c-k for moving in snippet
+    imap <expr> <c-u> ncm2_ultisnips#expand_or("\<Plug>(ultisnips_expand)", 'm')
+    smap <c-u> <Plug>(ultisnips_expand)
+    let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
+    let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+    let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+    let g:UltiSnipsRemoveSelectModeMappings = 0
+    Plug 'ncm2/ncm2-html-subscope'
+    Plug 'ncm2/ncm2-markdown-subscope'
+
 " Plug 'iamcco/markdown-preview.vim' " Vim 寫 MarkDown 並在瀏覽器同步並檢視文件
 " Plug 'w0rp/ale' " 程式碼靜態檢查，程式碼格式修正"
 " Plug 'lfv89/vim-interestingwords' " 高亮感興趣的當前單詞
@@ -112,7 +126,6 @@ call plug#end()
 
 set nocursorcolumn
 set nocursorline
-let g:python3_host_prog = '/usr/local/bin/python3'
 
 " movement
 set scrolloff=7                 " keep 7 lines when scrolling
@@ -158,7 +171,6 @@ set formatoptions+=B
 " select & complete
 set selection=inclusive  "指定在选择文本时，光标所在位置也属于被选中的范围。如果指定 selection=exclusive 的话，可能会出现某些文本无法被选中的情况。
 
-set completeopt=longest,menu
 set wildmenu                           " show a navigable menu for tab completion"
 set wildmode=longest,list,full
 set wildignore=*.o,*~,*.pyc,*.class
@@ -247,12 +259,6 @@ nnoremap L $
 " save
 cmap w!! w !sudo tee >/dev/null %
 
-" command mode, ctrl-a to head， ctrl-e to tail
-cnoremap <C-j> <t_kd>
-cnoremap <C-k> <t_ku>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-
 "改变光标模式
 
 let &t_SI.="\e[5 q" "SI = INSERT mode
@@ -314,7 +320,6 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-let g:UltiSnipsExpandTrigger="<c-0>"
 
 " Swap up and down
 nmap <C-k> :m-2<CR>
