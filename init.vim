@@ -51,8 +51,8 @@ Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'gabrielelana/vim-markdown'
-    let g:markdown_enable_spell_checking = 0
+" Plug 'gabrielelana/vim-markdown'
+    " let g:markdown_enable_spell_checking = 0
 Plug 'godlygeek/tabular'
 Plug 'scrooloose/nerdtree'
     map <leader>n :NERDTreeToggle<CR>
@@ -351,12 +351,12 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 
 " Swap up and down
-nnoremap <S-j> :m .+1<CR>==
-nnoremap <S-k> :m .-2<CR>==
-inoremap <S-j> <Esc>:m .+1<CR>==gi
-inoremap <S-k> <Esc>:m .-2<CR>==gi
-vnoremap <S-j> :m '>+1<CR>gv=gv
-vnoremap <S-k> :m '<-2<CR>gv=gv
+nnoremap ^[j :m .+1<CR>==
+nnoremap ^[k :m .-2<CR>==
+inoremap ^[j <Esc>:m .+1<CR>==gi
+inoremap ^[k <Esc>:m .-2<CR>==gi
+vnoremap ^[j :m '>+1<CR>gv=gv
+vnoremap ^[k :m '<-2<CR>gv=gv
 
 " window change
 map <C-j> <C-W>j
@@ -364,3 +364,4 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+autocmd FileType markdown hi link markdownError NONE
