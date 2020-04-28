@@ -14,3 +14,8 @@ library
 
 library(base
 :q)
+library
+l, help, warn.conflicts, mask.ok, exclude, include.only)
+datajjjijj
+:q
+

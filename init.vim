@@ -47,20 +47,22 @@ filetype indent on
 
 " Vim-plug
 call plug#begin('~/.config/nvim/plugged')
-Plug 'junegunn/seoul256.vim'
+Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'gabrielelana/vim-markdown'
+    let g:markdown_enable_spell_checking = 0
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/nerdtree'
     map <leader>n :NERDTreeToggle<CR>
     Plug 'scrooloose/nerdcommenter'
     " Add spaces after comment delimiters by default
     let g:NERDSpaceDelims = 1
-    " Use compact syntax for prettified multi-line comments
+    " Use compact syntax for prettified multi-l    ine comments
     let g:NERDCompactSexyComs = 1
-    " Align line-wise comment delimiters flush left instead of following code indentation
     let g:NERDDefaultAlign = 'left'
+    " Align line-wise comment delimiters flush left instead of following code indentation
     " Add your own custom formats or override the defaults
     let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
     " Allow commenting and inverting empty lines (useful when commenting a region)
@@ -136,16 +138,16 @@ Plug 'roxma/nvim-yarp'      " dependency
             \ })
 Plug 'sirVer/ultisnips'    " snippet engine
 Plug 'ncm2/ncm2-ultisnips' " based on ultisnips
+
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
     " press enter key to trigger snippet expansion
     " the parameters are the same as `:help feedkeys()`
     inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
-    " c-j c-k for moving in snippet
     " let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
     let g:UltiSnipsExpandTrigger="<c-0>"
-    let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
-    let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+    let g:UltiSnipsJumpForwardTrigger	= "<c-f>"
+    let g:UltiSnipsJumpBackwardTrigger	= "<c-b>"
     " let g:UltiSnipsRemoveSelectModeMappings = 0k
 Plug 'gaalcaras/ncm-R'     " It relies on the great plugin nvim-R to get the completion data and extends ncm2 for the completion.
 Plug 'honza/vim-snippets'  " snippets repository
@@ -159,6 +161,8 @@ call plug#end()
 set nocursorcolumn
 set nocursorline
 
+" 设置 alt 键不映射到菜单栏
+set winaltkeys=no
 " movement
 set scrolloff=7                 " keep 7 lines when scrolling
 
@@ -223,12 +227,8 @@ set mouse=a
 
 " ============================ theme and status line ============================
 
-" theme
-" seoul256 (dark):
-" "   Range:   233 (darkest) ~ 239 (lightest)
-" "   Default: 237
-let g:seoul256_background = 236
-colo seoul256
+colorscheme gruvbox
+set background=dark    " Setting dark mode
 
 " set mark column color 设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr
@@ -243,7 +243,7 @@ set laststatus=2   " Always show the status line - use 2 lines for the status ba
 " ============================ specific file type ===========================
 
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
-autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
+autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown
 autocmd BufRead,BufNew *.Rmd set filetype=rmd
 autocmd BufRead,BufNew *.R set filetype=r
 
@@ -364,7 +364,3 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" Putting the Nivm-R options after vim-plug totally works.
-" autocmd FileType r if string(g:SendCmdToR) == "function('SendCmdToR_fake')" | call StartR("R") | endif
-" autocmd FileType rmd if string(g:SendCmdToR) == "function('SendCmdToR_fake')" | call StartR("R") | endif
-" autocmd VimLeave * if exists("g:SendCmdToR") && string(g:SendCmdToR) != "function('SendCmdToR_fake')" | call RQuit("nosave") | endif
