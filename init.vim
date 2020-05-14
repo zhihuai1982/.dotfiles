@@ -330,7 +330,7 @@ function! s:goyo_enter()
   set noshowmode
   set noshowcmd
   set scrolloff=999
-  Limelight
+  " Limelight
   " ...
 endfunction
 
@@ -342,7 +342,7 @@ function! s:goyo_leave()
   set showmode
   set showcmd
   set scrolloff=7
-  Limelight!
+  " Limelight!
   " ...
 endfunction
 
@@ -350,13 +350,9 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 
-" Swap up and down
-nnoremap ^[j :m .+1<CR>==
-nnoremap ^[k :m .-2<CR>==
-inoremap ^[j <Esc>:m .+1<CR>==gi
-inoremap ^[k <Esc>:m .-2<CR>==gi
-vnoremap ^[j :m '>+1<CR>gv=gv
-vnoremap ^[k :m '<-2<CR>gv=gv
+" Swap up and down == for indent
+nnoremap <leader>k :m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
 
 " window change
 map <C-j> <C-W>j
