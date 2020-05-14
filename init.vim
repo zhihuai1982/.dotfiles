@@ -103,6 +103,7 @@ Plug 'jalvesaq/Nvim-R'
     " Other useful features like Rformat and R RBuildTags aren’t covered here, see Nvim-R for more info.
 Plug 'ncm2/ncm2'           " snippet engine
 Plug 'roxma/nvim-yarp'      " dependency
+    let g:python3_host_prog = '/usr/local/bin/python3'
     " enable ncm2 for all buffers
     autocmd BufEnter * call ncm2#enable_for_buffer()
     " IMPORTANT: :help Ncm2PopupOpen for more information
