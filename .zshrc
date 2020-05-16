@@ -127,7 +127,7 @@ fi
 
 
 # 修改默认编辑器
-export EDITOR=/usr/bin/nvim
+# export EDITOR=/usr/bin/nvim
 
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
