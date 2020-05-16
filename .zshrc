@@ -79,6 +79,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+# source ./z.sh
 
 # User configuration
 
@@ -106,6 +107,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -al"
+alias vi="nvim"
 
 # powerline install
 function powerline_precmd() {
@@ -127,7 +129,7 @@ fi
 
 
 # 修改默认编辑器
-# export EDITOR=/usr/bin/nvim
+export EDITOR=nvim
 
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
