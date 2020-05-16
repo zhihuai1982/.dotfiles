@@ -16,16 +16,16 @@ end
 
 -- * Move window to screen
 windowBind({"ctrl", "alt"}, {
-  left = wm.throwLeft,
-  right = wm.throwRight
+  u = wm.throwLeft,
+  i = wm.throwRight
 })
 
 -- * Set Window Position on screen
 windowBind({"ctrl", "alt", "cmd"}, {
   m = wm.maximizeWindow,    -- ⌃⌥⌘ + M
   c = wm.centerOnScreen,    -- ⌃⌥⌘ + C
-  left = wm.leftHalf,       -- ⌃⌥⌘ + ←
-  right = wm.rightHalf,     -- ⌃⌥⌘ + →
+  u = wm.leftHalf,       -- ⌃⌥⌘ + ←
+  i = wm.rightHalf,     -- ⌃⌥⌘ + →
   up = wm.topHalf,          -- ⌃⌥⌘ + ↑
   down = wm.bottomHalf      -- ⌃⌥⌘ + ↓
 })
@@ -46,6 +46,6 @@ windowBind({"alt", "cmd", "shift"}, {
 
 -- * Windows-like cycle
 windowBind({"ctrl", "alt", "cmd"}, {
-  u = wm.cycleLeft,          -- ⌃⌥⌘ + u
-  i = wm.cycleRight          -- ⌃⌥⌘ + i
+  o = wm.cycleLeft,          -- ⌃⌥⌘ + u
+  p = wm.cycleRight          -- ⌃⌥⌘ + i
 })
