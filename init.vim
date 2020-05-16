@@ -19,9 +19,10 @@ set linebreak
 set wrapmargin=2
 set showmatch
 
-set noswapfile
-set undofile
-set undodir=~/.vim/.undo//
+set swapfile
+set updatetime=30000
+set updatecount=60
+set noundofile
 
 set nofoldenable                " 启动时关闭代码折叠
 "za，打开或关闭当前折叠；zM，关闭所有折叠；zR，打开所有折叠

@@ -25,7 +25,9 @@ windowBind({"ctrl", "alt", "cmd"}, {
   m = wm.maximizeWindow,    -- ⌃⌥⌘ + M
   c = wm.centerOnScreen,    -- ⌃⌥⌘ + C
   u = wm.leftHalf,       -- ⌃⌥⌘ + ←
+  left = wm.leftHalf,       -- ⌃⌥⌘ + ←
   i = wm.rightHalf,     -- ⌃⌥⌘ + →
+  right = wm.rightHalf,     -- ⌃⌥⌘ + →
   up = wm.topHalf,          -- ⌃⌥⌘ + ↑
   down = wm.bottomHalf      -- ⌃⌥⌘ + ↓
 })
