@@ -108,6 +108,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -al"
 alias vi="nvim"
+alias gacp="git add . && git commit -m sync && git push"
 
 # powerline install
 function powerline_precmd() {
