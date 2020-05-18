@@ -214,6 +214,9 @@ set selection=inclusive  "指定在选择文本时，光标所在位置也属于
 set wildmenu                           " show a navigable menu for tab completion"
 set wildmode=longest,list,full
 set wildignore=*.o,*~,*.pyc,*.class
+" 切换缓冲区快捷键
+set wildchar=<Tab> wildcharm=<C-z>
+noremap <c-n> :b <C-z>
 
 " others
 set backspace=indent,eol,start  " make that backspace key work the way it should
@@ -359,9 +362,10 @@ nnoremap <leader>k :m .-2<CR>==
 nnoremap <leader>j :m .+1<CR>==
 
 " window change
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+" nnoremap <C-j> <C-w><C-j>
+nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-l> <C-w>l
 
 autocmd FileType markdown hi link markdownError NONE
