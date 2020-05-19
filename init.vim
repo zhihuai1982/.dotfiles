@@ -363,7 +363,7 @@ nnoremap <leader>j :m .+1<CR>==
 
 " window change
 " nnoremap <C-j> <C-w><C-j>
-nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-J> <C-W><C-J>
 " nnoremap <C-k> <C-w>k
 " nnoremap <C-h> <C-w>h
 " nnoremap <C-l> <C-w>l
