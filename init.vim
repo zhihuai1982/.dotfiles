@@ -195,6 +195,11 @@ Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
 "Plug 'iamcco/markdown-preview.vim' " Vim 寫 MarkDown 並在瀏覽器同步並檢視文件
 " Plug 'w0rp/ale' " 程式碼靜態檢查，程式碼格式修正"
 " Plug 'lfv89/vim-interestingwords' " 高亮感興趣的當前單詞
+Plug 'jpalardy/vim-slime'
+    let g:slime_target = "tmux"
+    let g:slime_paste_file = "$HOME/.slime_paste"
+    " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
+    let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
 call plug#end()
 
 
