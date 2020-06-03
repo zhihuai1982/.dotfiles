@@ -195,11 +195,11 @@ Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
 "Plug 'iamcco/markdown-preview.vim' " Vim 寫 MarkDown 並在瀏覽器同步並檢視文件
 " Plug 'w0rp/ale' " 程式碼靜態檢查，程式碼格式修正"
 " Plug 'lfv89/vim-interestingwords' " 高亮感興趣的當前單詞
-Plug 'jpalardy/vim-slime'
-    let g:slime_target = "tmux"
-    let g:slime_paste_file = "$HOME/.slime_paste"
-    " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
-    let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+" Plug 'jpalardy/vim-slime'
+"     let g:slime_target = "tmux"
+"     let g:slime_paste_file = "$HOME/.slime_paste"
+"     " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
+"     let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
 call plug#end()
 
 
@@ -410,3 +410,21 @@ nnoremap <leader>j :m .+1<CR>==
 " nnoremap <C-l> <C-w>l
 
 autocmd FileType markdown hi link markdownError NONE
+
+" radian Nvim-R support
+" start R with F2 key
+map <F12> <Plug>RStart
+imap <F12> <Plug>RStart
+vmap <F12> <Plug>RStart
+" R version can be specified like this:
+" let vimrplugin_r_path = "/opt/R/3.1.2-release/bin/R"
+" Send selection or line to R with space bar, respectively.
+vmap <Space>l <Plug>RDSendSelection
+nmap <Space>l <Plug>RDSendLine
+
+let R_app = "radian"
+let R_cmd = "R"
+let R_hl_term = 0
+let R_args = []  " if you had set any
+let R_bracketed_paste = 1
+
