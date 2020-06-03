@@ -131,13 +131,19 @@ Plug 'Yggdroot/LeaderF'
     " If needs
     " set ambiwidth=double
 Plug 'jalvesaq/Nvim-R'
-    " let maplocalleader = ","
+    let maplocalleader = "\<space>"
     " make R vertical split at start
     let R_rconsole_width = 57
     let R_min_editor_width = 18
     " some nice keybindding, D = cursor down one line when finished the code
     " localleader+rv = view data, +rg = plot(graphic), +rs = summary, all without sending lines to R buffer, very useful
     " Other useful features like Rformat and R RBuildTags aren’t covered here, see Nvim-R for more info.
+
+    " R output is highlighted with current colorscheme
+    let g:rout_follow_colorscheme = 1
+
+    " R commands in R output are highlighted
+    let g:Rout_more_colors = 1
 Plug 'ncm2/ncm2'           " snippet engine
 Plug 'roxma/nvim-yarp'      " dependency
     if has('mac')
@@ -412,15 +418,11 @@ nnoremap <leader>j :m .+1<CR>==
 autocmd FileType markdown hi link markdownError NONE
 
 " radian Nvim-R support
-" start R with F2 key
-map <F12> <Plug>RStart
-imap <F12> <Plug>RStart
-vmap <F12> <Plug>RStart
 " R version can be specified like this:
 " let vimrplugin_r_path = "/opt/R/3.1.2-release/bin/R"
 " Send selection or line to R with space bar, respectively.
-vmap <Space>l <Plug>RDSendSelection
-nmap <Space>l <Plug>RDSendLine
+" vmap <Space>l <Plug>RDSendSelection
+" nmap <Space>l <Plug>RDSendLine
 
 let R_app = "radian"
 let R_cmd = "R"
