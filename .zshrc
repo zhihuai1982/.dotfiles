@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 export PATH=$HOME/opt/anaconda3/bin:$PATH
-
+# $HOME/Library/Python/2.7/bin:
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
