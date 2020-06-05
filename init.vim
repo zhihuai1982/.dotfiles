@@ -103,7 +103,7 @@ Plug 'Yggdroot/LeaderF'
     let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
     let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 
-    let g:Lf_ShortcutF = "<leader>ff"
+    let g:Lf_ShortcutF = "<leader>f"
     noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
     noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
     noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
@@ -313,7 +313,7 @@ set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
                                 "    that won't be autoindented
 
 " jk 替换 Esc
-inoremap jk <Esc>
+" inoremap jk <Esc>
 
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
