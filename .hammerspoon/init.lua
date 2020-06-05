@@ -40,13 +40,3 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "n", function()
 end)
 hs.alert.show("Config loaded")
 
--- Launcher and Switcher
--- hs.hotkey.bind({'alt'}, 'u', function () hs.application.launchOrFocus("Google Chrome") end)
--- hs.hotkey.bind({'alt'}, 'i', function () hs.application.launchOrFocus("iTerm") end)
--- hs.hotkey.bind({'alt'}, 'p', function () hs.application.launchOrFocus("Finder") end)
--- hs.hotkey.bind({'alt'}, 'o', function () hs.application.launchOrFocus("Zotero") end)
--- hs.hotkey.bind({'alt'}, 'n', function () hs.application.launchOrFocusByBundleID("Synology.Note.Station") end)
--- hs.hotkey.bind({'alt'}, 'k', function () hs.application.launchOrFocusByBundleID("com.apple.Stickies") end)
--- hs.hotkey.bind({'alt'}, 'j', function () hs.application.launchOrFocus("RStudio") end)
-
--- hs.hotkey.bind({'ctrl', 'shift'}, 'escape', function () hs.application.launchOrFocus("Activity Monitor") end)
