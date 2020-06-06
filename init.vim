@@ -206,6 +206,7 @@ Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
 "     let g:slime_paste_file = "$HOME/.slime_paste"
 "     " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
 "     let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+" Plug 'Chiel92/vim-autoformat'
 call plug#end()
 
 
@@ -313,7 +314,7 @@ set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
                                 "    that won't be autoindented
 
 " jk 替换 Esc
-" inoremap jk <Esc>
+inoremap jk <Esc>
 
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
@@ -430,3 +431,4 @@ let R_hl_term = 0
 let R_args = []  " if you had set any
 let R_bracketed_paste = 1
 
+vmap ts :Rformat<CR>
