@@ -22,7 +22,10 @@ set showmatch
 set swapfile
 set updatetime=30000
 set updatecount=60
-set noundofile
+" set noundofile
+set undodir="~/.undodir"
+
+set lazyredraw
 
 set nofoldenable                " 启动时关闭代码折叠
 "za，打开或关闭当前折叠；zM，关闭所有折叠；zR，打开所有折叠
@@ -33,6 +36,10 @@ let mapleader = "\<space>"
 "定义以下快捷键，用于快速编辑和重载vimrc配置文件：
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" move to beginning/end of line
+nnoremap H ^
+nnoremap L $
 
 " syntax
 syntax on
@@ -210,6 +217,7 @@ Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
 Plug 'dense-analysis/ale'
     " let g:ale_linters = {'r': ['lintr']}
     let g:ale_r_lintr_options = "with_defaults(line_length_linter(120))"
+    let g:ale_sign_column_always = 1
     " let g:ale_r_lintr_lint_package = 1
     let g:ale_fixers = {
     \   '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -217,6 +225,9 @@ Plug 'dense-analysis/ale'
     \}
     let g:ale_fix_on_save = 1
     let g:airline#extensions#ale#enabled = 1
+Plug 'sjl/gundo.vim'
+    let g:gundo_prefer_python3 = 1
+    nnoremap <leader>u :GundoToggle<CR>
 call plug#end()
 
 
@@ -441,4 +452,6 @@ let R_hl_term = 0
 let R_args = []  " if you had set any
 let R_bracketed_paste = 1
 
-vmap ts :Rformat<CR>
+" save session
+" After saving a Vim session, you can reopen it with vim -S.
+nnoremap <leader>S :mksession<CR>
