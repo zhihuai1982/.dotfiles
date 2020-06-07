@@ -207,6 +207,16 @@ Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
 "     " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
 "     let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
 " Plug 'Chiel92/vim-autoformat'
+Plug 'dense-analysis/ale'
+    " let g:ale_linters = {'r': ['lintr']}
+    let g:ale_r_lintr_options = "with_defaults(line_length_linter(120))"
+    let g:ale_r_lintr_lint_package = 1
+    let g:ale_fixers = {
+    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \   'r': ['styler'],
+    \}
+    let g:ale_fix_on_save = 1
+    let g:airline#extensions#ale#enabled = 1
 call plug#end()
 
 
