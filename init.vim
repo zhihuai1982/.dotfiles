@@ -20,10 +20,11 @@ set wrapmargin=2
 set showmatch
 
 set swapfile
+set directory^=$HOME/.swap//
 set updatetime=30000
 set updatecount=60
-" set noundofile
-set undodir="~/.undodir"
+set undofile
+set undodir=~/.undodir
 
 set lazyredraw
 
@@ -147,10 +148,10 @@ Plug 'jalvesaq/Nvim-R'
     " Other useful features like Rformat and R RBuildTags aren’t covered here, see Nvim-R for more info.
 
     " R output is highlighted with current colorscheme
-    let g:rout_follow_colorscheme = 1
+    " let g:rout_follow_colorscheme = 1
 
     " R commands in R output are highlighted
-    let g:Rout_more_colors = 1
+    " let g:Rout_more_colors = 1
 Plug 'ncm2/ncm2'           " snippet engine
 Plug 'roxma/nvim-yarp'      " dependency
     if has('mac')
@@ -194,26 +195,20 @@ Plug 'ncm2/ncm2-ultisnips' " based on ultisnips
 
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
-    " press enter key to trigger snippet expansion
-    " the parameters are the same as `:help feedkeys()`
-    inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
-    " let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
-    let g:UltiSnipsExpandTrigger="<c-0>"
-    let g:UltiSnipsJumpForwardTrigger	= "<c-f>"
-    let g:UltiSnipsJumpBackwardTrigger	= "<c-b>"
-    " let g:UltiSnipsRemoveSelectModeMappings = 0k
+    inoremap <silent> <expr> <CR> ((pumvisible() && empty(v:completed_item)) ?  "\<c-y>\<cr>" : (!empty(v:completed_item) ? ncm2_ultisnips#expand_or("", 'n') : "\<CR>" ))
+
+    " c-j c-k for moving in snippet
+    imap <expr> <c-u> ncm2_ultisnips#expand_or("\<Plug>(ultisnips_expand)", 'm')
+    smap <c-u> <Plug>(ultisnips_expand)
+    let g:UltiSnipsExpandTrigger="<Plug>(ultisnips_expand)"
+    let g:UltiSnipsJumpForwardTrigger="<c-j>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+    let g:UltiSnipsRemoveSelectModeMappings = 0
 Plug 'gaalcaras/ncm-R'     " It relies on the great plugin nvim-R to get the completion data and extends ncm2 for the completion.
 Plug 'honza/vim-snippets'  " snippets repository
+
 Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
-"Plug 'iamcco/markdown-preview.vim' " Vim 寫 MarkDown 並在瀏覽器同步並檢視文件
-" Plug 'w0rp/ale' " 程式碼靜態檢查，程式碼格式修正"
-" Plug 'lfv89/vim-interestingwords' " 高亮感興趣的當前單詞
-" Plug 'jpalardy/vim-slime'
-"     let g:slime_target = "tmux"
-"     let g:slime_paste_file = "$HOME/.slime_paste"
-"     " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
-"     let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
-" Plug 'Chiel92/vim-autoformat'
+
 Plug 'dense-analysis/ale'
     " let g:ale_linters = {'r': ['lintr']}
     let g:ale_r_lintr_options = "with_defaults(line_length_linter(120))"
@@ -337,9 +332,11 @@ set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
 " jk 替换 Esc
 inoremap jk <Esc>
 
-" Quickly close the current window
+" 函数参数选择
+nnoremap <leader>t Wcw
+
 nnoremap <leader>q :q<CR>
-"nnoremap <leader>Q :q!<CR>
+nnoremap <leader>Q :q!<CR>
 " Quickly save the current file
 nnoremap <leader>w :w<CR>
 
