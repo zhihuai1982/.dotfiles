@@ -196,7 +196,9 @@ Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'honza/vim-snippets'  " snippets repository
 
-Plug 'gaalcaras/ncm-R'     " It relies on the great plugin nvim-R to get the completion data and extends ncm2 for the completion.
+" It relies on the great plugin nvim-R to get the completion data and extends ncm2 for the completion.
+" also relies on the sirVer/ultisnips
+Plug 'gaalcaras/ncm-R'
 
 Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
 
@@ -250,7 +252,7 @@ set expandtab                   " expand tabs to spaces
 set shiftround
 
 " indent
-set autoindent 
+set autoindent
 set smartindent
 set shiftwidth=4
 set tabstop=4
@@ -322,9 +324,6 @@ set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
 
 " jk 替换 Esc
 inoremap jk <Esc>
-
-" 函数参数选择
-nnoremap <leader>w Wcw
 
 "Keep search pattern at the center of the screen."
 nnoremap <silent> n nzz
