@@ -8,7 +8,6 @@ set title                       " change the terminal's title
 set nobackup                    " do not keep a backup file
 set wrap
 
-set novisualbell                " turn off visual bell
 set noerrorbells                " don't beep
 set visualbell                  " turn off error beep/flash
 set t_vb=
@@ -57,11 +56,7 @@ filetype indent on
 " Vim-plug
 call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'
-" Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/goyo.vim'
-" Plug 'junegunn/limelight.vim'
-" Plug 'gabrielelana/vim-markdown'
-    " let g:markdown_enable_spell_checking = 0
 Plug 'godlygeek/tabular'
 Plug 'scrooloose/nerdtree'
     map <leader>n :NERDTreeToggle<CR>
@@ -93,9 +88,6 @@ Plug 'Lokaltog/vim-easymotion'
     nmap <Leader>s <Plug>(easymotion-overwin-f2)
     " Turn on case-insensitive feature
     let g:EasyMotion_smartcase = 1
-    " JK motions: Line motions
-    map <Leader>j <Plug>(easymotion-j)
-    map <Leader>k <Plug>(easymotion-k)
 " Plug 'terryma/vim-multiple-cursors'      " ctrl+n, ctrl+p, ctrl+x, Esc
 Plug 'mhinz/vim-startify'
 Plug 'Yggdroot/LeaderF'
@@ -171,8 +163,8 @@ Plug 'roxma/nvim-yarp'      " dependency
     " line.
     " inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
     " Use <TAB> to select the popup menu:
-    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
     " wrap existing omnifunc
     " Note that omnifunc does not run in background and may probably block the
     " editor. If you don't want to be blocked by omnifunc too often, you could
@@ -191,21 +183,20 @@ Plug 'roxma/nvim-yarp'      " dependency
              \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
             \ })
 Plug 'sirVer/ultisnips'    " snippet engine
-Plug 'ncm2/ncm2-ultisnips' " based on ultisnips
-
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
     inoremap <silent> <expr> <CR> ((pumvisible() && empty(v:completed_item)) ?  "\<c-y>\<cr>" : (!empty(v:completed_item) ? ncm2_ultisnips#expand_or("", 'n') : "\<CR>" ))
-
     " c-j c-k for moving in snippet
     imap <expr> <c-u> ncm2_ultisnips#expand_or("\<Plug>(ultisnips_expand)", 'm')
     smap <c-u> <Plug>(ultisnips_expand)
     let g:UltiSnipsExpandTrigger="<Plug>(ultisnips_expand)"
-    let g:UltiSnipsJumpForwardTrigger="<c-j>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+    let g:UltiSnipsJumpForwardTrigger="<tab>"
+    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
     let g:UltiSnipsRemoveSelectModeMappings = 0
-Plug 'gaalcaras/ncm-R'     " It relies on the great plugin nvim-R to get the completion data and extends ncm2 for the completion.
+Plug 'ncm2/ncm2-ultisnips' " based on ultisnips
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
 Plug 'honza/vim-snippets'  " snippets repository
+
+Plug 'gaalcaras/ncm-R'     " It relies on the great plugin nvim-R to get the completion data and extends ncm2 for the completion.
 
 Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
 
@@ -254,12 +245,13 @@ set ignorecase                  " ignore case when searching
 set smartcase                   " no ignorecase if Uppercase char present
 
 " tab
-set expandtab                   " expand tabs to spaces
 set smarttab
+set expandtab                   " expand tabs to spaces
 set shiftround
 
 " indent
-set autoindent smartindent shiftround
+set autoindent 
+set smartindent
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4                " insert mode tab and backspace use 4 spaces
@@ -316,7 +308,6 @@ set laststatus=2   " Always show the status line - use 2 lines for the status ba
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown
 autocmd BufRead,BufNew *.Rmd set filetype=rmd
-autocmd BufRead,BufNew *.R set filetype=r
 
 " ============================ key map ============================
 " 折叠后移动快捷键修改
@@ -333,12 +324,7 @@ set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
 inoremap jk <Esc>
 
 " 函数参数选择
-nnoremap <leader>t Wcw
-
-nnoremap <leader>q :q<CR>
-nnoremap <leader>Q :q!<CR>
-" Quickly save the current file
-nnoremap <leader>w :w<CR>
+nnoremap <leader>w Wcw
 
 "Keep search pattern at the center of the screen."
 nnoremap <silent> n nzz
@@ -427,12 +413,10 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 nnoremap <leader>k :m .-2<CR>==
 nnoremap <leader>j :m .+1<CR>==
 
-" window change
-" nnoremap <C-j> <C-w><C-j>
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-l> <C-w>l
+nnoremap ; :
+nnoremap U <C-r>
+nnoremap ' `
+nnoremap ` '
 
 autocmd FileType markdown hi link markdownError NONE
 
@@ -448,7 +432,3 @@ let R_cmd = "R"
 let R_hl_term = 0
 let R_args = []  " if you had set any
 let R_bracketed_paste = 1
-
-" save session
-" After saving a Vim session, you can reopen it with vim -S.
-nnoremap <leader>S :mksession<CR>
