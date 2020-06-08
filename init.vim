@@ -340,8 +340,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Shift+H goto head of the line, Shift+L goto end of the line
-nnoremap H ^
-nnoremap L $
+" nnoremap < ^
+" nnoremap > $
 
 " save
 cmap w!! w !sudo tee >/dev/null %
@@ -416,6 +416,12 @@ nnoremap ; :
 nnoremap U <C-r>
 nnoremap ' `
 nnoremap ` '
+
+nnoremap H <c-w>h
+nnoremap L <c-w>l
+nnoremap K <c-w>k
+nnoremap M <c-w>j
+
 
 autocmd FileType markdown hi link markdownError NONE
 
