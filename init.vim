@@ -306,8 +306,8 @@ set laststatus=2   " Always show the status line - use 2 lines for the status ba
 " ============================ specific file type ===========================
 
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
-autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown
-autocmd BufRead,BufNew *.Rmd set filetype=rmd
+" autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown
+" autocmd BufRead,BufNew *.Rmd set filetype=rmd
 
 " ============================ key map ============================
 " 折叠后移动快捷键修改
