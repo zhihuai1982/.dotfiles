@@ -111,6 +111,7 @@ alias vi="nvim"
 alias gacp="git add . && git commit -m sync && git push"
 alias lg="lazygit"
 alias r="radian"
+alias gitl="git log --graph --decorate --oneline --simplify-by-decoration --all"
 
 # powerline install
 function powerline_precmd() {
