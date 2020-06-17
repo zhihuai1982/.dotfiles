@@ -238,7 +238,7 @@ set winaltkeys=no
 set scrolloff=7                 " keep 7 lines when scrolling
 
 " Vim 的默认寄存器和系统剪贴板共享
-set clipboard+=unnamed
+" set clipboard+=unnamed
 
 " show
 set ruler                       " show the current row and column
