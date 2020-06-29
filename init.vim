@@ -88,18 +88,18 @@ Plug 'Lokaltog/vim-easymotion'
     nmap <Leader>s <Plug>(easymotion-overwin-f2)
     " Turn on case-insensitive feature
     let g:EasyMotion_smartcase = 1
-Plug 'terryma/vim-multiple-cursors'      " ctrl+n, ctrl+p, ctrl+x, Esc
-    let g:multi_cursor_use_default_mapping=0
-
-    " Default mapping
-    let g:multi_curmor_start_word_key      = '<C-m>'
-    let g:multi_cursor_select_all_word_key = '<A-m>'
-    let g:multi_cursor_start_key           = 'g<C-m>'
-    let g:multi_cursor_select_all_key      = 'g<A-m>'
-    let g:multi_cursor_next_key            = '<C-m>'
-    let g:multi_cursor_prev_key            = '<C-p>'
-    let g:multi_cursor_skip_key            = '<C-x>'
-    let g:multi_cursor_quit_key            = '<Esc>'
+" Plug 'terryma/vim-multiple-cursors'      " ctrl+n, ctrl+p, ctrl+x, Esc
+"     let g:multi_cursor_use_default_mapping=0
+"
+"     " Default mapping
+"     let g:multi_curmor_start_word_key      = '<C-m>'
+"     let g:multi_cursor_select_all_word_key = '<A-m>'
+"     let g:multi_cursor_start_key           = 'g<C-m>'
+"     let g:multi_cursor_select_all_key      = 'g<A-m>'
+"     let g:multi_cursor_next_key            = '<C-m>'
+"     let g:multi_cursor_prev_key            = '<C-p>'
+"     let g:multi_cursor_skip_key            = '<C-x>'
+"     let g:multi_cursor_quit_key            = '<Esc>'
 
 Plug 'mhinz/vim-startify'
 Plug 'Yggdroot/LeaderF'
