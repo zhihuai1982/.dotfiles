@@ -112,6 +112,7 @@ alias gacp="git add . && git commit -m sync && git push"
 alias lg="lazygit"
 alias r="radian"
 alias gitl="git log --graph --decorate --oneline --simplify-by-decoration --all"
+alias pms="pm2 start npm -- start"
 
 # powerline install
 function powerline_precmd() {
