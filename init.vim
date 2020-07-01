@@ -227,6 +227,10 @@ Plug 'dense-analysis/ale'
 Plug 'sjl/gundo.vim'
     let g:gundo_prefer_python3 = 1
     nnoremap <leader>u :GundoToggle<CR>
+Plug 'ferrine/md-img-paste.vim'
+    autocmd FileType html,markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+    let g:mdip_imgdir = '.'
+    let g:mdip_imgname = 'image'
 call plug#end()
 
 
@@ -448,3 +452,4 @@ let R_cmd = "R"
 let R_hl_term = 0
 let R_args = []  " if you had set any
 let R_bracketed_paste = 1
+
