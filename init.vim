@@ -71,6 +71,7 @@ Plug 'Lokaltog/vim-easymotion'
     nmap <Leader>s <Plug>(easymotion-overwin-f2)
     " Turn on case-insensitive feature
     let g:EasyMotion_smartcase = 1
+Plug 'preservim/nerdcommenter'
 
 Plug 'terryma/vim-multiple-cursors'
 
@@ -289,7 +290,7 @@ set whichwrap+=<,>,h,l
 " if this not work ,make sure .viminfo is writable for you
 " 记住上次退出光标位置
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    au bufreadpost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 " NOT SUPPORT
@@ -443,3 +444,5 @@ let R_cmd = "R"
 let R_hl_term = 0
 let R_args = []  " if you had set any
 let R_bracketed_paste = 1
+
+noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
