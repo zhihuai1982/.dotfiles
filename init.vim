@@ -58,23 +58,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/goyo.vim'
 Plug 'godlygeek/tabular'
-Plug 'scrooloose/nerdtree'
-    map <leader>n :NERDTreeToggle<CR>
-    Plug 'scrooloose/nerdcommenter'
-    " Add spaces after comment delimiters by default
-    let g:NERDSpaceDelims = 1
-    " Use compact syntax for prettified multi-l    ine comments
-    let g:NERDCompactSexyComs = 1
-    let g:NERDDefaultAlign = 'left'
-    " Align line-wise comment delimiters flush left instead of following code indentation
-    " Add your own custom formats or override the defaults
-    let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-    " Allow commenting and inverting empty lines (useful when commenting a region)
-    let g:NERDCommentEmptyLines = 1
-    " Enable trimming of trailing whitespace when uncommenting
-    let g:NERDTrimTrailingWhitespace = 1
-    " Enable NERDCommenterToggle to check all selected lines is commented or not
-    let g:NERDToggleCheckAllLines = 1
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -88,18 +71,8 @@ Plug 'Lokaltog/vim-easymotion'
     nmap <Leader>s <Plug>(easymotion-overwin-f2)
     " Turn on case-insensitive feature
     let g:EasyMotion_smartcase = 1
-" Plug 'terryma/vim-multiple-cursors'      " ctrl+n, ctrl+p, ctrl+x, Esc
-"     let g:multi_cursor_use_default_mapping=0
-"
-"     " Default mapping
-"     let g:multi_curmor_start_word_key      = '<C-m>'
-"     let g:multi_cursor_select_all_word_key = '<A-m>'
-"     let g:multi_cursor_start_key           = 'g<C-m>'
-"     let g:multi_cursor_select_all_key      = 'g<A-m>'
-"     let g:multi_cursor_next_key            = '<C-m>'
-"     let g:multi_cursor_prev_key            = '<C-p>'
-"     let g:multi_cursor_skip_key            = '<C-x>'
-"     let g:multi_cursor_quit_key            = '<Esc>'
+
+Plug 'terryma/vim-multiple-cursors'
 
 Plug 'mhinz/vim-startify'
 Plug 'Yggdroot/LeaderF'
@@ -156,74 +129,13 @@ Plug 'jalvesaq/Nvim-R'
 
     " R commands in R output are highlighted
     " let g:Rout_more_colors = 1
-Plug 'ncm2/ncm2'           " snippet engine
-Plug 'roxma/nvim-yarp'      " dependency
-    if has('mac')
+   if has('mac')
         let g:python3_host_prog = '/usr/local/bin/python3'
     endif
-    " enable ncm2 for all buffers
-    autocmd BufEnter * call ncm2#enable_for_buffer()
-    " IMPORTANT: :help Ncm2PopupOpen for more information
-    set completeopt=noinsert,menuone,noselect
-        " suppress the annoying 'match x of y', 'The only match' and 'Pattern not
-    " found' messages
-    set shortmess+=c
-    " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-    inoremap <c-c> <ESC>
-    " When the <Enter> key is pressed while the popup menu is visible, it only
-    " hides the menu. Use this mapping to close the menu and also start a new
-    " line.
-    " inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-    " Use <TAB> to select the popup menu:
-    " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-    " wrap existing omnifunc
-    " Note that omnifunc does not run in background and may probably block the
-    " editor. If you don't want to be blocked by omnifunc too often, you could
-    " add 180ms delay before the omni wrapper:
-    "  'on_complete': ['ncm2#on_complete#delay', 180,
-    "               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-    au user Ncm2Plugin call ncm2#register_source({
-            \ 'name' : 'css',
-            \ 'priority': 9,
-            \ 'subscope_enable': 1,
-            \ 'scope': ['css','scss'],
-            \ 'mark': 'css',
-            \ 'word_pattern': '[\w\-]+',
-            \ 'complete_pattern': ':\s*',
-            \ 'on_complete': ['ncm2#on_complete#delay', 180,
-             \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-            \ })
-Plug 'sirVer/ultisnips'    " snippet engine
-    inoremap <silent> <expr> <CR> ((pumvisible() && empty(v:completed_item)) ?  "\<c-y>\<cr>" : (!empty(v:completed_item) ? ncm2_ultisnips#expand_or("", 'n') : "\<CR>" ))
-    " c-j c-k for moving in snippet
-    imap <expr> <c-u> ncm2_ultisnips#expand_or("\<Plug>(ultisnips_expand)", 'm')
-    smap <c-u> <Plug>(ultisnips_expand)
-    let g:UltiSnipsExpandTrigger="<Plug>(ultisnips_expand)"
-    let g:UltiSnipsJumpForwardTrigger="<tab>"
-    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-    let g:UltiSnipsRemoveSelectModeMappings = 0
-Plug 'ncm2/ncm2-ultisnips' " based on ultisnips
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
 Plug 'honza/vim-snippets'  " snippets repository
-
-" It relies on the great plugin nvim-R to get the completion data and extends ncm2 for the completion.
-" also relies on the sirVer/ultisnips
-Plug 'gaalcaras/ncm-R'
 
 Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
 
-Plug 'dense-analysis/ale'
-    " let g:ale_linters = {'r': ['lintr']}
-    let g:ale_r_lintr_options = "with_defaults(line_length_linter(120))"
-    let g:ale_fixers = {
-    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \   'r': ['styler'],
-    \   'html': ['tidy'],
-    \}
-    let g:ale_fix_on_save = 1
-    let g:airline#extensions#ale#enabled = 1
 Plug 'sjl/gundo.vim'
     let g:gundo_prefer_python3 = 1
     nnoremap <leader>u :GundoToggle<CR>
@@ -231,6 +143,85 @@ Plug 'ferrine/md-img-paste.vim'
     autocmd FileType html,markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
     let g:mdip_imgdir = '.'
     let g:mdip_imgname = 'image'
+
+" Use release branch (recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" fix the most annoying bug that coc has
+"silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
+let g:coc_global_extensions = [
+  \ 'coc-actions',
+  \ 'coc-css',
+  \ 'coc-diagnostic',
+  \ 'coc-explorer',
+  \ 'coc-git',
+  \ 'coc-html',
+  \ 'coc-lists',
+  \ 'coc-python',
+  \ 'coc-snippets',
+  \ 'coc-r-lsp',
+  \ 'coc-translator',
+  \ 'coc-vimlsp',
+  \ 'coc-yank']
+"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+"nmap <silent> <TAB> <Plug>(coc-range-select)
+"xmap <silent> <TAB> <Plug>(coc-range-select)
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]	=~ '\s'
+endfunction
+inoremap <silent><expr> <TAB>
+	\ pumvisible() ? "\<C-n>" :
+	\ <SID>check_back_space() ? "\<TAB>" :
+	\ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-o> coc#refresh()
+
+" Open up coc-commands
+nnoremap <c-c> :CocCommand<CR>
+" Text Objects
+xmap kf <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap kf <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+" Useful commands
+nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+nmap nn :CocCommand explorer<CR>
+" coc-translator
+nmap tt <Plug>(coc-translator-p)
+vmap tt <Plug>(coc-translator-pv)
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+" coc-snippets
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-e> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-e>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-n>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-e> <Plug>(coc-snippets-expand-jump)
 call plug#end()
 
 
@@ -452,4 +443,3 @@ let R_cmd = "R"
 let R_hl_term = 0
 let R_args = []  " if you had set any
 let R_bracketed_paste = 1
-
