@@ -16,7 +16,7 @@ hs.window.animationDuration = 0
 require "window-management"
 require "vim-binding"
 require "key-binding"
-
+require "html-preview"
 -- -----------------------------------------------------------------------
 --                            ** For Debug **                           --
 -- -----------------------------------------------------------------------
