@@ -61,14 +61,14 @@ Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 Plug 'Lokaltog/vim-easymotion'
     let g:EasyMotion_do_mapping = 0 " Disable default mappings
     " Jump to anywhere you want with minimal keystrokes, with just one key binding.
     " `s{char}{char}{label}`
     " Need one more keystroke, but on average, it may be more comfortable.
-    nmap <Leader>s <Plug>(easymotion-overwin-f2)
+    nmap '' <Plug>(easymotion-overwin-f2)
     " Turn on case-insensitive feature
     let g:EasyMotion_smartcase = 1
 Plug 'preservim/nerdcommenter'
@@ -198,7 +198,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
-nmap nn :CocCommand explorer<CR>
+nmap <leader>e :CocCommand explorer<CR>
 " coc-translator
 nmap tt <Plug>(coc-translator-p)
 vmap tt <Plug>(coc-translator-pv)
@@ -223,11 +223,66 @@ let g:coc_snippet_prev = '<c-n>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-e> <Plug>(coc-snippets-expand-jump)
+
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
+Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
+
+Plug 'theniceboy/eleline.vim'
+    let g:airline_powerline_fonts = 1
+
+Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
+    let g:Hexokinase_highlighters = ['virtual']
+
+Plug 'RRethy/vim-illuminate'
+    let g:Illuminate_delay = 750
+    "hi illuminatedWord cterm=undercurl gui=undercurl
+    
+Plug 'mg979/vim-visual-multi'
+    "let g:VM_theme             = 'iceblue'
+    "let g:VM_default_mappings = 0
+    let g:VM_leader                     = {'default': ',', 'visual': ',', 'buffer': ','}
+    let g:VM_maps                       = {}
+    let g:VM_custom_motions             = {'n': 'h', 'i': 'l', 'u': 'k', 'e': 'j', 'N': '0', 'I': '$', 'h': 'e'}
+    let g:VM_maps['i']                  = 'k'
+    let g:VM_maps['I']                  = 'K'
+    let g:VM_maps['Find Under']         = '<C-k>'
+    let g:VM_maps['Find Subword Under'] = '<C-k>'
+    let g:VM_maps['Find Next']          = ''
+    let g:VM_maps['Find Prev']          = ''
+    let g:VM_maps['Remove Region']      = 'q'
+    let g:VM_maps['Skip Region']        = '<c-n>'
+    let g:VM_maps["undo"]               = 'l'
+    let g:VM_maps["Redo"]               = '<C-r>'
+
+Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
+
+Plug 'rhysd/clever-f.vim'
+
+Plug 'MattesGroeger/vim-bookmarks'
+let g:bookmark_no_default_key_mappings = 1
+nmap mt <Plug>BookmarkToggle
+nmap ma <Plug>BookmarkAnnotate
+nmap ml <Plug>BookmarkShowAll
+nmap mi <Plug>BookmarkNext
+nmap mn <Plug>BookmarkPrev
+nmap mC <Plug>BookmarkClear
+nmap mX <Plug>BookmarkClearAll
+nmap mu <Plug>BookmarkMoveUp
+nmap me <Plug>BookmarkMoveDown
+nmap <Leader>g <Plug>BookmarkMoveToLine
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_auto_save = 1
+let g:bookmark_highlight_lines = 1
+let g:bookmark_manage_per_buffer = 1
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_center = 1
+let g:bookmark_auto_close = 1
+let g:bookmark_location_list = 1
+
 call plug#end()
 
-
-set nocursorcolumn
-set nocursorline
+set cursorline
 
 " 设置 alt 键不映射到菜单栏
 set winaltkeys=no
@@ -236,6 +291,9 @@ set scrolloff=7                 " keep 7 lines when scrolling
 
 " Vim 的默认寄存器和系统剪贴板共享
 " set clipboard+=unnamed
+
+" Copy to system clipboard
+vnoremap Y "+y
 
 " show
 set ruler                       " show the current row and column
@@ -310,7 +368,6 @@ hi! link ShowMarksHLu DiffChange
 " status line
 set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 set laststatus=2   " Always show the status line - use 2 lines for the status bar
-
 
 " ============================ specific file type ===========================
 
@@ -446,3 +503,29 @@ let R_args = []  " if you had set any
 let R_bracketed_paste = 1
 
 noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
+
+" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
+noremap si :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+noremap sk :set splitbelow<CR>:split<CR>
+noremap sj :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+noremap sl :set splitright<CR>:vsplit<CR>
+
+" Resize splits with arrow keys
+noremap <up> :res +5<CR>
+noremap <down> :res -5<CR>
+noremap <left> :vertical resize-5<CR>
+noremap <right> :vertical resize+5<CR>
+
+" Place the two screens up and down
+noremap sh <C-w>t<C-w>K
+" Place the two screens side by side
+noremap sv <C-w>t<C-w>H
+
+" Press ` to change case (instead of ~)
+noremap ` ~
+
+" find and replace
+noremap fr :%s//g<left><left>
+
+
+nnoremap <leader>v :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
