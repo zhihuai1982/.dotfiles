@@ -209,21 +209,11 @@ endfunction
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 " coc-snippets
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
+let g:coc_snippet_next = '<tab>'
 
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-e> <Plug>(coc-snippets-select)
-
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-e>'
-
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-n>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-e> <Plug>(coc-snippets-expand-jump)
-
+"Use :CocList snippets to open snippets list.
+"Use :CocCommand snippets.editSnippets to edit user snippet of current filetype.
+"Use :CocCommand snippets.openSnippetFiles to open snippet files of current filetype.
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
@@ -338,8 +328,8 @@ set wildmenu                           " show a navigable menu for tab completio
 set wildmode=longest,list,full
 set wildignore=*.o,*~,*.pyc,*.class
 " 切换缓冲区快捷键
-set wildchar=<Tab> wildcharm=<C-z>
-noremap <c-n> :b <C-z>
+"set wildchar=<Tab> wildcharm=<C-z>
+"noremap <c-n> :b <C-z>
 
 " others
 set backspace=indent,eol,start  " make that backspace key work the way it should
