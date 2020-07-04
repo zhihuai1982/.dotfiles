@@ -210,12 +210,14 @@ xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 " coc-snippets
 let g:coc_snippet_next = '<tab>'
+xmap <Tab> <Plug>(coc-snippets-select)
 
 "Use :CocList snippets to open snippets list.
 "Use :CocCommand snippets.editSnippets to edit user snippet of current filetype.
 "Use :CocCommand snippets.openSnippetFiles to open snippet files of current filetype.
+"Use the command :CocConfig to open your user configuration file
+    "snippets.userSnippetsDirectory, Directory that contains custom user ultisnips snippets, use ultisnips in extension root by default. 自定义模板目录
 
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
 
 Plug 'theniceboy/eleline.vim'
