@@ -160,6 +160,7 @@ let g:coc_global_extensions = [
   \ 'coc-python',
   \ 'coc-snippets',
   \ 'coc-r-lsp',
+  \ 'coc-zi',
   \ 'coc-translator',
   \ 'coc-vimlsp',
   \ 'coc-yank']
@@ -211,6 +212,8 @@ nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<C
 " coc-snippets
 let g:coc_snippet_next = '<tab>'
 xmap <Tab> <Plug>(coc-snippets-select)
+" Use <C-p> for trigger snippet expand.
+"smap <c-p> <Plug>(coc-snippets-expand)
 
 "Use :CocList snippets to open snippets list.
 "Use :CocCommand snippets.editSnippets to edit user snippet of current filetype.
@@ -285,7 +288,7 @@ set scrolloff=7                 " keep 7 lines when scrolling
 " set clipboard+=unnamed
 
 " Copy to system clipboard
-vnoremap Y "+y
+vnoremap y "+y
 
 " show
 set ruler                       " show the current row and column
@@ -293,7 +296,7 @@ set number                      " show line numbers
 set showcmd                     " display incomplete commands
 set showmode                    " display current modes
 set showmatch                   " jump to matches when entering parentheses
-set matchtime=2                 " tenths of a second to show the matching parenthesis
+set matchtime=2                 " tenths of a second to show the matching parenthesis  eol:$
 set list listchars=extends:❯,precedes:❮,tab:▸\ ,trail:˽
 set list
 
