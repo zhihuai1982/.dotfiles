@@ -221,6 +221,10 @@ xmap <Tab> <Plug>(coc-snippets-select)
 "Use the command :CocConfig to open your user configuration file
     "snippets.userSnippetsDirectory, Directory that contains custom user ultisnips snippets, use ultisnips in extension root by default. 自定义模板目录
 
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>a  <Plug>(coc-format)
+
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
 
 Plug 'theniceboy/eleline.vim'
@@ -524,3 +528,8 @@ noremap fr :%s//g<left><left>
 
 
 nnoremap <leader>v :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
+
+"参数换行
+nmap aa :s/\(\w\+ *=\)/\r\1/g<CR>
+
+
