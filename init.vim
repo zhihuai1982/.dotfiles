@@ -495,11 +495,11 @@ autocmd FileType markdown hi link markdownError NONE
 " vmap <Space>l <Plug>RDSendSelection
 " nmap <Space>l <Plug>RDSendLine
 
-let R_app = "radian"
-let R_cmd = "R"
-let R_hl_term = 0
-let R_args = []  " if you had set any
-let R_bracketed_paste = 1
+"let R_app = "radian"
+"let R_cmd = "R"
+"let R_hl_term = 0
+"let R_args = []  " if you had set any
+"let R_bracketed_paste = 1
 
 noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
 
