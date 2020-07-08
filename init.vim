@@ -532,4 +532,6 @@ nnoremap <leader>v :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR
 "参数换行
 nmap aa :s/\(\w\+ *=\)/\r\1/g<CR>
 
+noremap <leader>o o<CR><ESC>ki
+
 
