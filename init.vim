@@ -226,6 +226,7 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>a  <Plug>(coc-format)
 
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
+"<leader>tm to start 
 
 Plug 'theniceboy/eleline.vim'
     let g:airline_powerline_fonts = 1
@@ -278,6 +279,10 @@ let g:bookmark_save_per_working_dir = 1
 let g:bookmark_center = 1
 let g:bookmark_auto_close = 1
 let g:bookmark_location_list = 1
+
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+nmap <C-s> <Plug>MarkdownPreview
 
 call plug#end()
 
