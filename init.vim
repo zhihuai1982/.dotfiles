@@ -231,8 +231,8 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'm
 Plug 'theniceboy/eleline.vim'
     let g:airline_powerline_fonts = 1
 
-Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
-    let g:Hexokinase_highlighters = ['virtual']
+"Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
+    "let g:Hexokinase_highlighters = ['virtual']
 
 Plug 'RRethy/vim-illuminate'
     let g:Illuminate_delay = 750
