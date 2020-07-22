@@ -56,6 +56,7 @@ filetype indent on
 " Vim-plug
 call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'
+    let g:gruvbox_italic = '1'
 Plug 'junegunn/goyo.vim'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
