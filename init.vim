@@ -7,6 +7,12 @@ set magic                       " For regular expressions turn magic on
 set title                       " change the terminal's title
 set nobackup                    " do not keep a backup file
 set wrap
+"我们可以告诉Vim在合适的地方折行：
+set linebreak
+"所谓合适的地方，是由breakat选项中的字符来确定的。在默认的情况下，这些字符是“^I!@*-+_;:,./?”。如果我们不希望在下划线处打断句子，只要用下面的命令将“_”从这个列表移除就可以了： 
+set breakat-=_
+"如果一行被打断，Vim可能不会在句子连接处显示任何内容。我们可以通过设置showbreak选项，来显示所希望的指示信息：
+set showbreak=>
 
 set noerrorbells                " don't beep
 set visualbell                  " turn off error beep/flash
@@ -14,7 +20,7 @@ set t_vb=
 set tm=500
 set relativenumber
 
-set linebreak
+set textwidth=0
 set wrapmargin=2
 set showmatch
 
@@ -348,7 +354,7 @@ set wildignore=*.o,*~,*.pyc,*.class
 
 " others
 set backspace=indent,eol,start  " make that backspace key work the way it should
-set whichwrap+=<,>,h,l
+"set whichwrap+=<,>,h,l
 
 " if this not work ,make sure .viminfo is writable for you
 " 记住上次退出光标位置
