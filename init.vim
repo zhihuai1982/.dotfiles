@@ -291,6 +291,10 @@ let g:bookmark_location_list = 1
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 nmap <C-s> <Plug>MarkdownPreview
 
+Plug 'vim-scripts/vim-auto-save'
+let g:auto_save_silent = 1 
+let g:auto_save = 1
+
 call plug#end()
 
 set cursorline
