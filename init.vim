@@ -235,8 +235,15 @@ nmap <leader>a  <Plug>(coc-format)
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
 "<leader>tm to start 
 
-Plug 'theniceboy/eleline.vim'
-    let g:airline_powerline_fonts = 1
+"Plug 'theniceboy/eleline.vim'
+    "let g:airline_powerline_fonts = 1
+
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+
+Plug 'farmergreg/vim-lastplace'
 
 "Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
     "let g:Hexokinase_highlighters = ['virtual']
@@ -362,9 +369,9 @@ set backspace=indent,eol,start  " make that backspace key work the way it should
 
 " if this not work ,make sure .viminfo is writable for you
 " 记住上次退出光标位置
-if has("autocmd")
-    au bufreadpost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+"if has("autocmd")
+    "au bufreadpost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+"endif
 
 " NOT SUPPORT
 " Enable basic mouse behavior such as resizing buffers.
