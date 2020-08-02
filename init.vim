@@ -505,3 +505,6 @@ nnoremap <leader>v :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR
 nmap aa :s/\(\w\+ *=\)/\r\1/g<CR>
 
 noremap <leader>o o<CR><ESC>ki
+
+" background transpant
+hi Normal guibg=NONE ctermbg=NONE
