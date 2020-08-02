@@ -1,2 +1,3 @@
-
 ~/wallpaper.sh &
+
+xcompmgr -c &
