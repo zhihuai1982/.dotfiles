@@ -194,5 +194,3 @@ bindkey -s '^o' 'lfcd\n'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-xcape -e '#66=Escape'  
-
