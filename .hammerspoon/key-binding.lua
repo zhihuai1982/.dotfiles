@@ -15,24 +15,25 @@ local function windowBind(hyper, keyFuncTable)
 end
 
 -- * Move window to screen
-windowBind({"ctrl", "alt"}, {
-  u = wm.throwLeft,
+windowBind({"alt","ctrl"}, {
+  h = wm.throwLeft,
   left = wm.throwLeft,
-  i = wm.throwRight,
+  l = wm.throwRight,
   right = wm.throwRight
 })
 
 -- * Set Window Position on screen
-windowBind({"ctrl", "alt", "cmd"}, {
-  m = wm.maximizeWindow,    -- ⌃⌥⌘ + M
-  c = wm.centerOnScreen,    -- ⌃⌥⌘ + C
-  u = wm.leftHalf,       -- ⌃⌥⌘ + ←
-  left = wm.leftHalf,       -- ⌃⌥⌘ + ←
-  i = wm.rightHalf,     -- ⌃⌥⌘ + →
-  right = wm.rightHalf,     -- ⌃⌥⌘ + →
-  up = wm.topHalf,          -- ⌃⌥⌘ + ↑
-  down = wm.bottomHalf      -- ⌃⌥⌘ + ↓
+windowBind({"alt", "ctrl"}, {
+  m = wm.maximizeWindow,
+  n = wm.centerOnScreen,
+  j = wm.leftHalf,
+  left = wm.leftHalf,
+  k = wm.rightHalf,
+  right = wm.rightHalf,
+  up = wm.topHalf,
+  down = wm.bottomHalf
 })
+
 -- * Set Window Position on screen
 windowBind({"ctrl", "alt", "shift"}, {
   left = wm.rightToLeft,      -- ⌃⌥⇧ + ←
@@ -49,7 +50,7 @@ windowBind({"alt", "cmd", "shift"}, {
 })
 
 -- * Windows-like cycle
-windowBind({"ctrl", "alt", "cmd"}, {
-  o = wm.cycleLeft,          -- ⌃⌥⌘ + u
-  p = wm.cycleRight          -- ⌃⌥⌘ + i
+windowBind({"ctrl", "alt"}, {
+  u = wm.cycleLeft,          -- ⌃⌥⌘ + u
+  i = wm.cycleRight          -- ⌃⌥⌘ + i
 })
