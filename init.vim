@@ -479,11 +479,6 @@ autocmd FileType markdown hi link markdownError NONE
 
 noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
 
-" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-"noremap sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-"noremap sj :set splitbelow<CR>:split<CR>
-"noremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-"noremap sl :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
 noremap <up> :res +5<CR>
@@ -491,6 +486,9 @@ noremap <down> :res -5<CR>
 noremap <left> :vertical resize-5<CR>
 noremap <right> :vertical resize+5<CR>
 
+" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
+noremap sb :set splitbelow<CR>:split<CR>
+noremap sr :set splitright<CR>:vsplit<CR>
 " Place the two screens up and down
 noremap sh <C-w>t<C-w>K
 " Place the two screens side by side
