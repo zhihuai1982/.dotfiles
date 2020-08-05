@@ -115,6 +115,7 @@ alias gitl="git log --graph --decorate --oneline --simplify-by-decoration --all"
 alias pms="pm2 start npm -- start"
 alias c="clear"
 alias ra="ranger"
+alias gu="gitup"
 
 # powerline install
 function powerline_precmd() {
