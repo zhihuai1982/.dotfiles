@@ -397,6 +397,8 @@ Plug 'vim-scripts/vim-auto-save'
 let g:auto_save_silent = 1 
 let g:auto_save = 1
 
+Plug 'jalvesaq/zotcite'
+
 call plug#end()
 
 colorscheme gruvbox
