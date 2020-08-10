@@ -402,7 +402,7 @@ Plug 'jalvesaq/zotcite'
 call plug#end()
 
 colorscheme gruvbox
-set background=dark    " Setting dark mode
+"set background=dark    " Setting dark mode
 " Copy to system clipboard
 
 vnoremap y "+y
@@ -490,7 +490,7 @@ noremap <right> :vertical resize+5<CR>
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
 noremap sb :set splitbelow<CR>:split<CR>
-noremap sr :set splitright<CR>:vsplit<CR>
+noremap sr :set splitright<CR>:vsplit<CR>:Startify<CR>
 " Place the two screens up and down
 noremap sh <C-w>t<C-w>K
 " Place the two screens side by side
