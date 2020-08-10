@@ -506,5 +506,8 @@ nmap aa :s/\(\w\+ *=\)/\r\1/g<CR>
 
 noremap <leader>o o<CR><ESC>ki
 
+" Press ` to change case (instead of ~)
+noremap ` ~
+
 " background transpant
 hi Normal guibg=NONE ctermbg=NONE
