@@ -116,6 +116,7 @@ alias pms="pm2 start npm -- start"
 alias c="clear"
 alias ra="ranger"
 alias gu="gitup"
+alias panref='pandoc -F $HOME/.config/nvim/plugged/zotcite/python3/zotref -F pandoc-citeproc --reference-doc=reference.docx'
 
 # powerline install
 function powerline_precmd() {
