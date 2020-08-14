@@ -201,3 +201,5 @@ bindkey '^e' edit-command-line
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+alias proxy='export all_proxy=socks5://127.0.0.1:1086'
+alias unproxy='unset all_proxy'
