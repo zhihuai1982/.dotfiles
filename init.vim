@@ -399,6 +399,9 @@ let g:auto_save = 1
 
 Plug 'jalvesaq/zotcite'
 
+Plug 'majutsushi/tagbar'
+nnoremap <leader>tb :TagbarToggle<CR>
+
 call plug#end()
 
 colorscheme gruvbox
@@ -511,3 +514,14 @@ noremap ` ~
 
 " background transpant
 hi Normal guibg=NONE ctermbg=NONE
+
+"ctags
+
+let g:tagbar_type_r = {
+    \ 'ctagstype' : 'r',
+    \ 'kinds'     : [
+        \ 'f:Functions',
+        \ 'g:GlobalVariables',
+        \ 'v:FunctionVariables',
+    \ ]
+\ }
