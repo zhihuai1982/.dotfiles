@@ -165,7 +165,7 @@ Plug 'Lokaltog/vim-easymotion'
     " Jump to anywhere you want with minimal keystrokes, with just one key binding.
     " `s{char}{char}{label}`
     " Need one more keystroke, but on average, it may be more comfortable.
-    nmap '' <Plug>(easymotion-overwin-f2)
+    nmap <leader>s <Plug>(easymotion-overwin-f2)
     " Turn on case-insensitive feature
     let g:EasyMotion_smartcase = 1
 
@@ -217,7 +217,7 @@ Plug 'Yggdroot/LeaderF'
     " set ambiwidth=double
     
 Plug 'jalvesaq/Nvim-R'
-    let maplocalleader = "\<space>"
+    let maplocalleader = ","
     " make R vertical split at start
     let R_rconsole_width = 57
     let R_min_editor_width = 18
@@ -434,6 +434,37 @@ nnoremap <leader>tb :TagbarToggle<CR>
 
 Plug 'dhruvasagar/vim-zoom'
 nmap <leader>z <Plug>(zoom-toggle)
+
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+
+nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ","<CR>
+" Map leader to which_key
+
+" Create map to add keys to
+let g:which_key_map =  {}
+" Define a separator
+let g:which_key_sep = '→'
+" set timeoutlen=100
+
+" Coc Search & refactor
+nnoremap <leader>? :CocSearch <C-R>=expand("<cword>")<CR><CR>
+let g:which_key_map['?'] = 'search word'
+
+" Not a fan of floating windows for this
+let g:which_key_use_floating_win = 0
+
+" Change the colors if you want
+highlight default link WhichKey          Operator
+highlight default link WhichKeySeperator DiffAdded
+highlight default link WhichKeyGroup     Identifier
+highlight default link WhichKeyDesc      Function
+
+" Hide status line
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 call plug#end()
 
