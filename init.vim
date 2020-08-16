@@ -335,8 +335,38 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'm
 
 Plug 'itchyny/lightline.vim'
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
+    \ 'colorscheme': 'wombat',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'zoom' ] ]
+    \ },
+    \ 'component_function': {
+    \   'fugitive': 'LightlineFugitive',
+    \   'filename': 'LightlineFilename'
+    \ },
+    \ 'component': {
+    \   'zoom': '%{zoom#statusline()}'
+    \ },
+    \ }
+function! LightlineModified()
+    return &ft =~# 'help\|vimfiler' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+function! LightlineReadonly()
+    return &ft !~? 'help\|vimfiler' && &readonly ? 'RO' : ''
+endfunction
+function! LightlineFilename()
+    return (LightlineReadonly() !=# '' ? LightlineReadonly() . ' ' : '') .
+    \ (&ft ==# 'vimfiler' ? vimfiler#get_status_string() :
+    \  &ft ==# 'unite' ? unite#get_status_string() :
+    \  &ft ==# 'vimshell' ? vimshell#get_status_string() :
+    \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]') .
+    \ (LightlineModified() !=# '' ? ' ' . LightlineModified() : '')
+endfunction
+function! LightlineFugitive()
+    if &ft !~? 'vimfiler' && exists('*FugitiveHead')
+        return FugitiveHead()
+    endif
+    return ''
+endfunction
 
 Plug 'farmergreg/vim-lastplace'
 
@@ -402,6 +432,9 @@ Plug 'jalvesaq/zotcite'
 Plug 'majutsushi/tagbar'
 nnoremap <leader>tb :TagbarToggle<CR>
 
+Plug 'dhruvasagar/vim-zoom'
+nmap <leader>z <Plug>(zoom-toggle)
+
 call plug#end()
 
 colorscheme gruvbox
@@ -419,7 +452,7 @@ hi! link ShowMarksHLl DiffAdd
 hi! link ShowMarksHLu DiffChange
 
 " status line
-set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+"set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 set laststatus=2   " Always show the status line - use 2 lines for the status bar
 
 " ============================ specific file type ===========================
@@ -516,6 +549,7 @@ noremap ` ~
 hi Normal guibg=NONE ctermbg=NONE
 
 "ctags
+"Ctrl+W Ctrl+] - Open the definition in a horizontal split
 
 let g:tagbar_type_r = {
     \ 'ctagstype' : 'r',
