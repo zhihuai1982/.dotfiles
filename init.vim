@@ -153,6 +153,7 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 Plug 'godlygeek/tabular'
+"http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 
 Plug 'jiangmiao/auto-pairs'
 
@@ -172,6 +173,17 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'preservim/nerdcommenter'
 
 Plug 'terryma/vim-multiple-cursors'
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
 
 Plug 'mhinz/vim-startify'
 
@@ -188,7 +200,8 @@ Plug 'Yggdroot/LeaderF'
     let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
     let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 
-    let g:Lf_ShortcutF = "<leader>f"
+    let g:Lf_ShortcutF = "<leader>ff"
+    let g:Lf_ShortcutB = "<leader>bb"
     noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
     noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
     noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
@@ -400,21 +413,20 @@ Plug 'rhysd/clever-f.vim'
 
 Plug 'MattesGroeger/vim-bookmarks'
 let g:bookmark_no_default_key_mappings = 1
-nmap mt <Plug>BookmarkToggle
-nmap ma <Plug>BookmarkAnnotate
-nmap ml <Plug>BookmarkShowAll
-nmap mi <Plug>BookmarkNext
-nmap mn <Plug>BookmarkPrev
-nmap mC <Plug>BookmarkClear
-nmap mX <Plug>BookmarkClearAll
-nmap mu <Plug>BookmarkMoveUp
-nmap me <Plug>BookmarkMoveDown
+nmap <leader>mt <Plug>BookmarkToggle
+nmap <leader>ma <Plug>BookmarkAnnotate
+nmap <leader>ml <Plug>BookmarkShowAll
+nmap <leader>mi <Plug>BookmarkNext
+nmap <leader>mn <Plug>BookmarkPrev
+nmap <leader>mC <Plug>BookmarkClear
+nmap <leader>mX <Plug>BookmarkClearAll
+nmap <leader>mu <Plug>BookmarkMoveUp
+nmap <leader>me <Plug>BookmarkMoveDown
 nmap <Leader>g <Plug>BookmarkMoveToLine
-let g:bookmark_save_per_working_dir = 1
+"let g:bookmark_save_per_working_dir = 1
 let g:bookmark_auto_save = 1
 let g:bookmark_highlight_lines = 1
-let g:bookmark_manage_per_buffer = 1
-let g:bookmark_save_per_working_dir = 1
+"let g:bookmark_manage_per_buffer = 1
 let g:bookmark_center = 1
 let g:bookmark_auto_close = 1
 let g:bookmark_location_list = 1
@@ -424,7 +436,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 nmap <C-s> <Plug>MarkdownPreview
 
 "Plug 'vim-scripts/vim-auto-save'
-"let g:auto_save_silent = 1 
 "let g:auto_save = 1
 
 Plug 'jalvesaq/zotcite'
@@ -433,26 +444,26 @@ Plug 'majutsushi/tagbar'
 nnoremap <leader>tb :TagbarToggle<CR>
 
 Plug 'dhruvasagar/vim-zoom'
-nmap <leader>z <Plug>(zoom-toggle)
+"nmap <leader>z <Plug>(zoom-toggle)
 
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-
+autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
 nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ","<CR>
 " Map leader to which_key
 
 " Create map to add keys to
-let g:which_key_map =  {}
+let g:which_key_map = {}
 " Define a separator
 let g:which_key_sep = '→'
-" set timeoutlen=100
 
+" set timeoutlen=100
 " Coc Search & refactor
 nnoremap <leader>? :CocSearch <C-R>=expand("<cword>")<CR><CR>
 let g:which_key_map['?'] = 'search word'
-
 " Not a fan of floating windows for this
+
 let g:which_key_use_floating_win = 0
 
 " Change the colors if you want
@@ -465,12 +476,44 @@ highlight default link WhichKeyDesc      Function
 autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+" Single mappings
+
+"let g:which_key_map['/'] = [ ':call Comment()'                    , 'comment' ]
+let g:which_key_map['.'] = [ ':e $MYVIMRC'                       , 'open init' ]
+"let g:which_key_map[';'] = [ ':Commands'                         , 'commands' ]
+let g:which_key_map['='] = [ '<C-W>='                            , 'balance windows' ]
+let g:which_key_map['d'] = [ ':Bdelete'                          , 'delete buffer']
+let g:which_key_map['e'] = [ ':CocCommand explorer'              , 'explorer' ]
+" let g:which_key_map['f'] = [ ':Farr'                           , 'find and replace' ]
+let g:which_key_map['h'] = [ '<C-W>s'                            , 'split below']
+"let g:which_key_map['m'] = [ ':call WindowSwap#EasyWindowSwap()' , 'move window' ]
+let g:which_key_map['p'] = [ ':Files'                            , 'search files' ]
+let g:which_key_map['q'] = [ 'q'                                 , 'quit' ]
+"let g:which_key_map['r'] = [ ':RnvimrToggle'                     , 'ranger' ]
+let g:which_key_map['u'] = [ ':UndotreeToggle'                   , 'undo tree']
+let g:which_key_map['v'] = [ '<C-W>v'                            , 'split right']
+let g:which_key_map['W'] = [ 'w'                                 , 'write' ]
+let g:which_key_map['z'] = [ '<Plug>(zoom-toggle)'               , 'zoom' ]
+
+let g:which_key_map.b = {
+      \ 'name' : '+buffer' ,
+      \ '1' : [':b1'        , 'buffer 1']        ,
+      \ '2' : ['b2'        , 'buffer 2']        ,
+      \ 'd' : ['bd'        , 'delete-buffer']   ,
+      \ 'f' : ['bfirst'    , 'first-buffer']    ,
+      \ 'h' : [':Startify'  , 'home-buffer']     ,
+      \ 'l' : [':blast'     , 'last-buffer']     ,
+      \ 'n' : ['bnext'     , 'next-buffer']     ,
+      \ 'p' : ['bprevious' , 'previous-buffer'] ,
+      \ '?' : ['buffers'   , 'fzf-buffer']      ,
+      \ }
 
 call plug#end()
 
+
 colorscheme gruvbox
-"set background=dark    " Setting dark mode
-" Copy to system clipboard
+"set background=dark    " setting dark mode
+" copy to system clipboard
 
 vnoremap y "+y
 
@@ -535,6 +578,7 @@ nnoremap <leader>k :m .-2<CR>==
 nnoremap <leader>j :m .+1<CR>==
 
 nnoremap ; :
+vnoremap ; :
 nnoremap ' `
 nnoremap ` '
 
