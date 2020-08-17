@@ -110,8 +110,8 @@ set backspace=indent,eol,start  " make that backspace key work the way it should
 " Enable basic mouse behavior such as resizing buffers.
 set mouse=a
 
-
 " leader
+
 let mapleader = "\<space>"
 
 " filetype
@@ -166,7 +166,6 @@ Plug 'Lokaltog/vim-easymotion'
     " Jump to anywhere you want with minimal keystrokes, with just one key binding.
     " `s{char}{char}{label}`
     " Need one more keystroke, but on average, it may be more comfortable.
-    nmap <leader>s <Plug>(easymotion-overwin-f2)
     " Turn on case-insensitive feature
     let g:EasyMotion_smartcase = 1
 
@@ -429,7 +428,6 @@ let g:bookmark_auto_close = 1
 "let g:bookmark_location_list = 1
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-nmap <C-s> <Plug>MarkdownPreview
 
 "Plug 'vim-scripts/vim-auto-save'
 "let g:auto_save = 1
@@ -474,21 +472,22 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 " Single mappings
-let g:which_key_map['.'] = [ ':e $MYVIMRC'          , 'open init' ]
-let g:which_key_map['='] = [ '<C-W>='               , 'balance windows' ]
-let g:which_key_map['/'] = [ 'nohls'               , 'remove highlight' ]
-"let g:which_key_map['d'] = [ ':Bdelete'             , 'delete buffer']
-let g:which_key_map['e'] = [ 'CocCommand explorer' , 'explorer' ]
-let g:which_key_map['h'] = [ '<C-W>s'               , 'split below']
-let g:which_key_map['j'] = [ ':m .-2<CR>=='         , 'line down']
-let g:which_key_map['k'] = [ ':m .+1<CR>=='         , 'line up']
-let g:which_key_map['o'] = [ 'o<CR><ESC>ki'         , 'insert line']
-let g:which_key_map['p'] = [ ':Files'               , 'search files' ]
-let g:which_key_map['q'] = [ 'q'                    , 'quit' ]
-let g:which_key_map['u'] = [ ':UndotreeToggle'      , 'undo tree']
-let g:which_key_map['v'] = [ ":exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>"               , 'preview']
-"let g:which_key_map['W'] = [ 'w'                    , 'write' ]
-let g:which_key_map['z'] = [ '<Plug>(zoom-toggle)'  , 'zoom' ]
+let g:which_key_map[','] = [ ':vsp $MYVIMRC'                 , 'edit init' ]
+let g:which_key_map['.'] = [ ':source $MYVIMRC'              , 'source init' ]
+let g:which_key_map['='] = [ '<C-W>='                        , 'balance windows' ]
+let g:which_key_map['e'] = [ 'CocCommand explorer'           , 'explorer' ]
+noremap <silent><leader>/ :nohls<CR>
+let g:which_key_map['/'] = 'remove highlight'
+let g:which_key_map['h'] = [ '<C-W>s'                        , 'split below']
+let g:which_key_map['k'] = [ ':m .-2<CR>=='                  , 'line up']
+let g:which_key_map['j'] = [ ':m .+1<CR>=='                  , 'line down']
+noremap <leader>o o<CR><ESC>ki
+let g:which_key_map.o = 'insert line'
+let g:which_key_map['s'] = [ '<Plug>(easymotion-overwin-f2)' , 'easy motion' ]
+"let g:which_key_map['g'] = [ 'q'                            , 'quit' ]
+let g:which_key_map['u'] = [ ':UndotreeToggle'               , 'undo tree']
+let g:which_key_map['z'] = [ '<Plug>(zoom-toggle)'           , 'zoom' ]
+let g:which_key_map['p'] = [ '<Plug>MarkdownPreview'         , 'md preview' ]
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
@@ -628,8 +627,8 @@ set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
 "nnoremap <leader>g :Goyo<CR>
 
 "定义以下快捷键，用于快速编辑和重载vimrc配置文件：
-nnoremap <leader>ev :vsp $MYVIMRC<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
+"nnoremap <leader>ev :vsp $MYVIMRC<CR>
+"nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " jk 替换 Esc
 inoremap jk <Esc>
@@ -640,9 +639,6 @@ nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
-
-" remove highlight
-"noremap <silent><leader>/ :nohls<CR>
 
 " save
 cmap w!! w !sudo tee >/dev/null %
@@ -687,10 +683,10 @@ noremap sv <C-w>t<C-w>H
 " find and replace
 noremap fr :%s//g<left><left>
 
-
 "参数换行
 nmap aa :s/\(\w\+ *=\)/\r\1/g<CR>
 
+"nnoremap <leader>v :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
 
 " Press ` to change case (instead of ~)
 noremap ` ~
