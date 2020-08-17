@@ -422,15 +422,12 @@ nmap <leader>mC <Plug>BookmarkClear
 nmap <leader>mX <Plug>BookmarkClearAll
 nmap <leader>mu <Plug>BookmarkMoveUp
 nmap <leader>me <Plug>BookmarkMoveDown
-nmap <Leader>g <Plug>BookmarkMoveToLine
-"let g:bookmark_save_per_working_dir = 1
+nmap <Leader>mg <Plug>BookmarkMoveToLine
 let g:bookmark_auto_save = 1
 let g:bookmark_highlight_lines = 1
-"let g:bookmark_manage_per_buffer = 1
 let g:bookmark_center = 1
 let g:bookmark_auto_close = 1
-let g:bookmark_location_list = 1
-
+"let g:bookmark_location_list = 1
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 nmap <C-s> <Plug>MarkdownPreview
