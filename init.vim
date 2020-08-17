@@ -388,26 +388,26 @@ Plug 'RRethy/vim-illuminate'
     let g:Illuminate_delay = 750
     "hi illuminatedWord cterm=undercurl gui=undercurl
     
-Plug 'mg979/vim-visual-multi'
-    "let g:VM_theme             = 'iceblue'
-    "let g:VM_default_mappings = 0
-    let g:VM_leader                     = {'default': ',', 'visual': ',', 'buffer': ','}
-    let g:VM_maps                       = {}
-    let g:VM_custom_motions             = {'n': 'h', 'i': 'l', 'u': 'k', 'e': 'j', 'N': '0', 'I': '$', 'h': 'e'}
-    let g:VM_maps['i']                  = 'k'
-    let g:VM_maps['I']                  = 'K'
-    let g:VM_maps['Find Under']         = '<C-k>'
-    let g:VM_maps['Find Subword Under'] = '<C-k>'
-    let g:VM_maps['Find Next']          = ''
-    let g:VM_maps['Find Prev']          = ''
-    let g:VM_maps['Skip Region']        = '<c-n>'
-    let g:VM_maps['Remove Region']      = 'q'
-    let g:VM_maps["undo"]               = 'l'
-    let g:VM_maps["Redo"]               = '<C-r>'
+"Plug 'mg979/vim-visual-multi'
+    ""let g:VM_theme             = 'iceblue'
+    ""let g:VM_default_mappings = 0
+    "let g:VM_leader                     = {'default': ',', 'visual': ',', 'buffer': ','}
+    "let g:VM_maps                       = {}
+    "let g:VM_custom_motions             = {'n': 'h', 'i': 'l', 'u': 'k', 'e': 'j', 'N': '0', 'I': '$', 'h': 'e'}
+    "let g:VM_maps['i']                  = 'k'
+    "let g:VM_maps['I']                  = 'K'
+    "let g:VM_maps['Find Under']         = '<C-k>'
+    "let g:VM_maps['Find Subword Under'] = '<C-k>'
+    "let g:VM_maps['Find Next']          = ''
+    "let g:VM_maps['Find Prev']          = ''
+    "let g:VM_maps['Skip Region']        = '<c-n>'
+    "let g:VM_maps['Remove Region']      = 'q'
+    "let g:VM_maps["undo"]               = 'l'
+    "let g:VM_maps["Redo"]               = '<C-r>'
 
 Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
 
-Plug 'rhysd/clever-f.vim'
+"Plug 'rhysd/clever-f.vim'
 
 Plug 'MattesGroeger/vim-bookmarks'
 let g:bookmark_no_default_key_mappings = 1
