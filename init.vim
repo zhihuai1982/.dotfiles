@@ -314,7 +314,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
-nmap <leader>e :CocCommand explorer<CR>
 " coc-translator
 nmap tt <Plug>(coc-translator-p)
 vmap tt <Plug>(coc-translator-pv)
@@ -473,36 +472,121 @@ highlight default link WhichKeyDesc      Function
 autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
-" Single mappings
 
-"let g:which_key_map['/'] = [ ':call Comment()'                    , 'comment' ]
-let g:which_key_map['.'] = [ ':e $MYVIMRC'                       , 'open init' ]
-"let g:which_key_map[';'] = [ ':Commands'                         , 'commands' ]
-let g:which_key_map['='] = [ '<C-W>='                            , 'balance windows' ]
-let g:which_key_map['d'] = [ ':Bdelete'                          , 'delete buffer']
-let g:which_key_map['e'] = [ ':CocCommand explorer'              , 'explorer' ]
-" let g:which_key_map['f'] = [ ':Farr'                           , 'find and replace' ]
-let g:which_key_map['h'] = [ '<C-W>s'                            , 'split below']
-"let g:which_key_map['m'] = [ ':call WindowSwap#EasyWindowSwap()' , 'move window' ]
-let g:which_key_map['p'] = [ ':Files'                            , 'search files' ]
-let g:which_key_map['q'] = [ 'q'                                 , 'quit' ]
-"let g:which_key_map['r'] = [ ':RnvimrToggle'                     , 'ranger' ]
-let g:which_key_map['u'] = [ ':UndotreeToggle'                   , 'undo tree']
-let g:which_key_map['v'] = [ '<C-W>v'                            , 'split right']
-let g:which_key_map['W'] = [ 'w'                                 , 'write' ]
-let g:which_key_map['z'] = [ '<Plug>(zoom-toggle)'               , 'zoom' ]
+" Single mappings
+let g:which_key_map['.'] = [ ':e $MYVIMRC'          , 'open init' ]
+let g:which_key_map['='] = [ '<C-W>='               , 'balance windows' ]
+let g:which_key_map['/'] = [ 'nohls'               , 'remove highlight' ]
+"let g:which_key_map['d'] = [ ':Bdelete'             , 'delete buffer']
+let g:which_key_map['e'] = [ 'CocCommand explorer' , 'explorer' ]
+let g:which_key_map['h'] = [ '<C-W>s'               , 'split below']
+let g:which_key_map['j'] = [ ':m .-2<CR>=='         , 'line down']
+let g:which_key_map['k'] = [ ':m .+1<CR>=='         , 'line up']
+let g:which_key_map['o'] = [ 'o<CR><ESC>ki'         , 'insert line']
+let g:which_key_map['p'] = [ ':Files'               , 'search files' ]
+let g:which_key_map['q'] = [ 'q'                    , 'quit' ]
+let g:which_key_map['u'] = [ ':UndotreeToggle'      , 'undo tree']
+let g:which_key_map['v'] = [ ":exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>"               , 'preview']
+"let g:which_key_map['W'] = [ 'w'                    , 'write' ]
+let g:which_key_map['z'] = [ '<Plug>(zoom-toggle)'  , 'zoom' ]
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
-      \ '1' : [':b1'        , 'buffer 1']        ,
+      \ '1' : ['b1'        , 'buffer 1']        ,
       \ '2' : ['b2'        , 'buffer 2']        ,
       \ 'd' : ['bd'        , 'delete-buffer']   ,
       \ 'f' : ['bfirst'    , 'first-buffer']    ,
-      \ 'h' : [':Startify'  , 'home-buffer']     ,
-      \ 'l' : [':blast'     , 'last-buffer']     ,
+      \ 'h' : ['Startify'  , 'home-buffer']     ,
+      \ 'l' : ['blast'     , 'last-buffer']     ,
       \ 'n' : ['bnext'     , 'next-buffer']     ,
       \ 'p' : ['bprevious' , 'previous-buffer'] ,
       \ '?' : ['buffers'   , 'fzf-buffer']      ,
+      \ }
+
+" l is for language server protocol
+let g:which_key_map.l = {
+      \ 'name' : '+lsp' ,
+      \ '.' : [':CocConfig'                          , 'config'],
+      \ ';' : ['<Plug>(coc-refactor)'                , 'refactor'],
+      \ 'a' : ['<Plug>(coc-codeaction)'              , 'line action'],
+      \ 'A' : ['<Plug>(coc-codeaction-selected)'     , 'selected action'],
+      \ 'b' : [':CocNext'                            , 'next action'],
+      \ 'B' : [':CocPrev'                            , 'prev action'],
+      \ 'c' : [':CocList commands'                   , 'commands'],
+      \ 'd' : ['<Plug>(coc-definition)'              , 'definition'],
+      \ 'D' : ['<Plug>(coc-declaration)'             , 'declaration'],
+      \ 'e' : [':CocList extensions'                 , 'extensions'],
+      \ 'f' : ['<Plug>(coc-format-selected)'         , 'format selected'],
+      \ 'F' : ['<Plug>(coc-format)'                  , 'format'],
+      \ 'h' : ['<Plug>(coc-float-hide)'              , 'hide'],
+      \ 'i' : ['<Plug>(coc-implementation)'          , 'implementation'],
+      \ 'I' : [':CocList diagnostics'                , 'diagnostics'],
+      \ 'j' : ['<Plug>(coc-float-jump)'              , 'float jump'],
+      \ 'l' : ['<Plug>(coc-codelens-action)'         , 'code lens'],
+      \ 'n' : ['<Plug>(coc-diagnostic-next)'         , 'next diagnostic'],
+      \ 'N' : ['<Plug>(coc-diagnostic-next-error)'   , 'next error'],
+      \ 'o' : ['<Plug>(coc-openlink)'                , 'open link'],
+      \ 'O' : [':CocList outline'                    , 'outline'],
+      \ 'p' : ['<Plug>(coc-diagnostic-prev)'         , 'prev diagnostic'],
+      \ 'P' : ['<Plug>(coc-diagnostic-prev-error)'   , 'prev error'],
+      \ 'q' : ['<Plug>(coc-fix-current)'             , 'quickfix'],
+      \ 'r' : ['<Plug>(coc-rename)'                  , 'rename'],
+      \ 'R' : ['<Plug>(coc-references)'              , 'references'],
+      \ 's' : [':CocList -I symbols'                 , 'references'],
+      \ 'S' : [':CocList snippets'                   , 'snippets'],
+      \ 't' : ['<Plug>(coc-type-definition)'         , 'type definition'],
+      \ 'u' : [':CocListResume'                      , 'resume list'],
+      \ 'U' : [':CocUpdate'                          , 'update CoC'],
+      \ 'v' : [':Vista!!'                            , 'tag viewer'],
+      \ 'z' : [':CocDisable'                         , 'disable CoC'],
+      \ 'Z' : [':CocEnable'                          , 'enable CoC'],
+      \ }
+
+" t is for terminal
+let g:which_key_map.t = {
+      \ 'name' : '+terminal' ,
+      \ ';' : [':FloatermNew --wintype=popup --height=6'        , 'terminal'],
+      \ 'f' : [':FloatermNew fzf'                               , 'fzf'],
+      \ 'g' : [':FloatermNew lazygit'                           , 'git'],
+      \ 'd' : [':FloatermNew lazydocker'                        , 'docker'],
+      \ 'n' : [':FloatermNew node'                              , 'node'],
+      \ 'N' : [':FloatermNew nnn'                               , 'nnn'],
+      \ 'p' : [':FloatermNew python'                            , 'python'],
+      \ 'm' : [':FloatermNew lazynpm'                           , 'npm'],
+      \ 'r' : [':FloatermNew ranger'                            , 'ranger'],
+      \ 't' : [':FloatermToggle'                                , 'toggle'],
+      \ 'y' : [':FloatermNew ytop'                              , 'ytop'],
+      \ 's' : [':FloatermNew ncdu'                              , 'ncdu'],
+      \ }
+
+" g is for git
+let g:which_key_map.g = {
+      \ 'name' : '+git' ,
+      \ 'a' : [':Git add .'                        , 'add all'],
+      \ 'A' : [':Git add %'                        , 'add current'],
+      \ 'b' : [':Git blame'                        , 'blame'],
+      \ 'B' : [':GBrowse'                          , 'browse'],
+      \ 'c' : [':Git commit'                       , 'commit'],
+      \ 'd' : [':Git diff'                         , 'diff'],
+      \ 'D' : [':Gdiffsplit'                       , 'diff split'],
+      \ 'g' : [':GGrep'                            , 'git grep'],
+      \ 'G' : [':Gstatus'                          , 'status'],
+      \ 'h' : [':GitGutterLineHighlightsToggle'    , 'highlight hunks'],
+      \ 'H' : ['<Plug>(GitGutterPreviewHunk)'      , 'preview hunk'],
+      \ 'i' : [':Gist -b'                          , 'post gist'],
+      \ 'j' : ['<Plug>(GitGutterNextHunk)'         , 'next hunk'],
+      \ 'k' : ['<Plug>(GitGutterPrevHunk)'         , 'prev hunk'],
+      \ 'l' : [':Git log'                          , 'log'],
+      \ 'm' : ['<Plug>(git-messenger)'             , 'message'],
+      \ 'p' : [':Git push'                         , 'push'],
+      \ 'P' : [':Git pull'                         , 'pull'],
+      \ 'r' : [':GRemove'                          , 'remove'],
+      \ 's' : ['<Plug>(GitGutterStageHunk)'        , 'stage hunk'],
+      \ 'S' : [':!git status'                      , 'status'],
+      \ 't' : [':GitGutterSignsToggle'             , 'toggle signs'],
+      \ 'u' : ['<Plug>(GitGutterUndoHunk)'         , 'undo hunk'],
+      \ 'v' : [':GV'                               , 'view commits'],
+      \ 'V' : [':GV!'                              , 'view buffer commits'],
       \ }
 
 call plug#end()
@@ -541,7 +625,7 @@ set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
                                 "    paste mode, where you can paste mass data
                                 "    that won't be autoindented
 
-nnoremap <leader>g :Goyo<CR>
+"nnoremap <leader>g :Goyo<CR>
 
 "定义以下快捷键，用于快速编辑和重载vimrc配置文件：
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
@@ -558,7 +642,7 @@ nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 
 " remove highlight
-noremap <silent><leader>/ :nohls<CR>
+"noremap <silent><leader>/ :nohls<CR>
 
 " save
 cmap w!! w !sudo tee >/dev/null %
@@ -569,10 +653,6 @@ let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR ="REPLACE mode
 let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 
-
-" Swap up and down == for indent
-nnoremap <leader>k :m .-2<CR>==
-nnoremap <leader>j :m .+1<CR>==
 
 nnoremap ; :
 vnoremap ; :
@@ -607,12 +687,10 @@ noremap sv <C-w>t<C-w>H
 " find and replace
 noremap fr :%s//g<left><left>
 
-nnoremap <leader>v :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
 
 "参数换行
 nmap aa :s/\(\w\+ *=\)/\r\1/g<CR>
 
-noremap <leader>o o<CR><ESC>ki
 
 " Press ` to change case (instead of ~)
 noremap ` ~
