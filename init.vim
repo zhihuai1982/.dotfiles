@@ -400,8 +400,8 @@ Plug 'mg979/vim-visual-multi'
     let g:VM_maps['Find Subword Under'] = '<C-k>'
     let g:VM_maps['Find Next']          = ''
     let g:VM_maps['Find Prev']          = ''
-    let g:VM_maps['Remove Region']      = 'q'
     let g:VM_maps['Skip Region']        = '<c-n>'
+    let g:VM_maps['Remove Region']      = 'q'
     let g:VM_maps["undo"]               = 'l'
     let g:VM_maps["Redo"]               = '<C-r>'
 
@@ -488,6 +488,17 @@ let g:which_key_map['s'] = [ '<Plug>(easymotion-overwin-f2)' , 'easy motion' ]
 let g:which_key_map['u'] = [ ':UndotreeToggle'               , 'undo tree']
 let g:which_key_map['z'] = [ '<Plug>(zoom-toggle)'           , 'zoom' ]
 let g:which_key_map['p'] = [ '<Plug>MarkdownPreview'         , 'md preview' ]
+
+noremap <silent> <leader>q :q<CR>
+let g:which_key_map.q = 'which_key_ignore'
+noremap <silent> <leader>qq :q!<CR>
+let g:which_key_map.qq = 'which_key_ignore'
+
+let g:which_key_map.w = {
+      \ 'name' : '+write' ,
+      \ 'q' : [':wq'        , 'write&quit']        ,
+      \ 'w' : [':w'        , 'write']        ,
+      \ }
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
