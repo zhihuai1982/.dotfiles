@@ -117,6 +117,8 @@ alias c="clear"
 alias ra="ranger"
 alias gu="gitup"
 alias panref='pandoc -F $HOME/.config/nvim/plugged/zotcite/python3/zotref -F pandoc-citeproc --reference-doc=reference.docx'
+alias proxy='export all_proxy=socks5://127.0.0.1:1086'
+alias unproxy='unset all_proxy'
 
 # powerline install
 function powerline_precmd() {
@@ -201,5 +203,3 @@ bindkey '^e' edit-command-line
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-alias proxy='export all_proxy=socks5://127.0.0.1:1086'
-alias unproxy='unset all_proxy'
