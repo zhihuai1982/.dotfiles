@@ -156,33 +156,30 @@ Plug 'godlygeek/tabular'
 "http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 
 Plug 'jiangmiao/auto-pairs'
-
+"'k'[]
 Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-surround'
 
 Plug 'Lokaltog/vim-easymotion'
     let g:EasyMotion_do_mapping = 0 " Disable default mappings
-    " Jump to anywhere you want with minimal keystrokes, with just one key binding.
-    " `s{char}{char}{label}`
-    " Need one more keystroke, but on average, it may be more comfortable.
-    " Turn on case-insensitive feature
     let g:EasyMotion_smartcase = 1
-
+    nmap m <Plug>(easymotion-overwin-f2)
+    
 Plug 'preservim/nerdcommenter'
 
-Plug 'terryma/vim-multiple-cursors'
-let g:multi_cursor_use_default_mapping=0
+"Plug 'terryma/vim-multiple-cursors'
+"let g:multi_cursor_use_default_mapping=0
 
-" Default mapping
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
+"" Default mapping
+"let g:multi_cursor_start_word_key      = '<C-n>'
+"let g:multi_cursor_select_all_word_key = '<A-n>'
+"let g:multi_cursor_start_key           = 'g<C-n>'
+"let g:multi_cursor_select_all_key      = 'g<A-n>'
+"let g:multi_cursor_next_key            = '<C-n>'
+"let g:multi_cursor_prev_key            = '<C-p>'
+"let g:multi_cursor_skip_key            = '<C-x>'
+"let g:multi_cursor_quit_key            = '<Esc>'
 
 Plug 'mhinz/vim-startify'
 
@@ -388,11 +385,15 @@ Plug 'RRethy/vim-illuminate'
     let g:Illuminate_delay = 750
     "hi illuminatedWord cterm=undercurl gui=undercurl
     
-"Plug 'mg979/vim-visual-multi'
-    ""let g:VM_theme             = 'iceblue'
-    ""let g:VM_default_mappings = 0
-    "let g:VM_leader                     = {'default': ',', 'visual': ',', 'buffer': ','}
-    "let g:VM_maps                       = {}
+Plug 'mg979/vim-visual-multi'
+    let g:VM_theme             = 'iceblue'
+    "let g:VM_default_mappings = 0
+    let g:VM_show_warnings = 0
+    let g:VM_mouse_mappings   = 1
+    let g:VM_maps = {}
+    let g:VM_maps["Undo"]     = 'u'
+    let g:VM_maps["Redo"]     = '<C-r>'
+    "let g:VM_leader = '\'
     "let g:VM_custom_motions             = {'n': 'h', 'i': 'l', 'u': 'k', 'e': 'j', 'N': '0', 'I': '$', 'h': 'e'}
     "let g:VM_maps['i']                  = 'k'
     "let g:VM_maps['I']                  = 'K'
@@ -483,7 +484,7 @@ let g:which_key_map['k'] = [ ':m .-2<CR>=='                  , 'line up']
 let g:which_key_map['j'] = [ ':m .+1<CR>=='                  , 'line down']
 noremap <leader>o o<CR><ESC>ki
 let g:which_key_map.o = 'insert line'
-let g:which_key_map['s'] = [ '<Plug>(easymotion-overwin-f2)' , 'easy motion' ]
+"let g:which_key_map['s'] = [ '<Plug>(easymotion-overwin-f2)' , 'easy motion' ]
 "let g:which_key_map['g'] = [ 'q'                            , 'quit' ]
 let g:which_key_map['u'] = [ ':UndotreeToggle'               , 'undo tree']
 let g:which_key_map['z'] = [ '<Plug>(zoom-toggle)'           , 'zoom' ]
