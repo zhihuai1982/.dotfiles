@@ -445,7 +445,7 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
 nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
-nnoremap <silent> <rocalleader> :<c-u>WhichKey  "'"<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  "'"<CR>
 " Map leader to which_key
 
 " Create map to add keys to
