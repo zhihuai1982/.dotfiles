@@ -226,7 +226,7 @@ Plug 'Yggdroot/LeaderF'
     " set ambiwidth=double
     
 Plug 'jalvesaq/Nvim-R'
-    let maplocalleader = "'"
+    let maplocalleader = ","
     " make R vertical split at start
     let R_rconsole_width = 57
     let R_min_editor_width = 18
@@ -445,7 +445,7 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
 nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  "'"<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ","<CR>
 " Map leader to which_key
 
 " Create map to add keys to
