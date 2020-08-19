@@ -494,12 +494,11 @@ noremap <silent> <leader>q :q<CR>
 let g:which_key_map.q = 'which_key_ignore'
 noremap <silent> <leader>qq :q!<CR>
 let g:which_key_map.qq = 'which_key_ignore'
+noremap <silent> <leader>w :w<CR>
+let g:which_key_map.w = 'which_key_ignore'
+noremap <silent> <leader>wq :wq<CR>
+let g:which_key_map.wp = 'which_key_ignore'
 
-let g:which_key_map.w = {
-      \ 'name' : '+write' ,
-      \ 'q' : [':wq'        , 'write&quit']        ,
-      \ 'w' : [':w'        , 'write']        ,
-      \ }
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
