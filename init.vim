@@ -195,6 +195,7 @@ Plug 'Yggdroot/LeaderF'
     let g:Lf_PreviewInPopup = 1
     let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
     let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+    let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
 
     let g:Lf_ShortcutF = "<leader>ff"
     let g:Lf_ShortcutB = "<leader>bb"
@@ -203,14 +204,14 @@ Plug 'Yggdroot/LeaderF'
     noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
     noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 
-    " noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-bffer -e %s ", expand("<cword>"))<CR>
-    " noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+    "noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
+    "noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
     " search visually selected text literally
     xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
     noremap go :<C-U>Leaderf! rg --recall<CR>
 
     " should use `Leaderf gtags --update` first
-    let g:Lf_GtagsAutoGenerate = 0
+    let g:Lf_GtagsAutoGenerate = 1
     let g:Lf_Gtagslabel = 'native-pygments'
     noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
     noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
@@ -474,7 +475,8 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 " Single mappings
 let g:which_key_map[','] = [ ':vsp $MYVIMRC'                 , 'edit init' ]
-let g:which_key_map['.'] = [ ':source $MYVIMRC'              , 'source init' ]
+nnoremap <leader>. :source $MYVIMRC<CR>
+let g:which_key_map['.'] = 'source init'
 let g:which_key_map['='] = [ '<C-W>='                        , 'balance windows' ]
 let g:which_key_map['e'] = [ ':CocCommand explorer'           , 'explorer' ]
 noremap <silent><leader>/ :nohls<CR>
@@ -639,7 +641,6 @@ set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
 
 "定义以下快捷键，用于快速编辑和重载vimrc配置文件：
 "nnoremap <leader>ev :vsp $MYVIMRC<CR>
-"nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " jk 替换 Esc
 inoremap jk <Esc>
@@ -708,11 +709,11 @@ hi Normal guibg=NONE ctermbg=NONE
 "ctags
 "Ctrl+W Ctrl+] - Open the definition in a horizontal split
 
-let g:tagbar_type_r = {
-    \ 'ctagstype' : 'r',
-    \ 'kinds'     : [
-        \ 'f:Functions',
-        \ 'g:GlobalVariables',
-        \ 'v:FunctionVariables',
-    \ ]
-\ }
+"let g:tagbar_type_r = {
+    "\ 'ctagstype' : 'r',
+    "\ 'kinds'     : [
+        "\ 'f:Functions',
+        "\ 'g:GlobalVariables',
+        "\ 'v:FunctionVariables',
+    "\ ]
+"\ }
