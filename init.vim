@@ -183,6 +183,11 @@ Plug 'preservim/nerdcommenter'
 
 Plug 'mhinz/vim-startify'
 
+" Have the file system follow you around
+Plug 'airblade/vim-rooter'
+"let g:rooter_patterns = ['.git', 'Makefile', '*.sln', 'build/env.sh']
+let g:rooter_silent_chdir = 1
+
 Plug 'Yggdroot/LeaderF'
     let g:Lf_ReverseOrder = 1
     " don't show the help in normal mode
@@ -204,8 +209,8 @@ Plug 'Yggdroot/LeaderF'
     noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
     noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 
-    "noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
-    "noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+    noremap <leader>fg :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR><CR>
+    noremap <leader>fh :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
     " search visually selected text literally
     xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
     noremap go :<C-U>Leaderf! rg --recall<CR>
@@ -439,8 +444,10 @@ Plug 'jalvesaq/zotcite'
 Plug 'majutsushi/tagbar'
 nnoremap <leader>tb :TagbarToggle<CR>
 
-Plug 'dhruvasagar/vim-zoom'
+"Plug 'dhruvasagar/vim-zoom'
 "nmap <leader>z <Plug>(zoom-toggle)
+
+Plug 'KabbAmine/vZoom.vim'
 
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
