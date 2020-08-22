@@ -161,6 +161,8 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-surround'
 
+Plug 'psliwka/vim-smoothie'
+
 Plug 'Lokaltog/vim-easymotion'
     let g:EasyMotion_do_mapping = 0 " Disable default mappings
     let g:EasyMotion_smartcase = 1
@@ -348,44 +350,6 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'm
     "let g:airline_powerline_fonts = 1
 
 Plug 'itchyny/lightline.vim'
-let g:lightline = {
-    \ 'colorscheme': 'wombat',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'zoom' ] ]
-    \ },
-    \ 'component_function': {
-    \   'fugitive': 'LightlineFugitive',
-    \   'filename': 'LightlineFilename'
-    \ },
-    \ 'component': {
-    \   'zoom': '%{zoom#statusline()}'
-    \ },
-    \ }
-function! LightlineModified()
-    return &ft =~# 'help\|vimfiler' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-function! LightlineReadonly()
-    return &ft !~? 'help\|vimfiler' && &readonly ? 'RO' : ''
-endfunction
-function! LightlineFilename()
-    return (LightlineReadonly() !=# '' ? LightlineReadonly() . ' ' : '') .
-    \ (&ft ==# 'vimfiler' ? vimfiler#get_status_string() :
-    \  &ft ==# 'unite' ? unite#get_status_string() :
-    \  &ft ==# 'vimshell' ? vimshell#get_status_string() :
-    \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]') .
-    \ (LightlineModified() !=# '' ? ' ' . LightlineModified() : '')
-endfunction
-function! LightlineFugitive()
-    if &ft !~? 'vimfiler' && exists('*FugitiveHead')
-        return FugitiveHead()
-    endif
-    return ''
-endfunction
-
-Plug 'farmergreg/vim-lastplace'
-
-"Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
-    "let g:Hexokinase_highlighters = ['virtual']
 
 Plug 'RRethy/vim-illuminate'
     let g:Illuminate_delay = 750
@@ -444,10 +408,8 @@ Plug 'jalvesaq/zotcite'
 Plug 'majutsushi/tagbar'
 nnoremap <leader>tb :TagbarToggle<CR>
 
-"Plug 'dhruvasagar/vim-zoom'
-"nmap <leader>z <Plug>(zoom-toggle)
-
-Plug 'KabbAmine/vZoom.vim'
+Plug 'KabbAmine/vZoom.vim', {'on': ['<Plug>(vzoom)', 'VZoomAutoToggle']}
+nmap gsz <Plug>(vzoom)
 
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
@@ -495,8 +457,8 @@ noremap <leader>o o<CR><ESC>ki
 let g:which_key_map.o = 'insert line'
 "let g:which_key_map['s'] = [ '<Plug>(easymotion-overwin-f2)' , 'easy motion' ]
 "let g:which_key_map['g'] = [ 'q'                            , 'quit' ]
-let g:which_key_map['u'] = [ ':UndotreeToggle'               , 'undo tree']
-let g:which_key_map['z'] = [ '<Plug>(zoom-toggle)'           , 'zoom' ]
+let g:which_key_map['u'] = [ ':UndotreeToggle<CR>'               , 'undo tree']
+let g:which_key_map['z'] = [ '<Plug>(vzoom)'           , 'zoom' ]
 let g:which_key_map['p'] = [ '<Plug>MarkdownPreview'         , 'md preview' ]
 
 noremap <silent> <leader>q :q<CR>
