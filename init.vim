@@ -1,6 +1,6 @@
 set nocompatible                " don't bother with vi compatibility
 set autoread                    " reload files when changed on disk, i.e. via `git checkout`
-set shortmess=atI
+set shortmess=ati
 
 set magic                       " For regular expressions turn magic on
 set title                       " change the terminal's title
@@ -156,19 +156,26 @@ Plug 'godlygeek/tabular'
 "http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 
 Plug 'jiangmiao/auto-pairs'
-"'k'[]
+
 Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-surround'
 
 Plug 'psliwka/vim-smoothie'
 
+" Text Navigation
+Plug 'unblevable/quick-scope'
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
 Plug 'Lokaltog/vim-easymotion'
-    let g:EasyMotion_do_mapping = 0 " Disable default mappings
-    let g:EasyMotion_smartcase = 1
-    nmap m <Plug>(easymotion-overwin-f2)
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1
+nmap m <Plug>(easymotion-overwin-f2)
     
 Plug 'preservim/nerdcommenter'
+
+Plug 'moll/vim-bbye'
 
 "Plug 'terryma/vim-multiple-cursors'
 "let g:multi_cursor_use_default_mapping=0
@@ -461,9 +468,11 @@ let g:which_key_map['u'] = [ ':UndotreeToggle<CR>'               , 'undo tree']
 let g:which_key_map['z'] = [ '<Plug>(vzoom)'           , 'zoom' ]
 let g:which_key_map['p'] = [ '<Plug>MarkdownPreview'         , 'md preview' ]
 
-noremap <silent> <leader>q :q<CR>
+noremap <silent> <leader>q :Bdelete<CR>
 let g:which_key_map.q = 'which_key_ignore'
-noremap <silent> <leader>qq :q!<CR>
+noremap <silent> <leader>Q :q!<CR>
+let g:which_key_map.Q = 'which_key_ignore'
+noremap <silent> <leader>qq :q<CR>
 let g:which_key_map.qq = 'which_key_ignore'
 noremap <silent> <leader>w :w<CR>
 let g:which_key_map.w = 'which_key_ignore'
@@ -573,6 +582,12 @@ let g:which_key_map.g = {
 call plug#end()
 
 
+"augroup qs_colors
+  "autocmd!
+  "autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+  "autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+"augroup END
+
 colorscheme gruvbox
 "set background=dark    " setting dark mode
 " copy to system clipboard
@@ -631,10 +646,10 @@ let &t_SR.="\e[4 q" "SR ="REPLACE mode
 let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 
 
-nnoremap ; :
-vnoremap ; :
-nnoremap ' `
-nnoremap ` '
+"nnoremap ; :
+"vnoremap ; :
+"nnoremap ' `
+"nnoremap ` '
 
 nnoremap H <c-w>h
 nnoremap L <c-w>l
@@ -662,7 +677,7 @@ noremap sh <C-w>t<C-w>K
 noremap sv <C-w>t<C-w>H
 
 " find and replace
-noremap fr :%s//g<left><left>
+"noremap fr :%s//g<left><left>
 
 "参数换行
 nmap aa :s/\(\w\+ *=\)/\r\1/g<CR>
