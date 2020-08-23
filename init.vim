@@ -221,7 +221,7 @@ Plug 'Yggdroot/LeaderF'
     noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 
     noremap <leader>fg :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR><CR>
-    noremap <leader>fh :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+    noremap <leader>fh :<C-U>Leaderf rg --max-filesize 1M<CR>
     " search visually selected text literally
     xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
     noremap go :<C-U>Leaderf! rg --recall<CR>
