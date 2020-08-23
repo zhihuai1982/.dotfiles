@@ -163,6 +163,8 @@ Plug 'tpope/vim-surround'
 
 Plug 'psliwka/vim-smoothie'
 
+Plug 'sheerun/vim-polyglot'
+
 " Text Navigation
 Plug 'unblevable/quick-scope'
 " Trigger a highlight in the appropriate direction when pressing these keys:
