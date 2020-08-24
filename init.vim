@@ -163,8 +163,6 @@ Plug 'tpope/vim-surround'
 
 Plug 'psliwka/vim-smoothie'
 
-Plug 'sheerun/vim-polyglot'
-
 " Text Navigation
 Plug 'unblevable/quick-scope'
 " Trigger a highlight in the appropriate direction when pressing these keys:
@@ -328,8 +326,8 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 " coc-translator
-nmap tt <Plug>(coc-translator-p)
-vmap tt <Plug>(coc-translator-pv)
+nmap <leader>tt <Plug>(coc-translator-p)
+vmap <leader>tt <Plug>(coc-translator-pv)
 " Remap for do codeAction of selected region
 function! s:cocActionsOpenFromSelected(type) abort
   execute 'CocCommand actions.open ' . a:type
@@ -672,7 +670,7 @@ noremap <right> :vertical resize+5<CR>
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
 noremap sb :set splitbelow<CR>:split<CR>
-noremap sr :set splitright<CR>:vsplit<CR>:Startify<CR>
+noremap sr :w<CR>:set splitright<CR>:vsplit<CR>:Startify<CR>
 " Place the two screens up and down
 noremap sh <C-w>t<C-w>K
 " Place the two screens side by side
