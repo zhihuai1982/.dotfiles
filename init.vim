@@ -328,8 +328,8 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 " coc-translator
-nmap tt <Plug>(coc-translator-p)
-vmap tt <Plug>(coc-translator-pv)
+nmap <leader>tt <Plug>(coc-translator-p)
+vmap <leader>tt <Plug>(coc-translator-pv)
 " Remap for do codeAction of selected region
 function! s:cocActionsOpenFromSelected(type) abort
   execute 'CocCommand actions.open ' . a:type
@@ -386,8 +386,6 @@ Plug 'mg979/vim-visual-multi'
     "let g:VM_maps["Redo"]               = '<C-r>'
 
 Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
-
-"Plug 'rhysd/clever-f.vim'
 
 Plug 'MattesGroeger/vim-bookmarks'
 let g:bookmark_no_default_key_mappings = 1
@@ -692,14 +690,4 @@ noremap ` ~
 " background transpant
 hi Normal guibg=NONE ctermbg=NONE
 
-"ctags
-"Ctrl+W Ctrl+] - Open the definition in a horizontal split
 
-"let g:tagbar_type_r = {
-    "\ 'ctagstype' : 'r',
-    "\ 'kinds'     : [
-        "\ 'f:Functions',
-        "\ 'g:GlobalVariables',
-        "\ 'v:FunctionVariables',
-    "\ ]
-"\ }
