@@ -328,8 +328,8 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 " coc-translator
-nmap <leader>tt <Plug>(coc-translator-p)
-vmap <leader>tt <Plug>(coc-translator-pv)
+nmap <leader>vv <Plug>(coc-translator-p)
+vmap <leader>vv <Plug>(coc-translator-pv)
 " Remap for do codeAction of selected region
 function! s:cocActionsOpenFromSelected(type) abort
   execute 'CocCommand actions.open ' . a:type
