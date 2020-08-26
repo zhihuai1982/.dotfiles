@@ -409,6 +409,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 "let g:auto_save = 1
 
 Plug 'jalvesaq/zotcite'
+"type @ then part of name of author then c+x c+o
 
 Plug 'majutsushi/tagbar'
 nnoremap <leader>tb :TagbarToggle<CR>
