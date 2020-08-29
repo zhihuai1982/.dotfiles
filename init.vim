@@ -1,4 +1,5 @@
 set nocompatible                " don't bother with vi compatibility
+set hidden                      " 允许 vim 未保存 跳转 buffer
 set autoread                    " reload files when changed on disk, i.e. via `git checkout`
 set shortmess=ati
 
@@ -33,7 +34,7 @@ set history=2000
 set nobackup                    " do not keep a backup file
 set swapfile
 set directory^=$HOME/.swap//
-set updatetime=30000
+set updatetime=300
 set updatecount=60
 set undofile
 set undodir=~/.undodir
@@ -293,23 +294,28 @@ let g:coc_global_extensions = [
 "set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 "nmap <silent> <TAB> <Plug>(coc-range-select)
 "xmap <silent> <TAB> <Plug>(coc-range-select)
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]	=~ '\s'
-endfunction
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-	\ pumvisible() ? "\<C-n>" :
-	\ <SID>check_back_space() ? "\<TAB>" :
-	\ coc#refresh()
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
 function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <c-o> coc#refresh()
+" Use <c-space> to trigger completion.
+" Use <c-u> to trigger completion.
+inoremap <silent><expr> <c-u> coc#refresh()
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> g[ <Plug>(coc-diagnostic-prev)
+nmap <silent> g] <Plug>(coc-diagnostic-next)
 
 " Open up coc-commands
 nnoremap <c-c> :CocCommand<CR>
@@ -318,22 +324,40 @@ xmap kf <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap kf <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> <leader>h :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 " Useful commands
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
 " coc-translator
 nmap <leader>vv <Plug>(coc-translator-p)
 vmap <leader>vv <Plug>(coc-translator-pv)
+
 " Remap for do codeAction of selected region
 function! s:cocActionsOpenFromSelected(type) abort
   execute 'CocCommand actions.open ' . a:type
 endfunction
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
 " coc-snippets
 let g:coc_snippet_next = '<tab>'
 xmap <Tab> <Plug>(coc-snippets-select)
@@ -348,7 +372,9 @@ xmap <Tab> <Plug>(coc-snippets-select)
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>a  <Plug>(coc-format)
+nmap <leader>f  <Plug>(coc-format)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
 
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
 "<leader>tm to start 
@@ -405,6 +431,9 @@ let g:bookmark_auto_close = 1
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
+" Start the preview :MarkdownPreview
+" Stop the preview" :MarkdownPreviewStop
+
 "Plug 'vim-scripts/vim-auto-save'
 "let g:auto_save = 1
 
@@ -456,7 +485,6 @@ let g:which_key_map['='] = [ '<C-W>='                        , 'balance windows'
 let g:which_key_map['e'] = [ ':CocCommand explorer'           , 'explorer' ]
 noremap <silent><leader>/ :nohls<CR>
 let g:which_key_map['/'] = 'remove highlight'
-let g:which_key_map['h'] = [ '<C-W>s'                        , 'split below']
 let g:which_key_map['k'] = [ ':m .-2<CR>=='                  , 'line up']
 let g:which_key_map['j'] = [ ':m .+1<CR>=='                  , 'line down']
 noremap <leader>o o<CR><ESC>ki
@@ -654,7 +682,6 @@ nnoremap H <c-w>h
 nnoremap L <c-w>l
 nnoremap K <c-w>k
 nnoremap M <c-w>j
-
 
 autocmd FileType markdown hi link markdownError NONE
 
