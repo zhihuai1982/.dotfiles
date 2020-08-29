@@ -282,6 +282,8 @@ let g:coc_global_extensions = [
   \ 'coc-diagnostic',
   \ 'coc-explorer',
   \ 'coc-git',
+  \ 'coc-json',
+  \ 'coc-tsserver',
   \ 'coc-html',
   \ 'coc-lists',
   \ 'coc-python',
@@ -383,6 +385,18 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'm
     "let g:airline_powerline_fonts = 1
 
 Plug 'itchyny/lightline.vim'
+let g:lightline = {
+\ 'colorscheme': 'wombat',
+\ 'active': {
+\   'left': [ [ 'mode', 'paste' ],
+\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+\ },
+\ 'component_function': {
+\   'cocstatus': 'coc#status'
+\ },
+\ }
+
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 Plug 'RRethy/vim-illuminate'
     let g:Illuminate_delay = 750
