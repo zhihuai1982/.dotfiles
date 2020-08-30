@@ -161,6 +161,11 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-surround'
+"cs"'
+"ds"
+"ysiw"   word
+"yss"    whole sentence
+"yssb    (sentence)
 
 Plug 'psliwka/vim-smoothie'
 
