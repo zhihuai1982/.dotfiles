@@ -251,6 +251,13 @@ Plug 'jalvesaq/Nvim-R'
     " make R vertical split at start
     let R_rconsole_width = 57
     let R_min_editor_width = 18
+    nmap <silent> <LocalLeader>sl :call RAction("levels")<CR>
+    vmap <silent> <LocalLeader>sl :call RAction("levels", "v")<CR>
+    nmap <silent> <LocalLeader>st :call RAction("tail")<CR>
+    vmap <silent> <LocalLeader>st :call RAction("tail", "v")<CR>
+    nmap <silent> <LocalLeader>sh :call RAction("head")<CR>
+    vmap <silent> <LocalLeader>sh :call RAction("head", "v")<CR>
+
     " some nice keybindding, D = cursor down one line when finished the code
     " localleader+rv = view data, +rg = plot(graphic), +rs = summary, all without sending lines to R buffer, very useful
     " Other useful features like Rformat and R RBuildTags aren’t covered here, see Nvim-R for more info.
@@ -718,15 +725,15 @@ noremap <right> :vertical resize+5<CR>
 noremap <leader>sb :set splitbelow<CR>:split<CR>
 noremap <leader>sr :w<CR>:set splitright<CR>:vsplit<CR>:Startify<CR>
 " Place the two screens up and down
-noremap sh <C-w>t<C-w>K
+noremap <leader>sh <C-w>t<C-w>K
 " Place the two screens side by side
-noremap sv <C-w>t<C-w>H
+noremap <leader>sv <C-w>t<C-w>H
 
 " find and replace
 "noremap fr :%s//g<left><left>
 
 "参数换行
-nmap <leader>aa :s/\(\w\+ *=\)/\r\1/g<CR>
+"nmap <leader>aa :s/\(\w\+ *=\)/\r\1/g<CR>
 
 "nnoremap <leader>v :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
 
