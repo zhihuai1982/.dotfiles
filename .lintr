@@ -1,1 +1,77 @@
-linters: with_defaults(line_length_linter(120))
+linters: with_defaults(
+  # By using the `with_defaults` function in .lintr to set up the linters for your package / project,
+  # you are telling {lintr}: start with this named-list of linters (given in the argument `default`,
+  # see below) and modify any that I specify.
+  # Here, that means you want to use the list `default_linters`, but modify that list.
+  #
+  # See `names(lintr::default_linters)` for the contents of the `default_linters` used here.
+  #
+  # You could alternatively
+  #
+  # - use all the linters in the `default_linters` without modification by using the line
+  # `linters: default_linters`
+  # - use a single linter (eg `no_tab_linter`) by using the line `linters: no_tab_linter`
+  # 
+  # in your .lintr file.
+  #
+  # What kind of modifications to the `default` list are allowed?
+  #
+  # {DROPPING A DEFAULT LINTER}
+  #
+  # To drop one of the named linters from the `default` list, you set the `linter-name = NULL`.
+  # For example, if you don't want {lintr} to flag commented code:
+  commented_code_linter = NULL,
+  #
+  # {MODIFYING A DEFAULT LINTER}
+  #
+  # To modify a parameterised linter (eg, closed_curly_linter, object_name_linter, object_length_linter),
+  # you override the default parameter value. 
+  # - `line_length_linter` has a default of 80, to extend this to allow 100-width lines do the following:
+  line_length_linter = line_length_linter(100),
+  #
+  # - `object_length_linter` has a default object-name size of 30 characters, we can extend this to 40
+  # characters
+  # (note that you don't need to specify the name of the linter that you are overriding if it one of
+  # the linters in the `default` list)
+  object_length_linter(40),
+  #
+  # - `object_name_linter` has default "snake_case" - to allow newly-defined objects to have names that
+  # are in either `snake_case` or `CamelCase` (typical for classes):
+  object_name_linter = object_name_linter(c("snake_case", "CamelCase", "dotted.case")),
+  #
+  # {ADDING A NON-DEFAULT LINTER}
+  #
+  # There are many linters that are not included in the `default_linters` used here.
+  # If you want to prevent the use of `return`, `sapply`, or some other unsafe / unnecessary functions:
+  # undesirable_function_linter = undesirable_function_linter(),
+  #
+  # Note that `undesirable_function_linter` (and the related `undesirable_operator_linter`) is
+  # parameterisable, so the parentheses are necessary in the last modification
+  #
+  # The default undesirable operators are `:::`, `<<-` and `->>`, we can modify this list
+  # in the same way that we could modify the linters: using `with_defaults`
+  undesirable_operator_linter = undesirable_operator_linter(
+    # allow assignment to the parent env (`<<-`) but disallow right-assignment (`->`)
+    with_defaults("<<-" = NULL, "->" = NA, default = default_undesirable_operators)
+  ),
+  #
+  default = default_linters
+  )
+exclusions: list(
+  # To prevent {lintr} from analysing specific files you can add an exclusions list to your .lintr config
+  #
+  # The exclusions is another named list. But you don't need to provide a name for each element,
+  # if you want to exclude the whole of a file, just provide the filepath to that file:
+  #
+  # Ignore this file:
+  "path/to/my_file.R",
+  #
+  # Ignore lines 1, 4, 6 and 7 from this file:
+  "path/to/another/file" = c(1, 4, 6, 7)
+  #
+  # There is another way to exclude parts of files:
+  # - using `# nolint` in a source file to ignore all subsequent code
+  # - or wrapping a code block with `# nolint start` and `# nolint end`
+  #
+  # The code-level lint-exclusion flags can be user specified as well
+  )

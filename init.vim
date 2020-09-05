@@ -270,7 +270,8 @@ Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
 
 Plug 'sjl/gundo.vim'
     let g:gundo_prefer_python3 = 1
-    nnoremap <leader>u :GundoToggle<CR>
+    nnoremap <leader>u :GundoToggle<CR><CR>
+
 Plug 'ferrine/md-img-paste.vim'
     autocmd FileType html,markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
     let g:mdip_imgdir = '.'
@@ -282,7 +283,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " fix the most annoying bug that coc has
 "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 let g:coc_global_extensions = [
-  \ 'coc-actions',
   \ 'coc-css',
   \ 'coc-diagnostic',
   \ 'coc-explorer',
@@ -358,12 +358,12 @@ nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>vv <Plug>(coc-translator-p)
 vmap <leader>vv <Plug>(coc-translator-pv)
 
-" Remap for do codeAction of selected region
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+ "Remap for do codeAction of selected region
+"function! s:cocActionsOpenFromSelected(type) abort
+  "execute 'CocCommand actions.open ' . a:type
+"endfunction
+"xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+"nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 " coc-snippets
 let g:coc_snippet_next = '<tab>'
@@ -674,6 +674,7 @@ set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
 
 " jk 替换 Esc
 inoremap jk <Esc>
+set t_BE=
 
 "Keep search pattern at the center of the screen."
 nnoremap <silent> n nzz
@@ -714,8 +715,8 @@ noremap <left> :vertical resize-5<CR>
 noremap <right> :vertical resize+5<CR>
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-noremap sb :set splitbelow<CR>:split<CR>
-noremap sr :w<CR>:set splitright<CR>:vsplit<CR>:Startify<CR>
+noremap <leader>sb :set splitbelow<CR>:split<CR>
+noremap <leader>sr :w<CR>:set splitright<CR>:vsplit<CR>:Startify<CR>
 " Place the two screens up and down
 noremap sh <C-w>t<C-w>K
 " Place the two screens side by side
@@ -725,7 +726,7 @@ noremap sv <C-w>t<C-w>H
 "noremap fr :%s//g<left><left>
 
 "参数换行
-nmap aa :s/\(\w\+ *=\)/\r\1/g<CR>
+nmap <leader>aa :s/\(\w\+ *=\)/\r\1/g<CR>
 
 "nnoremap <leader>v :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
 
