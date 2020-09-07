@@ -173,6 +173,11 @@ Plug 'psliwka/vim-smoothie'
 Plug 'unblevable/quick-scope'
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+augroup qs_colors
+  autocmd!
+  autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+augroup END
 
 Plug 'Lokaltog/vim-easymotion'
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -257,6 +262,13 @@ Plug 'jalvesaq/Nvim-R'
     vmap <silent> <LocalLeader>st :call RAction("tail", "v")<CR>
     nmap <silent> <LocalLeader>sh :call RAction("head")<CR>
     vmap <silent> <LocalLeader>sh :call RAction("head", "v")<CR>
+    nmap <silent> <LocalLeader>sm :call RAction("summary")<CR>
+    vmap <silent> <LocalLeader>sm :call RAction("summary", "v")<CR>
+    nmap <silent> <LocalLeader>sc :call RAction("class")<CR>
+    vmap <silent> <LocalLeader>sc :call RAction("class", "v")<CR>
+    nmap <silent> <LocalLeader>sp :call RAction("typeof")<CR>
+    vmap <silent> <LocalLeader>sp :call RAction("typeof", "v")<CR>
+
 
     " some nice keybindding, D = cursor down one line when finished the code
     " localleader+rv = view data, +rg = plot(graphic), +rs = summary, all without sending lines to R buffer, very useful
@@ -524,6 +536,7 @@ let g:which_key_map['p'] = [ '<Plug>MarkdownPreview'         , 'md preview' ]
 noremap <silent> <leader>q :Bdelete<CR>
 let g:which_key_map.q = 'which_key_ignore'
 noremap <silent> <leader>Q :q!<CR>
+noremap <silent> Q :q!<CR>
 let g:which_key_map.Q = 'which_key_ignore'
 noremap <silent> <leader>qq :q<CR>
 let g:which_key_map.qq = 'which_key_ignore'
