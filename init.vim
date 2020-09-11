@@ -281,6 +281,8 @@ Plug 'jalvesaq/Nvim-R'
     " let g:Rout_more_colors = 1
    if has('mac')
         let g:python3_host_prog = '/usr/local/bin/python3'
+    elseif has('unix')
+        let g:python3_host_prog = '/home/data/vip24/miniconda3/bin/python'
     endif
 
 Plug 'honza/vim-snippets'  " snippets repository
