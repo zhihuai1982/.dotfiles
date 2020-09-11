@@ -268,6 +268,7 @@ Plug 'jalvesaq/Nvim-R'
     vmap <silent> <LocalLeader>sc :call RAction("class", "v")<CR>
     nmap <silent> <LocalLeader>sp :call RAction("typeof")<CR>
     vmap <silent> <LocalLeader>sp :call RAction("typeof", "v")<CR>
+    nmap <LocalLeader>sn :RSend 
 
 
     " some nice keybindding, D = cursor down one line when finished the code
@@ -748,7 +749,7 @@ noremap <leader>sv <C-w>t<C-w>H
 "noremap fr :%s//g<left><left>
 
 "参数换行
-"nmap <leader>aa :s/\(\w\+ *=\)/\r\1/g<CR>
+nmap <leader>aa :s/, /,\r/g<CR>
 
 "nnoremap <leader>v :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
 
