@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export PATH=$HOME/opt/anaconda3/bin:$HOME/.local/bin:$PATH
+#export PATH=$HOME/opt/anaconda3/bin:$PATH
 # $HOME/Library/Python/2.7/bin:
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -119,6 +119,11 @@ alias panref='pandoc -F $HOME/.config/nvim/plugged/zotcite/python3/zotref -F pan
 alias proxy='export all_proxy=socks5://127.0.0.1:1086'
 alias unproxy='unset all_proxy'
 
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
 # powerline install
 function powerline_precmd() {
     PS1="$(powerline-shell --shell zsh $?)"
@@ -203,35 +208,47 @@ bindkey '^e' edit-command-line
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/zhihuai1982/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/zhihuai1982/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/zhihuai1982/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/zhihuai1982/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-
 # for ZSH
 case "$OSTYPE" in
   darwin*)
-    # ...
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/Users/zhihuai1982/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/Users/zhihuai1982/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+            . "/Users/zhihuai1982/opt/anaconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/Users/zhihuai1982/opt/anaconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
   ;;
   linux*)
     NPM_PACKAGES="${HOME}/.npm-packages"
 
-    export PATH="$PATH:$NPM_PACKAGES/bin"
+    export PATH="$PATH:$NPM_PACKAGES/bin:$HOME/.local/bin"
 
     # Preserve MANPATH if you already defined it somewhere in your config.
     # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
     export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/home/data/vip24/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/home/data/vip24/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/home/data/vip24/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/home/data/vip24/miniconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
   ;;
 esac
 
