@@ -37,7 +37,7 @@ linters: with_defaults(
   #
   # - `object_name_linter` has default "snake_case" - to allow newly-defined objects to have names that
   # are in either `snake_case` or `CamelCase` (typical for classes):
-  object_name_linter = object_name_linter(c("snake_case", "CamelCase", "dotted.case")),
+  object_name_linter = object_name_linter(c("snake_case", "CamelCase", "dotted.case", "camelCase")),
   #
   # {ADDING A NON-DEFAULT LINTER}
   #
