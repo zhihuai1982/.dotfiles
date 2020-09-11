@@ -119,7 +119,6 @@ alias panref='pandoc -F $HOME/.config/nvim/plugged/zotcite/python3/zotref -F pan
 alias proxy='export all_proxy=socks5://127.0.0.1:1086'
 alias unproxy='unset all_proxy'
 
-alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
