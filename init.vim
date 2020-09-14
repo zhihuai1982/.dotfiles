@@ -269,6 +269,9 @@ Plug 'jalvesaq/Nvim-R'
     vmap <silent> <LocalLeader>sc :call RAction("class", "v")<CR>
     nmap <silent> <LocalLeader>sp :call RAction("typeof")<CR>
     vmap <silent> <LocalLeader>sp :call RAction("typeof", "v")<CR>
+    nmap <silent> <LocalLeader>si :call RAction("unique")<CR>
+    vmap <silent> <LocalLeader>si :call RAction("unique", "v")<CR>
+    nmap <silent> <LocalLeader>sr :RSend library("colorout")<CR>
     nmap <LocalLeader>sn :RSend 
 
 
@@ -294,6 +297,23 @@ Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
 Plug 'sjl/gundo.vim'
     let g:gundo_prefer_python3 = 1
     nnoremap <leader>u :GundoToggle<CR><CR>
+
+Plug 'voldikss/vim-floaterm'
+" Set floaterm window background to gray once the cursor moves out from it
+hi FloatermNC guibg=gray
+
+nnoremap   <silent>   <leader>tw    :FloatermNew<CR>
+tnoremap   <silent>   <leader>tw    <C-\><C-n>:FloatermNew<CR>
+nnoremap   <silent>   <leader>tp    :FloatermPrev<CR>
+tnoremap   <silent>   <leader>tp    <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <silent>   <leader>tn    :FloatermNext<CR>
+tnoremap   <silent>   <leader>tn    <C-\><C-n>:FloatermNext<CR>
+nnoremap   <silent>   <leader>tt   :FloatermToggle<CR>
+tnoremap   <silent>   <leader>tt   <C-\><C-n>:FloatermToggle<CR>
+nnoremap   <silent>   <leader>tk    :FloatermKill<CR>
+tnoremap   <silent>   <leader>tk    <C-\><C-n>:FloatermKill<CR>
+nnoremap   <silent>   <leader>ta    :FloatermNew ranger<CR>
+tnoremap   <silent>   <leader>ta    <C-\><C-n>:FloatermNew ranger<CR>
 
 Plug 'ferrine/md-img-paste.vim'
     autocmd FileType html,markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
@@ -401,8 +421,8 @@ xmap <Tab> <Plug>(coc-snippets-select)
     "snippets.userSnippetsDirectory, Directory that contains custom user ultisnips snippets, use ultisnips in extension root by default. 自定义模板目录
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format)
+xmap <leader>ff  <Plug>(coc-format-selected)
+nmap <leader>ff  <Plug>(coc-format)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
@@ -521,11 +541,11 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 " Single mappings
 let g:which_key_map[','] = [ ':vsp $MYVIMRC'                 , 'edit init' ]
-nnoremap <leader>. :source $MYVIMRC<CR>
+nnoremap <silent> <leader>. :source $MYVIMRC<CR>:noh<CR>
 let g:which_key_map['.'] = 'source init'
 let g:which_key_map['='] = [ '<C-W>='                        , 'balance windows' ]
 let g:which_key_map['e'] = [ ':CocCommand explorer'           , 'explorer' ]
-noremap <silent><leader>/ :nohls<CR>
+noremap <silent> <leader>/ :nohls<CR>
 let g:which_key_map['/'] = 'remove highlight'
 let g:which_key_map['k'] = [ ':m .-2<CR>=='                  , 'line up']
 let g:which_key_map['j'] = [ ':m .+1<CR>=='                  , 'line down']
@@ -602,22 +622,6 @@ let g:which_key_map.l = {
       \ 'Z' : [':CocEnable'                          , 'enable CoC'],
       \ }
 
-" t is for terminal
-let g:which_key_map.t = {
-      \ 'name' : '+terminal' ,
-      \ ';' : [':FloatermNew --wintype=popup --height=6'        , 'terminal'],
-      \ 'f' : [':FloatermNew fzf'                               , 'fzf'],
-      \ 'g' : [':FloatermNew lazygit'                           , 'git'],
-      \ 'd' : [':FloatermNew lazydocker'                        , 'docker'],
-      \ 'n' : [':FloatermNew node'                              , 'node'],
-      \ 'N' : [':FloatermNew nnn'                               , 'nnn'],
-      \ 'p' : [':FloatermNew python'                            , 'python'],
-      \ 'm' : [':FloatermNew lazynpm'                           , 'npm'],
-      \ 'r' : [':FloatermNew ranger'                            , 'ranger'],
-      \ 't' : [':FloatermToggle'                                , 'toggle'],
-      \ 'y' : [':FloatermNew ytop'                              , 'ytop'],
-      \ 's' : [':FloatermNew ncdu'                              , 'ncdu'],
-      \ }
 
 " g is for git
 let g:which_key_map.g = {
@@ -729,8 +733,8 @@ nnoremap M <c-w>j
 
 autocmd FileType markdown hi link markdownError NONE
 
-noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
-
+noremap <leader>tl :tabe<CR>:-tabmove<CR>:term lazygit<CR>
+noremap <leader>tr :tabe<CR>:-tabmove<CR>:term ranger<CR>
 
 " Resize splits with arrow keys
 noremap <up> :res +5<CR>
@@ -750,7 +754,8 @@ noremap <leader>sv <C-w>t<C-w>H
 "noremap fr :%s//g<left><left>
 
 "参数换行
-nmap <leader>aa :s/, /,\r/g<CR>
+nnoremap <silent> <leader>aa V:s/, /,\r/g<CR>:noh<CR>
+vnoremap <silent> <leader>aa :s/, /,\r/g<CR>gv=
 
 "nnoremap <leader>v :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
 
