@@ -229,8 +229,9 @@ Plug 'Yggdroot/LeaderF'
     noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
     noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 
+    noremap <leader>fj :<C-U><C-R>=printf("Leaderf! rg --max-filesize 500K --wd-mode 'Ac' -e %s ", expand("<cword>"))<CR><CR>
     noremap <leader>fg :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR><CR>
-    noremap <leader>fh :<C-U>Leaderf rg --max-filesize 1M<CR>
+    noremap <leader>fh :<C-U>Leaderf rg --max-filesize 500K<CR>
     " search visually selected text literally
     xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
     noremap go :<C-U>Leaderf! rg --recall<CR>
@@ -239,6 +240,7 @@ Plug 'Yggdroot/LeaderF'
     " ubuntu下需要把 g:Lf_Gtagsconf='/usr/local/share/gtags/gtags.conf'，或者把这个文件拷贝到自己目录下，重命名为.globalrc，否则不能生成tags。
     let g:Lf_GtagsAutoGenerate = 1
     let g:Lf_Gtagslabel = 'native-pygments'
+    "let g:Lf_Gtagsconf='/usr/local/share/gtags/gtags.conf'
     noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
     noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
     noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
@@ -269,10 +271,12 @@ Plug 'jalvesaq/Nvim-R'
     vmap <silent> <LocalLeader>sc :call RAction("class", "v")<CR>
     nmap <silent> <LocalLeader>sp :call RAction("typeof")<CR>
     vmap <silent> <LocalLeader>sp :call RAction("typeof", "v")<CR>
+    nmap <silent> <LocalLeader>sn :call RAction("names")<CR>
+    vmap <silent> <LocalLeader>sn :call RAction("names", "v")<CR>
     nmap <silent> <LocalLeader>si :call RAction("unique")<CR>
     vmap <silent> <LocalLeader>si :call RAction("unique", "v")<CR>
     nmap <silent> <LocalLeader>sr :RSend library("colorout")<CR>
-    nmap <LocalLeader>sn :RSend 
+    nmap <LocalLeader>se :RSend 
 
 
     " some nice keybindding, D = cursor down one line when finished the code
@@ -327,6 +331,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 let g:coc_global_extensions = [
   \ 'coc-css',
+  \ 'coc-actions',
   \ 'coc-diagnostic',
   \ 'coc-explorer',
   \ 'coc-git',
@@ -425,6 +430,7 @@ xmap <leader>ff  <Plug>(coc-format-selected)
 nmap <leader>ff  <Plug>(coc-format)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
+
 
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
 "<leader>tm to start 
