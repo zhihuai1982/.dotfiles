@@ -1,1 +1,7 @@
 library("colorout")
+
+options(BioC_mirror=”https://mirrors.tuna.tsinghua.edu.cn/bioconductor/“)
+
+options(”repos“ = c(CRAN=”http://mirrors.cloud.tencent.com/CRAN/“))
+
+options(download.file.method = ’libcurl‘)
