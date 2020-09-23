@@ -13,6 +13,6 @@ https://github.com/b-ryan/powerline-shell
 
 helpdoc 为 vim 参考文档目录
 
-ln -s ~/.dotfiles/helpdoc ~/.config/nvim/helpdoc
+ln -s ~/.dotfiles/doc ~/.config/nvim/doc
 
-建立 tags 命令是 :helptag ~/.config/nvim/helpdoc
+建立 tags 命令是 :helptag ~/.config/nvim/doc

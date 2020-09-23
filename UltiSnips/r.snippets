@@ -14,8 +14,8 @@ snippet asf
 $1 <- as.factor($1)
 endsnippet
 
-snippet br
-($1(${VISUAL}))
+snippet rrr
+$1(${VISUAL})
 endsnippet
 
 snippet rplot
@@ -24,10 +24,16 @@ ${VISUAL}
 dev.off()
 endsnippet
 
-snippet vv
+snippet vvSCE "Description" b
 
-(names(${VISUAL}))
-(colnames(${VISUAL}))
-(rownames(${VISUAL}))
-${VISUAL}
+# ===== start view SingleCellExperiment =====
+
+assay($1, "counts")[1:5, 1:5]
+head(rownames($1))
+head(colnames($1))
+colnames(colData($1))
+altExp($1, "ERCC")
+
+# ===== end view SingleCellExperiment =====
+
 endsnippet
