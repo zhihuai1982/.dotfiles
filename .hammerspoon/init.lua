@@ -17,8 +17,7 @@ require "window-management"
 require "vim-binding"
 require "key-binding"
 require "html-preview"
---require "remap-capslock"
-require "remap-caps"
+require "remap-capslock"
 -- -----------------------------------------------------------------------
 --                            ** For Debug **                           --
 -- -----------------------------------------------------------------------
