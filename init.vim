@@ -123,90 +123,72 @@ filetype indent on
 
 " Vim-plug
 call plug#begin('~/.config/nvim/plugged')
+
 Plug 'morhetz/gruvbox'
-let g:gruvbox_italic = '1'
+    let g:gruvbox_italic = '1'
 
-Plug 'junegunn/goyo.vim'
-let g:goyo_margin_top = 2
-let g:goyo_margin_bottom = 2
+Plug 'junegunn/goyo.vim', {'for': 'markdown'}
+    let g:goyo_margin_top = 2
+    let g:goyo_margin_bottom = 2
 
-function! s:goyo_enter()
-  if executable('tmux') && strlen($TMUX)
-    silent !tmux set status off
-    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  endif
-  set noshowmode
-  set noshowcmd
-  set scrolloff=999
-endfunction
+    function! s:goyo_enter()
+    if executable('tmux') && strlen($TMUX)
+        silent !tmux set status off
+        silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+    endif
+    set noshowmode
+    set noshowcmd
+    set scrolloff=999
+    endfunction
 
-function! s:goyo_leave()
-  if executable('tmux') && strlen($TMUX)
-    silent !tmux set status on
-    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-  endif
-  set showmode
-  set showcmd
-  set scrolloff=7
-endfunction
+    function! s:goyo_leave()
+    if executable('tmux') && strlen($TMUX)
+        silent !tmux set status on
+        silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+    endif
+    set showmode
+    set showcmd
+    set scrolloff=7
+    endfunction
 
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+    autocmd! User GoyoEnter nested call <SID>goyo_enter()
+    autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 Plug 'godlygeek/tabular'
-"http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
-
-Plug 'jiangmiao/auto-pairs'
-
-Plug 'tpope/vim-fugitive'
+    "http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 
 Plug 'tpope/vim-surround'
-"cs"'
-"ds"
-"ysiw"   word
-"yss"    whole sentence
-"yssb    (sentence)
+    "cs"'
+    "ds"
+    "ysiw"   word
+    "yss"    whole sentence
+    "yssb    (sentence)
 
 Plug 'psliwka/vim-smoothie'
 
-" Text Navigation
 Plug 'unblevable/quick-scope'
-" Trigger a highlight in the appropriate direction when pressing these keys:
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-augroup qs_colors
-  autocmd!
-  autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
-augroup END
+    " Trigger a highlight in the appropriate direction when pressing these keys:
+    let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+    augroup qs_colors
+    autocmd!
+    autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+    autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+    augroup END
 
 Plug 'Lokaltog/vim-easymotion'
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-let g:EasyMotion_smartcase = 1
-nmap m <Plug>(easymotion-overwin-f2)
-    
+    let g:EasyMotion_do_mapping = 0 " Disable default mappings
+    let g:EasyMotion_smartcase = 1
+    nmap m <Plug>(easymotion-overwin-f2)
+
 Plug 'preservim/nerdcommenter'
 
 Plug 'moll/vim-bbye'
 
-"Plug 'terryma/vim-multiple-cursors'
-"let g:multi_cursor_use_default_mapping=0
-
-"" Default mapping
-"let g:multi_cursor_start_word_key      = '<C-n>'
-"let g:multi_cursor_select_all_word_key = '<A-n>'
-"let g:multi_cursor_start_key           = 'g<C-n>'
-"let g:multi_cursor_select_all_key      = 'g<A-n>'
-"let g:multi_cursor_next_key            = '<C-n>'
-"let g:multi_cursor_prev_key            = '<C-p>'
-"let g:multi_cursor_skip_key            = '<C-x>'
-"let g:multi_cursor_quit_key            = '<Esc>'
-
 Plug 'mhinz/vim-startify'
 
-" Have the file system follow you around
 Plug 'airblade/vim-rooter'
-"let g:rooter_patterns = ['.git', 'Makefile', '*.sln', 'build/env.sh']
-let g:rooter_silent_chdir = 1
+    "let g:rooter_patterns = ['.git', 'Makefile', '*.sln', 'build/env.sh']
+    let g:rooter_silent_chdir = 1
 
 Plug 'Yggdroot/LeaderF'
     let g:Lf_ReverseOrder = 1
@@ -253,30 +235,12 @@ Plug 'Yggdroot/LeaderF'
     " let g:Lf_DevIconsFont = "DroidSansMono Nerd Font Mono"
     " If needs
     " set ambiwidth=double
-    
-Plug 'jalvesaq/Nvim-R'
+
+Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
     let maplocalleader = ","
     " make R vertical split at start
     let R_rconsole_width = 57
     let R_min_editor_width = 18
-    nmap <silent> <LocalLeader>sl :call RAction("levels")<CR>
-    vmap <silent> <LocalLeader>sl :call RAction("levels", "v")<CR>
-    nmap <silent> <LocalLeader>st :call RAction("tail")<CR>
-    vmap <silent> <LocalLeader>st :call RAction("tail", "v")<CR>
-    nmap <silent> <LocalLeader>sh :call RAction("head")<CR>
-    vmap <silent> <LocalLeader>sh :call RAction("head", "v")<CR>
-    nmap <silent> <LocalLeader>sm :call RAction("summary")<CR>
-    vmap <silent> <LocalLeader>sm :call RAction("summary", "v")<CR>
-    nmap <silent> <LocalLeader>sc :call RAction("class")<CR>
-    vmap <silent> <LocalLeader>sc :call RAction("class", "v")<CR>
-    nmap <silent> <LocalLeader>sp :call RAction("typeof")<CR>
-    vmap <silent> <LocalLeader>sp :call RAction("typeof", "v")<CR>
-    nmap <silent> <LocalLeader>sn :call RAction("names")<CR>
-    vmap <silent> <LocalLeader>sn :call RAction("names", "v")<CR>
-    nmap <silent> <LocalLeader>si :call RAction("unique")<CR>
-    vmap <silent> <LocalLeader>si :call RAction("unique", "v")<CR>
-    nmap <silent> <LocalLeader>sr :RSend library("colorout")<CR>
-    nmap <LocalLeader>se :RSend 
 
 
     " some nice keybindding, D = cursor down one line when finished the code
@@ -296,161 +260,160 @@ Plug 'jalvesaq/Nvim-R'
 
 Plug 'honza/vim-snippets'  " snippets repository
 
-Plug 'chrisbra/csv.vim'    " for viewing data directly in vim R (Nvim-R)
+Plug 'chrisbra/csv.vim', {'for': ['r','rmarkdown']}    " for viewing data directly in vim R (Nvim-R)
 
 Plug 'sjl/gundo.vim'
     let g:gundo_prefer_python3 = 1
     nnoremap <leader>u :GundoToggle<CR><CR>
 
 Plug 'voldikss/vim-floaterm'
-" Set floaterm window background to gray once the cursor moves out from it
-hi FloatermNC guibg=gray
+    " Set floaterm window background to gray once the cursor moves out from it
+    hi FloatermNC guibg=gray
 
-nnoremap   <silent>   <leader>tw    :FloatermNew<CR>
-tnoremap   <silent>   <leader>tw    <C-\><C-n>:FloatermNew<CR>
-nnoremap   <silent>   <leader>tp    :FloatermPrev<CR>
-tnoremap   <silent>   <leader>tp    <C-\><C-n>:FloatermPrev<CR>
-nnoremap   <silent>   <leader>tn    :FloatermNext<CR>
-tnoremap   <silent>   <leader>tn    <C-\><C-n>:FloatermNext<CR>
-nnoremap   <silent>   <leader>tt   :FloatermToggle<CR>
-tnoremap   <silent>   <leader>tt   <C-\><C-n>:FloatermToggle<CR>
-nnoremap   <silent>   <leader>tk    :FloatermKill<CR>
-tnoremap   <silent>   <leader>tk    <C-\><C-n>:FloatermKill<CR>
-nnoremap   <silent>   <leader>ta    :FloatermNew ranger<CR>
-tnoremap   <silent>   <leader>ta    <C-\><C-n>:FloatermNew ranger<CR>
+    nnoremap   <silent>   <leader>tw    :FloatermNew<CR>
+    tnoremap   <silent>   <leader>tw    <C-\><C-n>:FloatermNew<CR>
+    nnoremap   <silent>   <leader>tp    :FloatermPrev<CR>
+    tnoremap   <silent>   <leader>tp    <C-\><C-n>:FloatermPrev<CR>
+    nnoremap   <silent>   <leader>tn    :FloatermNext<CR>
+    tnoremap   <silent>   <leader>tn    <C-\><C-n>:FloatermNext<CR>
+    nnoremap   <silent>   <leader>tt   :FloatermToggle<CR>
+    tnoremap   <silent>   <leader>tt   <C-\><C-n>:FloatermToggle<CR>
+    nnoremap   <silent>   <leader>tk    :FloatermKill<CR>
+    tnoremap   <silent>   <leader>tk    <C-\><C-n>:FloatermKill<CR>
+    nnoremap   <silent>   <leader>ta    :FloatermNew ranger<CR>
+    tnoremap   <silent>   <leader>ta    <C-\><C-n>:FloatermNew ranger<CR>
 
-Plug 'ferrine/md-img-paste.vim'
-    autocmd FileType html,markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
-    let g:mdip_imgdir = '.'
-    let g:mdip_imgname = 'image'
+"Plug 'ferrine/md-img-paste.vim'
+    "autocmd FileType html,markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+    "let g:mdip_imgdir = '.'
+    "let g:mdip_imgname = 'image'
 
 " Use release branch (recommend)
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" fix the most annoying bug that coc has
-"silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
-let g:coc_global_extensions = [
-  \ 'coc-css',
-  \ 'coc-actions',
-  \ 'coc-diagnostic',
-  \ 'coc-explorer',
-  \ 'coc-git',
-  \ 'coc-json',
-  \ 'coc-tsserver',
-  \ 'coc-html',
-  \ 'coc-lists',
-  \ 'coc-python',
-  \ 'coc-snippets',
-  \ 'coc-r-lsp',
-  \ 'coc-zi',
-  \ 'coc-translator',
-  \ 'coc-vimlsp',
-  \ 'coc-yank']
-"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-"nmap <silent> <TAB> <Plug>(coc-range-select)
-"xmap <silent> <TAB> <Plug>(coc-range-select)
+    " fix the most annoying bug that coc has
+    "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
+    let g:coc_global_extensions = [
+    \ 'coc-css',
+    \ 'coc-actions',
+    \ 'coc-pairs',
+    \ 'coc-highlight',
+    \ 'coc-diagnostic',
+    \ 'coc-explorer',
+    \ 'coc-git',
+    \ 'coc-json',
+    \ 'coc-tsserver',
+    \ 'coc-html',
+    \ 'coc-lists',
+    \ 'coc-python',
+    \ 'coc-snippets',
+    \ 'coc-r-lsp',
+    \ 'coc-zi',
+    \ 'coc-translator',
+    \ 'coc-vimlsp',
+    \ 'coc-yank']
+    "set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+    "nmap <silent> <TAB> <Plug>(coc-range-select)
+    "xmap <silent> <TAB> <Plug>(coc-range-select)
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+    " Use tab for trigger completion with characters ahead and navigate.
+    " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+    " other plugin before putting this into your config.
+    inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ coc#refresh()
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-" Use <c-space> to trigger completion.
-" Use <c-u> to trigger completion.
-inoremap <silent><expr> <c-u> coc#refresh()
+    function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+    " Use <c-space> to trigger completion.
+    " Use <c-u> to trigger completion.
+    inoremap <silent><expr> <c-u> coc#refresh()
 
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> g[ <Plug>(coc-diagnostic-prev)
-nmap <silent> g] <Plug>(coc-diagnostic-next)
+    " Use `[g` and `]g` to navigate diagnostics
+    " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+    nmap <silent> g[ <Plug>(coc-diagnostic-prev)
+    nmap <silent> g] <Plug>(coc-diagnostic-next)
 
-" Open up coc-commands
-nnoremap <c-c> :CocCommand<CR>
-" Text Objects
-xmap kf <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap kf <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
+    " Open up coc-commands
+    nnoremap <c-c> :CocCommand<CR>
+    " Text Objects
+    xmap kf <Plug>(coc-funcobj-i)
+    xmap af <Plug>(coc-funcobj-a)
+    omap kf <Plug>(coc-funcobj-i)
+    omap af <Plug>(coc-funcobj-a)
 
-" Use K to show documentation in preview window.
-nnoremap <silent> <leader>h :call <SID>show_documentation()<CR>
+    " Use K to show documentation in preview window.
+    nnoremap <silent> <leader>h :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+    function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+    endfunction
 
-" Useful commands
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+    " Useful commands
+    nnoremap <silent> <space>y :<C-u>CocList --normal yank<cr>
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
 
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+    " Symbol renaming.
+    nmap <leader>rn <Plug>(coc-rename)
 
-" coc-translator
-nmap <leader>vv <Plug>(coc-translator-p)
-vmap <leader>vv <Plug>(coc-translator-pv)
+    " coc-translator
+    nmap <leader>vv <Plug>(coc-translator-p)
+    vmap <leader>vv <Plug>(coc-translator-pv)
 
- "Remap for do codeAction of selected region
-"function! s:cocActionsOpenFromSelected(type) abort
-  "execute 'CocCommand actions.open ' . a:type
-"endfunction
-"xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-"nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+    "Remap for do codeAction of selected region
+    "function! s:cocActionsOpenFromSelected(type) abort
+    "execute 'CocCommand actions.open ' . a:type
+    "endfunction
+    "xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+    "nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
-" coc-snippets
-let g:coc_snippet_next = '<tab>'
-xmap <Tab> <Plug>(coc-snippets-select)
-" Use <C-p> for trigger snippet expand.
-"smap <c-p> <Plug>(coc-snippets-expand)
+    " coc-snippets
+    let g:coc_snippet_next = '<tab>'
+    xmap <Tab> <Plug>(coc-snippets-select)
+    " Use <C-p> for trigger snippet expand.
+    "smap <c-p> <Plug>(coc-snippets-expand)
 
-"Use :CocList snippets to open snippets list.
-"Use :CocCommand snippets.editSnippets to edit user snippet of current filetype.
-"Use :CocCommand snippets.openSnippetFiles to open snippet files of current filetype.
-"Use the command :CocConfig to open your user configuration file
-    "snippets.userSnippetsDirectory, Directory that contains custom user ultisnips snippets, use ultisnips in extension root by default. 自定义模板目录
+    "Use :CocList snippets to open snippets list.
+    "Use :CocCommand snippets.editSnippets to edit user snippet of current filetype.
+    "Use :CocCommand snippets.openSnippetFiles to open snippet files of current filetype.
+    "Use the command :CocConfig to open your user configuration file
+        "snippets.userSnippetsDirectory, Directory that contains custom user ultisnips snippets, use ultisnips in extension root by default. 自定义模板目录
 
-" Formatting selected code.
-xmap <leader>ff  <Plug>(coc-format-selected)
-nmap <leader>ff  <Plug>(coc-format)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+    " Formatting selected code.
+    xmap <leader>ff  <Plug>(coc-format-selected)
+    nmap <leader>ff  <Plug>(coc-format)
+    " Apply AutoFix to problem on the current line.
+    nmap <leader>qf  <Plug>(coc-fix-current)
 
 
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
-"<leader>tm to start 
-
-"Plug 'theniceboy/eleline.vim'
-    "let g:airline_powerline_fonts = 1
+    "<leader>tm to start 
 
 Plug 'itchyny/lightline.vim'
-let g:lightline = {
-\ 'colorscheme': 'wombat',
-\ 'active': {
-\   'left': [ [ 'mode', 'paste' ],
-\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-\ },
-\ 'component_function': {
-\   'cocstatus': 'coc#status'
-\ },
-\ }
+    let g:lightline = {
+    \ 'colorscheme': 'wombat',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'cocstatus': 'coc#status'
+    \ },
+    \ }
 
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+    autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 Plug 'RRethy/vim-illuminate'
     let g:Illuminate_delay = 750
@@ -480,39 +443,34 @@ Plug 'mg979/vim-visual-multi'
 Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
 
 Plug 'MattesGroeger/vim-bookmarks'
-let g:bookmark_no_default_key_mappings = 1
-nmap <leader>mt <Plug>BookmarkToggle
-nmap <leader>ma <Plug>BookmarkAnnotate
-nmap <leader>ml <Plug>BookmarkShowAll
-nmap <leader>mi <Plug>BookmarkNext
-nmap <leader>mn <Plug>BookmarkPrev
-nmap <leader>mC <Plug>BookmarkClear
-nmap <leader>mX <Plug>BookmarkClearAll
-nmap <leader>mu <Plug>BookmarkMoveUp
-nmap <leader>me <Plug>BookmarkMoveDown
-nmap <Leader>mg <Plug>BookmarkMoveToLine
-let g:bookmark_auto_save = 1
-let g:bookmark_highlight_lines = 1
-let g:bookmark_center = 1
-let g:bookmark_auto_close = 1
-"let g:bookmark_location_list = 1
+    let g:bookmark_no_default_key_mappings = 1
+    nmap <leader>mt <Plug>BookmarkToggle
+    nmap <leader>ma <Plug>BookmarkAnnotate
+    nmap <leader>ml <Plug>BookmarkShowAll
+    nmap <leader>mi <Plug>BookmarkNext
+    nmap <leader>mn <Plug>BookmarkPrev
+    nmap <leader>mC <Plug>BookmarkClear
+    nmap <leader>mX <Plug>BookmarkClearAll
+    nmap <leader>mu <Plug>BookmarkMoveUp
+    nmap <leader>me <Plug>BookmarkMoveDown
+    nmap <Leader>mg <Plug>BookmarkMoveToLine
+    let g:bookmark_auto_save = 1
+    let g:bookmark_highlight_lines = 1
+    let g:bookmark_center = 1
+    let g:bookmark_auto_close = 1
+    "let g:bookmark_location_list = 1
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    " Start the preview :MarkdownPreview
+    " Stop the preview" :MarkdownPreviewStop
 
-" Start the preview :MarkdownPreview
-" Stop the preview" :MarkdownPreviewStop
-
-"Plug 'vim-scripts/vim-auto-save'
-"let g:auto_save = 1
-
-Plug 'jalvesaq/zotcite'
-"type @ then part of name of author then c+x c+o
-
-Plug 'majutsushi/tagbar'
-nnoremap <leader>tb :TagbarToggle<CR>
+if has('mac')
+    Plug 'jalvesaq/zotcite'
+    "type @ then part of name of author then c+x c+o
+elseif has('unix')
+endif
 
 Plug 'KabbAmine/vZoom.vim', {'on': ['<Plug>(vzoom)', 'VZoomAutoToggle']}
-nmap gsz <Plug>(vzoom)
 
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
@@ -626,37 +584,6 @@ let g:which_key_map.l = {
       \ 'v' : [':Vista!!'                            , 'tag viewer'],
       \ 'z' : [':CocDisable'                         , 'disable CoC'],
       \ 'Z' : [':CocEnable'                          , 'enable CoC'],
-      \ }
-
-
-" g is for git
-let g:which_key_map.g = {
-      \ 'name' : '+git' ,
-      \ 'a' : [':Git add .'                        , 'add all'],
-      \ 'A' : [':Git add %'                        , 'add current'],
-      \ 'b' : [':Git blame'                        , 'blame'],
-      \ 'B' : [':GBrowse'                          , 'browse'],
-      \ 'c' : [':Git commit'                       , 'commit'],
-      \ 'd' : [':Git diff'                         , 'diff'],
-      \ 'D' : [':Gdiffsplit'                       , 'diff split'],
-      \ 'g' : [':GGrep'                            , 'git grep'],
-      \ 'G' : [':Gstatus'                          , 'status'],
-      \ 'h' : [':GitGutterLineHighlightsToggle'    , 'highlight hunks'],
-      \ 'H' : ['<Plug>(GitGutterPreviewHunk)'      , 'preview hunk'],
-      \ 'i' : [':Gist -b'                          , 'post gist'],
-      \ 'j' : ['<Plug>(GitGutterNextHunk)'         , 'next hunk'],
-      \ 'k' : ['<Plug>(GitGutterPrevHunk)'         , 'prev hunk'],
-      \ 'l' : [':Git log'                          , 'log'],
-      \ 'm' : ['<Plug>(git-messenger)'             , 'message'],
-      \ 'p' : [':Git push'                         , 'push'],
-      \ 'P' : [':Git pull'                         , 'pull'],
-      \ 'r' : [':GRemove'                          , 'remove'],
-      \ 's' : ['<Plug>(GitGutterStageHunk)'        , 'stage hunk'],
-      \ 'S' : [':!git status'                      , 'status'],
-      \ 't' : [':GitGutterSignsToggle'             , 'toggle signs'],
-      \ 'u' : ['<Plug>(GitGutterUndoHunk)'         , 'undo hunk'],
-      \ 'v' : [':GV'                               , 'view commits'],
-      \ 'V' : [':GV!'                              , 'view buffer commits'],
       \ }
 
 call plug#end()
