@@ -156,6 +156,7 @@ Plug 'junegunn/goyo.vim', {'for': 'markdown'}
 
 Plug 'godlygeek/tabular'
     "http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+    "选中需要对齐的区块  然后输入:tabu<tab> /: \zs
 
 Plug 'tpope/vim-surround'
     "cs"'
@@ -181,6 +182,9 @@ Plug 'Lokaltog/vim-easymotion'
     nmap m <Plug>(easymotion-overwin-f2)
 
 Plug 'preservim/nerdcommenter'
+    let g:NERDCreateDefaultMappings = 0
+    nmap <Leader>cc <Plug>NERDCommenterToggle
+    vmap <Leader>cc <Plug>NERDCommenterToggle
 
 Plug 'moll/vim-bbye'
 
@@ -242,6 +246,24 @@ Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
     let R_rconsole_width = 57
     let R_min_editor_width = 18
 
+    nmap <silent> <LocalLeader>sl :call RAction("levels")<CR>
+    vmap <silent> <LocalLeader>sl :call RAction("levels", "v")<CR>
+    nmap <silent> <LocalLeader>st :call RAction("tail")<CR>
+    vmap <silent> <LocalLeader>st :call RAction("tail", "v")<CR>
+    nmap <silent> <LocalLeader>sh :call RAction("head")<CR>
+    vmap <silent> <LocalLeader>sh :call RAction("head", "v")<CR>
+    nmap <silent> <LocalLeader>sm :call RAction("summary")<CR>
+    vmap <silent> <LocalLeader>sm :call RAction("summary", "v")<CR>
+    nmap <silent> <LocalLeader>sc :call RAction("class")<CR>
+    vmap <silent> <LocalLeader>sc :call RAction("class", "v")<CR>
+    nmap <silent> <LocalLeader>sp :call RAction("typeof")<CR>
+    vmap <silent> <LocalLeader>sp :call RAction("typeof", "v")<CR>
+    nmap <silent> <LocalLeader>sn :call RAction("names")<CR>
+    vmap <silent> <LocalLeader>sn :call RAction("names", "v")<CR>
+    nmap <silent> <LocalLeader>si :call RAction("unique")<CR>
+    vmap <silent> <LocalLeader>si :call RAction("unique", "v")<CR>
+    nmap <silent> <LocalLeader>sr :RSend library("colorout")<CR>
+    nmap <LocalLeader>sw :RSend 
 
     " some nice keybindding, D = cursor down one line when finished the code
     " localleader+rv = view data, +rg = plot(graphic), +rs = summary, all without sending lines to R buffer, very useful
@@ -392,8 +414,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
         "snippets.userSnippetsDirectory, Directory that contains custom user ultisnips snippets, use ultisnips in extension root by default. 自定义模板目录
 
     " Formatting selected code.
-    xmap <leader>ff  <Plug>(coc-format-selected)
-    nmap <leader>ff  <Plug>(coc-format)
+    xmap <leader>cf  <Plug>(coc-format-selected)
+    nmap <leader>cf  <Plug>(coc-format)
     " Apply AutoFix to problem on the current line.
     nmap <leader>qf  <Plug>(coc-fix-current)
 
@@ -464,127 +486,128 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
     " Start the preview :MarkdownPreview
     " Stop the preview" :MarkdownPreviewStop
 
-if has('mac')
-    Plug 'jalvesaq/zotcite'
-    "type @ then part of name of author then c+x c+o
-elseif has('unix')
-endif
+    if has('mac')
+        Plug 'jalvesaq/zotcite'
+        "type @ then part of name of author then c+x c+o
+    elseif has('unix')
+    endif
 
 Plug 'KabbAmine/vZoom.vim', {'on': ['<Plug>(vzoom)', 'VZoomAutoToggle']}
 
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
-nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  ","<CR>
-" Map leader to which_key
+    autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
+    "autocmd! User vim-which-key call which_key#register(',', 'g:which_key_localmap')
+    nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
+    vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
+    nnoremap <silent> <localleader> :silent <c-u> :silent WhichKey  ","<CR>
+    vnoremap <silent> <localleader> :silent <c-u> :silent WhichKeyVisual ','<CR>
+    " Map leader to which_key
 
-" Create map to add keys to
-let g:which_key_map = {}
-" Define a separator
-let g:which_key_sep = '→'
+    " Create map to add keys to
+    let g:which_key_map = {}
+    "let g:which_key_localmap = {}
 
-" set timeoutlen=100
-" Coc Search & refactor
-nnoremap <leader>? :CocSearch <C-R>=expand("<cword>")<CR><CR>
-let g:which_key_map['?'] = 'search word'
-" Not a fan of floating windows for this
+    " Define a separator
+    let g:which_key_sep = '→'
 
-let g:which_key_use_floating_win = 0
+    " set timeoutlen=100
 
-" Change the colors if you want
-highlight default link WhichKey          Operator
-highlight default link WhichKeySeperator DiffAdded
-highlight default link WhichKeyGroup     Identifier
-highlight default link WhichKeyDesc      Function
+    " Not a fan of floating windows for this
+    let g:which_key_use_floating_win = 0
 
-" Hide status line
-autocmd! FileType which_key
-autocmd  FileType which_key set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+    " Change the colors if you want
+    highlight default link WhichKey          Operator
+    highlight default link WhichKeySeperator DiffAdded
+    highlight default link WhichKeyGroup     Identifier
+    highlight default link WhichKeyDesc      Function
 
-" Single mappings
-let g:which_key_map[','] = [ ':vsp $MYVIMRC'                 , 'edit init' ]
-nnoremap <silent> <leader>. :source $MYVIMRC<CR>:noh<CR>
-let g:which_key_map['.'] = 'source init'
-let g:which_key_map['='] = [ '<C-W>='                        , 'balance windows' ]
-let g:which_key_map['e'] = [ ':CocCommand explorer'           , 'explorer' ]
-noremap <silent> <leader>/ :nohls<CR>
-let g:which_key_map['/'] = 'remove highlight'
-let g:which_key_map['k'] = [ ':m .-2<CR>=='                  , 'line up']
-let g:which_key_map['j'] = [ ':m .+1<CR>=='                  , 'line down']
-noremap <leader>o o<CR><ESC>ki
-let g:which_key_map.o = 'insert line'
-"let g:which_key_map['s'] = [ '<Plug>(easymotion-overwin-f2)' , 'easy motion' ]
-"let g:which_key_map['g'] = [ 'q'                            , 'quit' ]
-let g:which_key_map['u'] = [ ':UndotreeToggle<CR>'               , 'undo tree']
-let g:which_key_map['z'] = [ '<Plug>(vzoom)'           , 'zoom' ]
-let g:which_key_map['p'] = [ '<Plug>MarkdownPreview'         , 'md preview' ]
+    " Hide status line
+    autocmd! FileType which_key
+    autocmd  FileType which_key set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
-noremap <silent> <leader>q :Bdelete<CR>
-let g:which_key_map.q = 'which_key_ignore'
-noremap <silent> <leader>Q :q!<CR>
-noremap <silent> Q :q!<CR>
-let g:which_key_map.Q = 'which_key_ignore'
-noremap <silent> <leader>qq :q<CR>
-let g:which_key_map.qq = 'which_key_ignore'
-noremap <silent> <leader>w :w<CR>
-let g:which_key_map.w = 'which_key_ignore'
-noremap <silent> <leader>wq :wq<CR>
-let g:which_key_map.wp = 'which_key_ignore'
+    " Single mappings
+    let g:which_key_map[','] = [ ':vsp $MYVIMRC'                 , 'edit init' ]
+    nnoremap <silent> <leader>. :source $MYVIMRC<CR>:noh<CR>
+    let g:which_key_map['.'] = 'source init'
+    let g:which_key_map['='] = [ '<C-W>='                        , 'balance windows' ]
+    let g:which_key_map['e'] = [ ':CocCommand explorer'           , 'explorer' ]
+    noremap <silent> <leader>/ :nohls<CR>
+    let g:which_key_map['/'] = 'remove highlight'
+    let g:which_key_map['k'] = [ ':m .-2<CR>=='                  , 'line up']
+    let g:which_key_map['j'] = [ ':m .+1<CR>=='                  , 'line down']
+    noremap <leader>o o<CR><ESC>ki
+    let g:which_key_map.o = 'insert line'
+    let g:which_key_map['u'] = [ ':UndotreeToggle<CR>'               , 'undo tree']
+    nnoremap <silent> <leader>z :VZoomAutoToggle<CR>
+    "let g:which_key_map['p'] = [ '<Plug>MarkdownPreview'         , 'md preview' ]
+    let g:which_key_map['z'] = [ ':VZoomAutoToggle<CR>'           , 'zoom' ]
+
+    noremap <silent> <leader>q :Bdelete<CR>
+    let g:which_key_map.q = 'which_key_ignore'
+    noremap <silent> <leader>Q :q!<CR>
+    noremap <silent> Q :q!<CR>
+    let g:which_key_map.Q = 'which_key_ignore'
+    noremap <silent> <leader>qq :q<CR>
+    let g:which_key_map.qq = 'which_key_ignore'
+    noremap <silent> <leader>w :w<CR>
+    let g:which_key_map.w = 'which_key_ignore'
+    noremap <silent> <leader>wq :wq<CR>
+    let g:which_key_map.wp = 'which_key_ignore'
 
 
-let g:which_key_map.b = {
-      \ 'name' : '+buffer' ,
-      \ '1' : ['b1'        , 'buffer 1']        ,
-      \ '2' : ['b2'        , 'buffer 2']        ,
-      \ 'd' : ['bd'        , 'delete-buffer']   ,
-      \ 'f' : ['bfirst'    , 'first-buffer']    ,
-      \ 'h' : ['Startify'  , 'home-buffer']     ,
-      \ 'l' : ['blast'     , 'last-buffer']     ,
-      \ 'n' : ['bnext'     , 'next-buffer']     ,
-      \ 'p' : ['bprevious' , 'previous-buffer'] ,
-      \ '?' : ['buffers'   , 'fzf-buffer']      ,
-      \ }
+    let g:which_key_map.b = {
+        \ 'name' : '+buffer' ,
+        \ '1' : ['b1'        , 'buffer 1']        ,
+        \ '2' : ['b2'        , 'buffer 2']        ,
+        \ 'd' : ['bd'        , 'delete-buffer']   ,
+        \ 'f' : ['bfirst'    , 'first-buffer']    ,
+        \ 'h' : ['startify'  , 'home-buffer']     ,
+        \ 'l' : ['blast'     , 'last-buffer']     ,
+        \ 'n' : ['bnext'     , 'next-buffer']     ,
+        \ 'p' : ['bprevious' , 'previous-buffer'] ,
+        \ '?' : ['buffers'   , 'fzf-buffer']      ,
+        \ }
 
-" l is for language server protocol
-let g:which_key_map.l = {
-      \ 'name' : '+lsp' ,
-      \ '.' : [':CocConfig'                          , 'config'],
-      \ ';' : ['<Plug>(coc-refactor)'                , 'refactor'],
-      \ 'a' : ['<Plug>(coc-codeaction)'              , 'line action'],
-      \ 'A' : ['<Plug>(coc-codeaction-selected)'     , 'selected action'],
-      \ 'b' : [':CocNext'                            , 'next action'],
-      \ 'B' : [':CocPrev'                            , 'prev action'],
-      \ 'c' : [':CocList commands'                   , 'commands'],
-      \ 'd' : ['<Plug>(coc-definition)'              , 'definition'],
-      \ 'D' : ['<Plug>(coc-declaration)'             , 'declaration'],
-      \ 'e' : [':CocList extensions'                 , 'extensions'],
-      \ 'f' : ['<Plug>(coc-format-selected)'         , 'format selected'],
-      \ 'F' : ['<Plug>(coc-format)'                  , 'format'],
-      \ 'h' : ['<Plug>(coc-float-hide)'              , 'hide'],
-      \ 'i' : ['<Plug>(coc-implementation)'          , 'implementation'],
-      \ 'I' : [':CocList diagnostics'                , 'diagnostics'],
-      \ 'j' : ['<Plug>(coc-float-jump)'              , 'float jump'],
-      \ 'l' : ['<Plug>(coc-codelens-action)'         , 'code lens'],
-      \ 'n' : ['<Plug>(coc-diagnostic-next)'         , 'next diagnostic'],
-      \ 'N' : ['<Plug>(coc-diagnostic-next-error)'   , 'next error'],
-      \ 'o' : ['<Plug>(coc-openlink)'                , 'open link'],
-      \ 'O' : [':CocList outline'                    , 'outline'],
-      \ 'p' : ['<Plug>(coc-diagnostic-prev)'         , 'prev diagnostic'],
-      \ 'P' : ['<Plug>(coc-diagnostic-prev-error)'   , 'prev error'],
-      \ 'q' : ['<Plug>(coc-fix-current)'             , 'quickfix'],
-      \ 'r' : ['<Plug>(coc-rename)'                  , 'rename'],
-      \ 'R' : ['<Plug>(coc-references)'              , 'references'],
-      \ 's' : [':CocList -I symbols'                 , 'references'],
-      \ 'S' : [':CocList snippets'                   , 'snippets'],
-      \ 't' : ['<Plug>(coc-type-definition)'         , 'type definition'],
-      \ 'u' : [':CocListResume'                      , 'resume list'],
-      \ 'U' : [':CocUpdate'                          , 'update CoC'],
-      \ 'v' : [':Vista!!'                            , 'tag viewer'],
-      \ 'z' : [':CocDisable'                         , 'disable CoC'],
-      \ 'Z' : [':CocEnable'                          , 'enable CoC'],
-      \ }
+
+    " l is for language server protocol
+    let g:which_key_map.l = {
+        \ 'name' : '+lsp' ,
+        \ '.' : [':CocConfig'                          , 'config'],
+        \ ';' : ['<Plug>(coc-refactor)'                , 'refactor'],
+        \ 'a' : ['<Plug>(coc-codeaction)'              , 'line action'],
+        \ 'A' : ['<Plug>(coc-codeaction-selected)'     , 'selected action'],
+        \ 'b' : [':CocNext'                            , 'next action'],
+        \ 'B' : [':CocPrev'                            , 'prev action'],
+        \ 'c' : [':CocList commands'                   , 'commands'],
+        \ 'd' : ['<Plug>(coc-definition)'              , 'definition'],
+        \ 'D' : ['<Plug>(coc-declaration)'             , 'declaration'],
+        \ 'e' : [':CocList extensions'                 , 'extensions'],
+        \ 'f' : ['<Plug>(coc-format-selected)'         , 'format selected'],
+        \ 'F' : ['<Plug>(coc-format)'                  , 'format'],
+        \ 'h' : ['<Plug>(coc-float-hide)'              , 'hide'],
+        \ 'i' : ['<Plug>(coc-implementation)'          , 'implementation'],
+        \ 'I' : [':CocList diagnostics'                , 'diagnostics'],
+        \ 'j' : ['<Plug>(coc-float-jump)'              , 'float jump'],
+        \ 'l' : ['<Plug>(coc-codelens-action)'         , 'code lens'],
+        \ 'n' : ['<Plug>(coc-diagnostic-next)'         , 'next diagnostic'],
+        \ 'N' : ['<Plug>(coc-diagnostic-next-error)'   , 'next error'],
+        \ 'o' : ['<Plug>(coc-openlink)'                , 'open link'],
+        \ 'O' : [':CocList outline'                    , 'outline'],
+        \ 'p' : ['<Plug>(coc-diagnostic-prev)'         , 'prev diagnostic'],
+        \ 'P' : ['<Plug>(coc-diagnostic-prev-error)'   , 'prev error'],
+        \ 'q' : ['<Plug>(coc-fix-current)'             , 'quickfix'],
+        \ 'r' : ['<Plug>(coc-rename)'                  , 'rename'],
+        \ 'R' : ['<Plug>(coc-references)'              , 'references'],
+        \ 's' : [':CocList -I symbols'                 , 'references'],
+        \ 'S' : [':CocList snippets'                   , 'snippets'],
+        \ 't' : ['<Plug>(coc-type-definition)'         , 'type definition'],
+        \ 'u' : [':CocListResume'                      , 'resume list'],
+        \ 'U' : [':CocUpdate'                          , 'update CoC'],
+        \ 'v' : [':Vista!!'                            , 'tag viewer'],
+        \ 'z' : [':CocDisable'                         , 'disable CoC'],
+        \ 'Z' : [':CocEnable'                          , 'enable CoC'],
+        \ }
 
 call plug#end()
 
@@ -687,8 +710,8 @@ noremap <leader>sv <C-w>t<C-w>H
 "noremap fr :%s//g<left><left>
 
 "参数换行
-nnoremap <silent> <leader>aa V:s/, /,\r/g<CR>:noh<CR>
-vnoremap <silent> <leader>aa :s/, /,\r/g<CR>gv=
+nnoremap <silent> <leader>fa V:s/, /,\r/g<CR>:noh<CR>
+vnoremap <silent> <leader>fa :s/, /,\r/g<CR>gv=
 
 "nnoremap <leader>v :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
 
