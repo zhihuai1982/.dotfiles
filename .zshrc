@@ -113,7 +113,7 @@ alias lg="lazygit"
 alias gitl="git log --graph --decorate --oneline --simplify-by-decoration --all"
 alias pms="pm2 start npm -- start"
 alias c="clear"
-alias ra="ranger"
+alias ra='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias gu="gitup"
 alias panref='pandoc -F $HOME/.config/nvim/plugged/zotcite/python3/zotref -F pandoc-citeproc --reference-doc=reference.docx'
 alias proxy='export all_proxy=socks5://127.0.0.1:1086'
