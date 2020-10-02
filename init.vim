@@ -207,10 +207,12 @@ Plug 'Yggdroot/LeaderF'
     let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
     let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
     let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
+    let g:Lf_ShowHidden = 0
 
     let g:Lf_ShortcutF = "<leader>ff"
     let g:Lf_ShortcutB = "<leader>bb"
     noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+    noremap <leader>fv :<C-U><C-R>=printf("Leaderf file %s /home/data/vip24/.dotfiles/", "")<CR><CR>
     noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
     noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
     noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
@@ -252,6 +254,8 @@ Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
     vmap <silent> <LocalLeader>st :call RAction("tail", "v")<CR>
     nmap <silent> <LocalLeader>sh :call RAction("head")<CR>
     vmap <silent> <LocalLeader>sh :call RAction("head", "v")<CR>
+    nmap <silent> <LocalLeader>sk :call RAction("topleft")<CR>
+    vmap <silent> <LocalLeader>sk :call RAction("topleft", "v")<CR>
     nmap <silent> <LocalLeader>sm :call RAction("summary")<CR>
     vmap <silent> <LocalLeader>sm :call RAction("summary", "v")<CR>
     nmap <silent> <LocalLeader>sc :call RAction("class")<CR>
@@ -264,6 +268,7 @@ Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
     vmap <silent> <LocalLeader>si :call RAction("unique", "v")<CR>
     nmap <silent> <LocalLeader>sr :RSend library("colorout")<CR>
     nmap <LocalLeader>sw :RSend 
+    "nmap <LocalLeader>sk :<C-U><C-R>=printf("RSend %s[1:5, 1:5]", expand("<cword>"))<CR><CR>
 
     " some nice keybindding, D = cursor down one line when finished the code
     " localleader+rv = view data, +rg = plot(graphic), +rs = summary, all without sending lines to R buffer, very useful
@@ -556,6 +561,7 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
     let g:which_key_map.wp = 'which_key_ignore'
 
 
+    noremap <silent> <leader>br :vsp<CR>:bprevious<CR>
     let g:which_key_map.b = {
         \ 'name' : '+buffer' ,
         \ '1' : ['b1'        , 'buffer 1']        ,
