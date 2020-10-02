@@ -254,7 +254,7 @@ Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
     vmap <silent> <LocalLeader>st :call RAction("tail", "v")<CR>
     nmap <silent> <LocalLeader>sh :call RAction("head")<CR>
     vmap <silent> <LocalLeader>sh :call RAction("head", "v")<CR>
-    nmap <silent> <LocalLeader>sk :call RAction("head")<CR>
+    nmap <silent> <LocalLeader>sk :call RAction("topleft")<CR>
     vmap <silent> <LocalLeader>sk :call RAction("topleft", "v")<CR>
     nmap <silent> <LocalLeader>sm :call RAction("summary")<CR>
     vmap <silent> <LocalLeader>sm :call RAction("summary", "v")<CR>
