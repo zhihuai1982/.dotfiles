@@ -1,5 +1,5 @@
 library("colorout")
-
+library("useful")
 
 options("repos" = c(CRAN="http://mirrors.cloud.tencent.com/CRAN/"))
 
