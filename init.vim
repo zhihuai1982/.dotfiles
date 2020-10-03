@@ -419,8 +419,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
         "snippets.userSnippetsDirectory, Directory that contains custom user ultisnips snippets, use ultisnips in extension root by default. 自定义模板目录
 
     " Formatting selected code.
-    xmap <leader>cf  <Plug>(coc-format-selected)
-    nmap <leader>cf  <Plug>(coc-format)
+    xmap <leader>af  <Plug>(coc-format-selected)
+    nmap <leader>af  <Plug>(coc-format)
     " Apply AutoFix to problem on the current line.
     nmap <leader>qf  <Plug>(coc-fix-current)
 
@@ -715,9 +715,9 @@ noremap <leader>sv <C-w>t<C-w>H
 " find and replace
 "noremap fr :%s//g<left><left>
 
+nnoremap <silent> <leader>ar V:s/, /,\r/g<CR>:noh<CR>
 "参数换行
-nnoremap <silent> <leader>fa V:s/, /,\r/g<CR>:noh<CR>
-vnoremap <silent> <leader>fa :s/, /,\r/g<CR>gv=
+vnoremap <silent> <leader>ar :s/, /,\r/g<CR>gv=
 
 "nnoremap <leader>v :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
 
