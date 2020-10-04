@@ -208,8 +208,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 
 # for ZSH
-case "$OSTYPE" in
-  darwin*)
+case "$(uname -n)" in
+  zhihuai1982*)
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$('/Users/zhihuai1982/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -225,7 +225,7 @@ case "$OSTYPE" in
     unset __conda_setup
     # <<< conda initialize <<<
   ;;
-  linux*)
+  tpm2*)
     NPM_PACKAGES="${HOME}/.npm-packages"
 
     export PATH="$PATH:$NPM_PACKAGES/bin:$HOME/.local/bin"
