@@ -1,4 +1,6 @@
 {
+  "link to .config/powerline-shell/": "",
+
   "segments": [
     "virtual_env",
     "aws_profile",

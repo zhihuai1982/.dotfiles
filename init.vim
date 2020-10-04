@@ -7,10 +7,8 @@ set magic                       " For regular expressions turn magic on
 set title                       " change the terminal's title
 
 set wrap "我们可以告诉Vim在合适的地方折行：
-set linebreak
-"所谓合适的地方，是由breakat选项中的字符来确定的。在默认的情况下，这些字符是“^I!@*-+_;:,./?”。如果我们不希望在下划线处打断句子，只要用下面的命令将“_”从这个列表移除就可以了： 
-set breakat-=_
-"如果一行被打断，Vim可能不会在句子连接处显示任何内容。我们可以通过设置showbreak选项，来显示所希望的指示信息：
+set linebreak "所谓合适的地方，是由breakat选项中的字符来确定的。在默认的情况下，这些字符是“^I!@*-+_;:,./?”。如果我们不希望在下划线处打断句子，只要用下面的命令将“_”从这个列表移除就可以了： 
+set breakat-=_ "如果一行被打断，Vim可能不会在句子连接处显示任何内容。我们可以通过设置showbreak选项，来显示所希望的指示信息：
 set showbreak=>
 
 set noerrorbells                " don't beep
@@ -279,11 +277,15 @@ Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
 
     " R commands in R output are highlighted
     " let g:Rout_more_colors = 1
-   if has('mac')
-        let g:python3_host_prog = '/usr/local/bin/python3'
-    elseif has('unix')
-        let g:python3_host_prog = '/home/data/vip24/miniconda3/bin/python'
-    endif
+
+    let uname = system('uname -n')
+    if (uname == 'zhihuai1982deiMac.local')
+            let g:python3_host_prog = '/usr/local/bin/python3'
+        elseif (uname == 'tpm2-WD12.example.com')
+            let g:python3_host_prog = '/home/data/vip24/miniconda3/bin/python3'
+        elseif (uname == 'ubuntu-home')
+            let g:python3_host_prog = '/home/zhihuai1982/miniconda3/bin/python3'
+        endif
 
 Plug 'honza/vim-snippets'  " snippets repository
 
