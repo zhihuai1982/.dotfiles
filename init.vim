@@ -491,6 +491,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
     " Start the preview :MarkdownPreview
     " Stop the preview" :MarkdownPreviewStop
 
+
+Plug 'jalvesaq/zotcite'
     if has('mac')
         Plug 'jalvesaq/zotcite'
         "type @ then part of name of author then c+x c+o
