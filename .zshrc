@@ -249,5 +249,29 @@ case "$(uname -n)" in
     unset __conda_setup
     # <<< conda initialize <<<
   ;;
+  ubuntu*)
+    NPM_PACKAGES="${HOME}/.npm-packages"
+
+    export PATH="$PATH:$NPM_PACKAGES/bin:$HOME/.local/bin"
+
+    # Preserve MANPATH if you already defined it somewhere in your config.
+    # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
+    export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/home/zhihuai1982/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/home/zhihuai1982/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/home/zhihuai1982/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/home/zhihuai1982/miniconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
+   ;;
 esac
 
