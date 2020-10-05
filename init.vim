@@ -226,7 +226,7 @@ Plug 'Yggdroot/LeaderF'
     " ubuntu下需要把 g:Lf_Gtagsconf='/usr/local/share/gtags/gtags.conf'，或者把这个文件拷贝到自己目录下，重命名为.globalrc，否则不能生成tags。
     let g:Lf_GtagsAutoGenerate = 1
     let g:Lf_Gtagslabel = 'native-pygments'
-    "let g:Lf_Gtagsconf='/usr/local/share/gtags/gtags.conf'
+    let g:Lf_Gtagsconf='/usr/local/share/gtags/gtags.conf'
     noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
     noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
     noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>

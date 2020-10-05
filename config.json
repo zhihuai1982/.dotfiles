@@ -5,6 +5,7 @@
     "virtual_env",
     "aws_profile",
     "ssh",
+    "hostname",
     "cwd",
     "git",
     "git_stash",
