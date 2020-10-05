@@ -287,9 +287,9 @@ Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
             let g:python3_host_prog = '/usr/local/bin/python3'
         elseif uname == 'Macbook.local\n'
             let g:python3_host_prog = '/usr/local/bin/python3'
-        elseif uname == 'tpm2-WD12.example.com'
+        elseif uname == 'tpm2-WD12.example.com\n'
             let g:python3_host_prog = '/home/data/vip24/miniconda3/bin/python3'
-        elseif uname == 'ubuntu-home'
+        elseif uname == 'ubuntu-home\n'
             let g:python3_host_prog = '/home/zhihuai1982/miniconda3/bin/python3'
         endif
 
@@ -321,54 +321,46 @@ Plug 'voldikss/vim-floaterm'
 Plug 'preservim/tagbar'
     nnoremap <leader>tb :TagbarToggle<CR>
 
-    set tags=./.tags;,.tags
+    "for more language support
+    "https://github.com/preservim/tagbar/wiki
 
-let g:tagbar_type_markdown = {
-    \ 'ctagstype': 'markdown',
-    \ 'ctagsbin' : '~/.dotfiles/markdown2ctags.py',
-    \ 'ctagsargs' : '-f - --sort=yes',
-    \ 'kinds' : [
-        \ 's:sections',
-        \ 'i:images'
-    \ ],
-    \ 'sro' : '|',
-    \ 'kind2scope' : {
-        \ 's' : 'section',
-    \ },
-    \ 'sort': 0,
-\ }
-
-Plug 'ludovicchabant/vim-gutentags'
-    " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-    let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-
-    " 所生成的数据文件的名称
-    let g:gutentags_ctags_tagfile = '.tags'
-
-    " 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-    let s:vim_tags = expand('~/.cache/tags')
-    let g:gutentags_cache_dir = s:vim_tags
-
-    let g:gutentags_ctags_executable_markdown = '/usr/bin/ctags'
-    " 配置 ctags 的参数
-    let g:gutentags_ctags_extra_args = ['--c++-kinds=+px']
-    let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-
-    if uname == 'Machome.local\n' || uname == 'Macbook.local\n'
-            let g:gutentags_ctags_extra_args = ['--fields=+niazS']
-        elseif uname == 'tpm2-WD12.example.com'
-            let g:gutentags_ctags_extra_args = ['--fields=+niazS']
-        elseif uname == 'ubuntu-home'
-            " 如果使用 universal ctags 需要增加下面一行，老的 Exuberant-ctags 不能加下一行
-            "  配置 ctags 的参数，老的 Exuberant-ctags 不能有 --extra=+q，注意
-            let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-            let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-        endif
-
-    " 检测 ~/.cache/tags 不存在就新建
-    if !isdirectory(s:vim_tags)
-    silent! call mkdir(s:vim_tags, 'p')
+    if uname == 'tpm2-WD12.example.com\n'
+        g:tagbar_ctags_bin='/home/data/vip24/.local/bin/ctags'
     endif
+
+    let g:tagbar_type_r = {
+        \ 'ctagstype' : 'r',
+        \ 'kinds'     : [
+            \ 'f:Functions',
+            \ 'g:GlobalVariables',
+            \ 'v:FunctionVariables',
+        \ ]
+    \ }
+
+    let g:tagbar_type_rmd = {
+            \   'ctagstype':'rmd'
+            \ , 'kinds':['h:header', 'c:chunk', 'f:function', 'v:variable']
+            \ , 'sro':'&&&'
+            \ , 'kind2scope':{'h':'header', 'c':'chunk'}
+            \ , 'sort':0
+            \ , 'ctagsbin':'~/.dotfiles/rmdtags.py'
+            \ , 'ctagsargs': ''
+            \ }
+
+    let g:tagbar_type_markdown = {
+        \ 'ctagstype': 'markdown',
+        \ 'ctagsbin' : '~/.dotfiles/markdown2ctags.py',
+        \ 'ctagsargs' : '-f - --sort=yes',
+        \ 'kinds' : [
+            \ 's:sections',
+            \ 'i:images'
+        \ ],
+        \ 'sro' : '|',
+        \ 'kind2scope' : {
+            \ 's' : 'section',
+        \ },
+        \ 'sort': 0,
+    \ }
 
 "Plug 'ferrine/md-img-paste.vim'
     "autocmd FileType html,markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>

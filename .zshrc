@@ -230,7 +230,9 @@ case "$(uname -n)" in
   tpm2*)
     NPM_PACKAGES="${HOME}/.npm-packages"
 
-    export PATH="$PATH:$NPM_PACKAGES/bin:$HOME/.local/bin"
+    export PATH="$PATH:$NPM_PACKAGES/bin:$HOME/.local/bin:$HOME/Biosoft/Zotero_linux-x86_64"
+
+    alias ctags='/home/data/vip24/.local/bin/ctags'
 
     # Preserve MANPATH if you already defined it somewhere in your config.
     # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
