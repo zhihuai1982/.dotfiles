@@ -122,6 +122,8 @@ alias unproxy='unset all_proxy'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias shome='ssh -Y -p 60 zhihuai1982@521de8ab3f78d64a.sn.mynetname.net'
+alias svip='ssh -Y vip24@116.235.178.94 -p 6891'
 
 # powerline install
 function powerline_precmd() {
