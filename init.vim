@@ -278,12 +278,18 @@ Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
     " R commands in R output are highlighted
     " let g:Rout_more_colors = 1
 
+"if has('mac')
+        "let g:python3_host_prog = '/usr/local/bin/python3'
+    "endif
+
     let uname = system('uname -n')
-    if (uname == 'zhihuai1982deiMac.local')
+    if uname == "Machome.local\n"
             let g:python3_host_prog = '/usr/local/bin/python3'
-        elseif (uname == 'tpm2-WD12.example.com')
+        elseif uname == 'Macbook.local\n'
+            let g:python3_host_prog = '/usr/local/bin/python3'
+        elseif uname == 'tpm2-WD12.example.com'
             let g:python3_host_prog = '/home/data/vip24/miniconda3/bin/python3'
-        elseif (uname == 'ubuntu-home')
+        elseif uname == 'ubuntu-home'
             let g:python3_host_prog = '/home/zhihuai1982/miniconda3/bin/python3'
         endif
 
@@ -348,11 +354,11 @@ Plug 'ludovicchabant/vim-gutentags'
     let g:gutentags_ctags_extra_args = ['--c++-kinds=+px']
     let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
-    if (uname == 'zhihuai1982deiMac.local')
+    if uname == 'Machome.local\n' || uname == 'Macbook.local\n'
             let g:gutentags_ctags_extra_args = ['--fields=+niazS']
-        elseif (uname == 'tpm2-WD12.example.com')
+        elseif uname == 'tpm2-WD12.example.com'
             let g:gutentags_ctags_extra_args = ['--fields=+niazS']
-        elseif (uname == 'ubuntu-home')
+        elseif uname == 'ubuntu-home'
             " 如果使用 universal ctags 需要增加下面一行，老的 Exuberant-ctags 不能加下一行
             "  配置 ctags 的参数，老的 Exuberant-ctags 不能有 --extra=+q，注意
             let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']

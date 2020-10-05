@@ -211,7 +211,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # for ZSH
 case "$(uname -n)" in
-  zhihuai1982*)
+  Mac*)
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$('/Users/zhihuai1982/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
