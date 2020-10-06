@@ -282,14 +282,14 @@ Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
         "let g:python3_host_prog = '/usr/local/bin/python3'
     "endif
 
-    let uname = system('uname -n')
-    if uname == "Machome.local\n"
+    let uname = substitute(system('uname -n'), '\n', '', '')
+    if uname == "Machome.local"
             let g:python3_host_prog = '/usr/local/bin/python3'
-        elseif uname == 'Macbook.local\n'
+        elseif uname == 'Macbook.local'
             let g:python3_host_prog = '/usr/local/bin/python3'
-        elseif uname == 'tpm2-WD12.example.com\n'
+        elseif uname == 'tpm2-WD12.example.com'
             let g:python3_host_prog = '/home/data/vip24/miniconda3/bin/python3'
-        elseif uname == 'ubuntu-home\n'
+        elseif uname == 'ubuntu-home'
             let g:python3_host_prog = '/home/zhihuai1982/miniconda3/bin/python3'
         endif
 
@@ -324,8 +324,8 @@ Plug 'preservim/tagbar'
     "for more language support
     "https://github.com/preservim/tagbar/wiki
 
-    if uname == 'tpm2-WD12.example.com\n'
-        g:tagbar_ctags_bin='/home/data/vip24/.local/bin/ctags'
+    if uname == 'tpm2-WD12.example.com'
+        let  g:tagbar_ctags_bin='/home/data/vip24/.local/bin/ctags'
     endif
 
     let g:tagbar_type_r = {

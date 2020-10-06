@@ -124,6 +124,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias shome='ssh -Y -p 60 zhihuai1982@521de8ab3f78d64a.sn.mynetname.net'
 alias svip='ssh -Y vip24@116.235.178.94 -p 6891'
+alias path='echo $PATH | tr ":" "\n"'
 
 # powerline install
 function powerline_precmd() {
@@ -231,8 +232,6 @@ case "$(uname -n)" in
     NPM_PACKAGES="${HOME}/.npm-packages"
 
     export PATH="$PATH:$NPM_PACKAGES/bin:$HOME/.local/bin:$HOME/Biosoft/Zotero_linux-x86_64"
-
-    alias ctags='/home/data/vip24/.local/bin/ctags'
 
     # Preserve MANPATH if you already defined it somewhere in your config.
     # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
