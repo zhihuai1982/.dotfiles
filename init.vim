@@ -747,7 +747,7 @@ nnoremap L <c-w>l
 nnoremap K <c-w>k
 nnoremap M <c-w>j
 
-autocmd FileType markdown hi link markdownError NONE
+autocmd FileType markdown,rmd hi link markdownError NONE
 
 noremap <leader>tl :tabe<CR>:-tabmove<CR>:term lazygit<CR>
 noremap <leader>tr :tabe<CR>:-tabmove<CR>:term ranger<CR>
@@ -777,6 +777,35 @@ vnoremap <silent> <leader>ar :s/, /,\r/g<CR>gv=
 
 " Press ` to change case (instead of ~)
 noremap ` ~
+
+noremap <silent><tab>m :tabnew<cr>
+noremap <silent><tab>e :tabclose<cr>
+noremap <silent><tab>n :tabn<cr>
+noremap <silent><tab>p :tabp<cr>
+"noremap <silent><leader>t :tabnew<cr>
+"noremap <silent><leader>g :tabclose<cr>
+noremap <silent><leader>1 :tabn 1<cr>
+noremap <silent><leader>2 :tabn 2<cr>
+noremap <silent><leader>3 :tabn 3<cr>
+noremap <silent><leader>4 :tabn 4<cr>
+noremap <silent><leader>5 :tabn 5<cr>
+noremap <silent><leader>6 :tabn 6<cr>
+noremap <silent><leader>7 :tabn 7<cr>
+noremap <silent><leader>8 :tabn 8<cr>
+noremap <silent><leader>9 :tabn 9<cr>
+noremap <silent><leader>0 :tabn 10<cr>
+let g:which_key_map.1 = 'which_key_ignore'
+let g:which_key_map.2 = 'which_key_ignore'
+let g:which_key_map.3 = 'which_key_ignore'
+let g:which_key_map.4 = 'which_key_ignore'
+let g:which_key_map.5 = 'which_key_ignore'
+let g:which_key_map.6 = 'which_key_ignore'
+let g:which_key_map.7 = 'which_key_ignore'
+let g:which_key_map.8 = 'which_key_ignore'
+let g:which_key_map.9 = 'which_key_ignore'
+let g:which_key_map.0 = 'which_key_ignore'
+noremap <silent><s-tab> :tabnext<CR>
+inoremap <silent><s-tab> <ESC>:tabnext<CR>
 
 " background transpant
 hi Normal guibg=NONE ctermbg=NONE
