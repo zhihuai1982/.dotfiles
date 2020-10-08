@@ -311,8 +311,8 @@ Plug 'voldikss/vim-floaterm'
     tnoremap   <silent>   <leader>tp    <C-\><C-n>:FloatermPrev<CR>
     nnoremap   <silent>   <leader>tn    :FloatermNext<CR>
     tnoremap   <silent>   <leader>tn    <C-\><C-n>:FloatermNext<CR>
-    nnoremap   <silent>   <leader>tt   :FloatermToggle<CR>
-    tnoremap   <silent>   <leader>tt   <C-\><C-n>:FloatermToggle<CR>
+    nnoremap   <silent>   <leader>tg   :FloatermToggle<CR>
+    tnoremap   <silent>   <leader>tg   <C-\><C-n>:FloatermToggle<CR>
     nnoremap   <silent>   <leader>tk    :FloatermKill<CR>
     tnoremap   <silent>   <leader>tk    <C-\><C-n>:FloatermKill<CR>
     nnoremap   <silent>   <leader>ta    :FloatermNew ranger<CR>
@@ -477,8 +477,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     nmap <leader>qf  <Plug>(coc-fix-current)
 
 
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
+Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle'}
     "<leader>tm to start 
+    "h table-mode
 
 Plug 'itchyny/lightline.vim'
     let g:lightline = {
