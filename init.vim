@@ -6,6 +6,8 @@ set shortmess=ati
 set magic                       " For regular expressions turn magic on
 set title                       " change the terminal's title
 
+set nrformats = " 所有数字都认为是十进制
+
 set wrap "我们可以告诉Vim在合适的地方折行：
 set linebreak "所谓合适的地方，是由breakat选项中的字符来确定的。在默认的情况下，这些字符是“^I!@*-+_;:,./?”。如果我们不希望在下划线处打断句子，只要用下面的命令将“_”从这个列表移除就可以了： 
 set breakat-=_ "如果一行被打断，Vim可能不会在句子连接处显示任何内容。我们可以通过设置showbreak选项，来显示所希望的指示信息：
@@ -210,7 +212,7 @@ Plug 'Yggdroot/LeaderF'
     let g:Lf_ShortcutF = "<leader>ff"
     let g:Lf_ShortcutB = "<leader>bb"
     noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-    noremap <leader>fv :<C-U><C-R>=printf("Leaderf file %s /home/data/vip24/.dotfiles/", "")<CR><CR>
+    noremap <leader>fv :<C-U><C-R>=printf("Leaderf file %s %s/.dotfiles/", "", getenv("HOME"))<CR><CR>
     noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
     noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
     noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>

@@ -4,6 +4,8 @@
 
 `Dichotomous variables were created form` a rital status, race(white or other), sex, tumor location(face vs scalp and/or neck), any prior malignant neoplasm(yes or no), and ulceration.
 
+We hypothesized that
+
 # Reference
 
 Other than the aforementioned prospective RCT,
