@@ -326,10 +326,6 @@ Plug 'preservim/tagbar'
     "for more language support
     "https://github.com/preservim/tagbar/wiki
 
-    if uname == 'tpm2-WD12.example.com'
-        let  g:tagbar_ctags_bin='/home/data/vip24/.local/bin/ctags'
-    endif
-
     let g:tagbar_type_r = {
         \ 'ctagstype' : 'r',
         \ 'kinds'     : [
