@@ -264,6 +264,8 @@ Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
     vmap <silent> <LocalLeader>sp :call RAction("typeof", "v")<CR>
     nmap <silent> <LocalLeader>sn :call RAction("names")<CR>
     vmap <silent> <LocalLeader>sn :call RAction("names", "v")<CR>
+    nmap <silent> <LocalLeader>sb :call RAction("dim")<CR>
+    vmap <silent> <LocalLeader>sb :call RAction("dim", "v")<CR>
     nmap <silent> <LocalLeader>si :call RAction("unique")<CR>
     vmap <silent> <LocalLeader>si :call RAction("unique", "v")<CR>
     nmap <silent> <LocalLeader>sr :RSend library("colorout")<CR>
@@ -298,6 +300,11 @@ Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
 Plug 'honza/vim-snippets'  " snippets repository
 
 Plug 'chrisbra/csv.vim', {'for': ['r','rmarkdown']}    " for viewing data directly in vim R (Nvim-R)
+
+Plug 'vim-scripts/argtextobj.vim'
+
+Plug 'luochen1990/rainbow'
+    let g:rainbow_active = 1
 
 Plug 'sjl/gundo.vim'
     let g:gundo_prefer_python3 = 1
@@ -494,8 +501,11 @@ Plug 'itchyny/lightline.vim'
     autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 Plug 'RRethy/vim-illuminate'
-    let g:Illuminate_delay = 750
+    let g:Illuminate_delay = 250
+    let g:Illuminate_highlightUnderCursor = 0
     "hi illuminatedWord cterm=undercurl gui=undercurl
+    hi link illuminatedWord Visual
+
     
 Plug 'mg979/vim-visual-multi'
     let g:VM_theme             = 'iceblue'

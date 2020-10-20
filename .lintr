@@ -27,7 +27,7 @@ linters: with_defaults(
   # To modify a parameterised linter (eg, closed_curly_linter, object_name_linter, object_length_linter),
   # you override the default parameter value. 
   # - `line_length_linter` has a default of 80, to extend this to allow 100-width lines do the following:
-  line_length_linter = line_length_linter(100),
+  line_length_linter = line_length_linter(150),
   #
   # - `object_length_linter` has a default object-name size of 30 characters, we can extend this to 40
   # characters
