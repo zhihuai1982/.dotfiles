@@ -164,6 +164,7 @@ Plug 'tpope/vim-surround'
     "ysiw"   word
     "yss"    whole sentence
     "yssb    (sentence)
+    "visual mode  "S"
 
 Plug 'psliwka/vim-smoothie'
 

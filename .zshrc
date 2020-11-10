@@ -121,6 +121,7 @@ alias gu="gitup"
 alias panref='pandoc -F $HOME/.config/nvim/plugged/zotcite/python3/zotref -F pandoc-citeproc --reference-doc=reference.docx'
 alias proxy='export all_proxy=socks5://127.0.0.1:1086'
 alias unproxy='unset all_proxy'
+alias axel='axel -n 10'
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
