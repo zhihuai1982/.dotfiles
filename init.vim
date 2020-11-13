@@ -158,13 +158,19 @@ Plug 'godlygeek/tabular'
     "http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
     "选中需要对齐的区块  然后输入:tabu<tab> /: \zs
 
-Plug 'tpope/vim-surround'
+"Plug 'tpope/vim-surround'
     "cs"'
     "ds"
     "ysiw"   word
     "yss"    whole sentence
     "yssb    (sentence)
     "visual mode  "S"
+
+Plug 'machakann/vim-sandwich'
+
+Plug 'wellle/targets.vim'
+
+Plug 'junegunn/vim-slash'
 
 Plug 'psliwka/vim-smoothie'
 
@@ -302,7 +308,7 @@ Plug 'honza/vim-snippets'  " snippets repository
 
 Plug 'chrisbra/csv.vim', {'for': ['r','rmarkdown']}    " for viewing data directly in vim R (Nvim-R)
 
-Plug 'vim-scripts/argtextobj.vim'
+"Plug 'vim-scripts/argtextobj.vim'
 
 Plug 'luochen1990/rainbow'
     let g:rainbow_active = 1
