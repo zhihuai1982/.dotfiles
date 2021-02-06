@@ -300,6 +300,8 @@ Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
             let g:python3_host_prog = '/usr/local/bin/python3'
         elseif uname == 'Macbook.local'
             let g:python3_host_prog = '/usr/local/bin/python3'
+        elseif uname == 'ubuntuinPVE'
+            let g:python3_host_prog = '/usr/bin/python3'
         elseif uname == 'tpm2-WD12.example.com'
             let g:python3_host_prog = '/home/data/vip24/miniconda3/bin/python3'
         elseif uname == 'ubuntu-home'
