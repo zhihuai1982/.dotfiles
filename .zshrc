@@ -232,7 +232,7 @@ case "$(uname -n)" in
     unset __conda_setup
     # <<< conda initialize <<<
   ;;
-  tpm2*)
+  bio1*)
     NPM_PACKAGES="${HOME}/.npm-packages"
 
     export PATH="$PATH:$NPM_PACKAGES/bin:$HOME/.local/bin:$HOME/Biosoft/Zotero_linux-x86_64"
