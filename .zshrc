@@ -127,7 +127,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias shome='ssh -Y -p 44 zhihuai1982@13715f706af888a5.sn.mynetname.net'
-alias svip='ssh -Y vip24@124.77.170.70 -p 6891'
+alias svip='ssh -Y vip24@124.77.175.30 -p 6891'
 alias path='echo $PATH | tr ":" "\n"'
 
 # powerline install
