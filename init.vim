@@ -259,8 +259,8 @@ Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
 
     nmap <silent> <LocalLeader>sl :call RAction("levels")<CR>
     vmap <silent> <LocalLeader>sl :call RAction("levels", "v")<CR>
-    nmap <silent> <LocalLeader>st :call RAction("tail")<CR>
-    vmap <silent> <LocalLeader>st :call RAction("tail", "v")<CR>
+    nmap <silent> <LocalLeader>st :call RAction("table")<CR>
+    vmap <silent> <LocalLeader>st :call RAction("table", "v")<CR>
     nmap <silent> <LocalLeader>sh :call RAction("head")<CR>
     vmap <silent> <LocalLeader>sh :call RAction("head", "v")<CR>
     nmap <silent> <LocalLeader>sk :call RAction("topleft")<CR>
@@ -464,8 +464,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     nmap <leader>rn <Plug>(coc-rename)
 
     " coc-translator
-    nmap <leader>vv <Plug>(coc-translator-p)
-    vmap <leader>vv <Plug>(coc-translator-pv)
+    nmap <leader>vv <Plug>(coc-translator-e)
+    vmap <leader>vv <Plug>(coc-translator-ev)
 
     "Remap for do codeAction of selected region
     "function! s:cocActionsOpenFromSelected(type) abort
@@ -568,6 +568,7 @@ Plug 'jalvesaq/zotcite'
     if has('mac')
         Plug 'jalvesaq/zotcite'
         "type @ then part of name of author then c+x c+o
+        "source the zshrc for newly added zotero reference
     elseif has('unix')
     endif
 

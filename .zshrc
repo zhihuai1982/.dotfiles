@@ -118,7 +118,7 @@ alias pms="pm2 start npm -- start"
 alias c="clear"
 alias ra='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias gu="gitup"
-alias panref='pandoc -F $HOME/.config/nvim/plugged/zotcite/python3/zotref -F pandoc-citeproc --reference-doc=reference.docx'
+alias panref='pandoc -F $HOME/.config/nvim/plugged/zotcite/python3/zotref.py -F pandoc-citeproc --reference-doc=reference.docx'
 alias proxy='export all_proxy=socks5://127.0.0.1:1086'
 alias unproxy='unset all_proxy'
 alias axel='axel -n 10'
@@ -127,7 +127,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias shome='ssh -Y -p 44 zhihuai1982@13715f706af888a5.sn.mynetname.net'
-alias svip='ssh -Y vip24@124.77.170.70 -p 6891'
+alias svip='ssh -Y vip24@124.77.175.30 -p 6891'
 alias path='echo $PATH | tr ":" "\n"'
 
 # powerline install
@@ -163,17 +163,19 @@ export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottl
 
 
 # zsh vim mode
-#bindkey -v
-#export KEYTIMEOUT=1
+# bindkey -v
 
-## Use vim keys in tab complete enu:
+# keep ssh longtime upline
+export KEYTIMEOUT=1
+
+ #Use vim keys in tab complete enu:
 #bindkey -M menuselect 'h' vi-backward-char
 #bindkey -M menuselect 'k' vi-up-line-or-history
 #bindkey -M menuselect 'l' vi-forward-char
 #bindkey -M menuselect 'j' vi-down-line-or-history
 #bindkey -v '^?' backward-delete-char
 
-## Change cursor shape for different vi modes.
+ #Change cursor shape for different vi modes.
 #function zle-keymap-select {
   #if [[ ${KEYMAP} == vicmd ]] ||
      #[[ $1 = 'block' ]]; then
@@ -187,14 +189,14 @@ export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottl
 #}
 #zle -N zle-keymap-select
 #zle-line-init() {
-    #zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    #zle -K viins  initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
     #echo -ne "\e[5 q"
 #}
 #zle -N zle-line-init
-#echo -ne '\e[5 q' # Use beam shape cursor on startup.
-#preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+#echo -ne '\e[5 q'  Use beam shape cursor on startup.
+#preexec() { echo -ne '\e[5 q' ;}  Use beam shape cursor for each new prompt.
 
-## Use lf to switch directories and bind it to ctrl-o
+ #Use lf to switch directories and bind it to ctrl-o
 #lfcd () {
     #tmp="$(mktemp)"
     #lf -last-dir-path="$tmp" "$@"
@@ -206,7 +208,7 @@ export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottl
 #}
 #bindkey -s '^o' 'lfcd\n'
 
-## Edit line in vim with ctrl-e:
+# Edit line in vim with ctrl-e:
 #autoload edit-command-line; zle -N edit-command-line
 #bindkey '^e' edit-command-line
 
@@ -232,7 +234,7 @@ case "$(uname -n)" in
     unset __conda_setup
     # <<< conda initialize <<<
   ;;
-  tpm2*)
+  bio1*)
     NPM_PACKAGES="${HOME}/.npm-packages"
 
     export PATH="$PATH:$NPM_PACKAGES/bin:$HOME/.local/bin:$HOME/Biosoft/Zotero_linux-x86_64"
