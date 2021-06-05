@@ -265,6 +265,9 @@ case "$(uname -n)" in
     # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
     export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
+    # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+    export PATH="$PATH:$HOME/.rvm/bin"
+    
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$('/home/zhihuai1982/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
