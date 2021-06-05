@@ -118,7 +118,7 @@ alias pms="pm2 start npm -- start"
 alias c="clear"
 alias ra='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias gu="gitup"
-alias panref='pandoc -F $HOME/.config/nvim/plugged/zotcite/python3/zotref -F pandoc-citeproc --reference-doc=reference.docx'
+alias panref='pandoc -F $HOME/.config/nvim/plugged/zotcite/python3/zotref.py -F pandoc-citeproc --reference-doc=reference.docx'
 alias proxy='export all_proxy=socks5://127.0.0.1:1086'
 alias unproxy='unset all_proxy'
 alias axel='axel -n 10'
