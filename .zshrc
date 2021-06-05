@@ -71,6 +71,12 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
+#Be more productive with use of your BASH history
+#https://cyb.org.uk/2021/05/03/bash-productivity.html
+export HISTIGNORE='pwd:exit:fg:bg:top:clear:history:ls:uptime:df:ll:svip:shome:lg'
+shopt -s histappend
+export HISTSIZE=10000
+
 plugins=(
 	git
 	z
