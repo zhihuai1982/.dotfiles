@@ -74,7 +74,6 @@ ZSH_THEME="agnoster"
 #Be more productive with use of your BASH history
 #https://cyb.org.uk/2021/05/03/bash-productivity.html
 export HISTIGNORE='pwd:exit:fg:bg:top:clear:history:ls:uptime:df:ll:svip:shome:lg'
-shopt -s histappend
 export HISTSIZE=10000
 
 plugins=(
@@ -135,6 +134,9 @@ alias egrep='egrep --color=auto'
 alias shome='ssh -Y -p 44 zhihuai1982@13715f706af888a5.sn.mynetname.net'
 alias svip='ssh -Y vip24@124.77.175.30 -p 6891'
 alias path='echo $PATH | tr ":" "\n"'
+
+alias scpvip='scp -P 6891 $file vip24@124.77.175.30:~/Downloads'
+alias scphome='scp -P 44 $file zhihuai1982@www.digitalnomad.host:~/Downloads'
 
 # powerline install
 function powerline_precmd() {
