@@ -132,10 +132,10 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias shome='ssh -Y -p 44 zhihuai1982@13715f706af888a5.sn.mynetname.net'
-alias svip='ssh -Y vip24@124.77.175.30 -p 6891'
+alias svip='ssh -Y vip24@biotrainee.vip -p 6891'
 alias path='echo $PATH | tr ":" "\n"'
 
-alias scpvip='scp -P 6891 $file vip24@124.77.175.30:~/Downloads'
+alias scpvip='scp -P 6891 $file vip24@biotrainee.vip:~/Downloads'
 alias scphome='scp -P 44 $file zhihuai1982@www.digitalnomad.host:~/Downloads'
 
 # powerline install
