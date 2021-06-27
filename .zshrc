@@ -199,6 +199,12 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+bindkey "/" vi-history-search-backward
+bindkey "^R" history-incremental-search-backward
+bindkey "^F" history-incremental-search-forward
+bindkey "^N" history-beginning-search-forward
+bindkey "^P" history-beginning-search-backward
+
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
