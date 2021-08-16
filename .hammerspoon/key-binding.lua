@@ -27,30 +27,30 @@ windowBind({"alt", "ctrl"}, {
   m = wm.maximizeWindow,
   n = wm.centerOnScreen,
   j = wm.leftHalf,
-  left = wm.leftHalf,
+  --left = wm.leftHalf,
   k = wm.rightHalf,
-  right = wm.rightHalf,
-  up = wm.topHalf,
-  down = wm.bottomHalf
+  --right = wm.rightHalf,
+  --up = wm.topHalf,
+  --down = wm.bottomHalf
 })
 
 -- * Set Window Position on screen
-windowBind({"ctrl", "alt", "shift"}, {
-  left = wm.rightToLeft,      -- ⌃⌥⇧ + ←
-  right = wm.rightToRight,    -- ⌃⌥⇧ + →
-  up = wm.bottomUp,           -- ⌃⌥⇧ + ↑
-  down = wm.bottomDown        -- ⌃⌥⇧ + ↓
-})
+--windowBind({"ctrl", "alt", "shift"}, {
+  --left = wm.rightToLeft,      -- ⌃⌥⇧ + ←
+  --right = wm.rightToRight,    -- ⌃⌥⇧ + →
+  --up = wm.bottomUp,           -- ⌃⌥⇧ + ↑
+  --down = wm.bottomDown        -- ⌃⌥⇧ + ↓
+--})
 -- * Set Window Position on screen
-windowBind({"alt", "cmd", "shift"}, {
-  left = wm.leftToLeft,      -- ⌥⌘⇧ + ←
-  right = wm.leftToRight,    -- ⌥⌘⇧ + →
-  up = wm.topUp,             -- ⌥⌘⇧ + ↑
-  down = wm.topDown          -- ⌥⌘⇧ + ↓
-})
+--windowBind({"alt", "cmd", "shift"}, {
+  --left = wm.leftToLeft,      -- ⌥⌘⇧ + ←
+  --right = wm.leftToRight,    -- ⌥⌘⇧ + →
+  --up = wm.topUp,             -- ⌥⌘⇧ + ↑
+  --down = wm.topDown          -- ⌥⌘⇧ + ↓
+--})
 
--- * Windows-like cycle
-windowBind({"ctrl", "alt"}, {
-  u = wm.cycleLeft,          -- ⌃⌥⌘ + u
-  i = wm.cycleRight          -- ⌃⌥⌘ + i
-})
+---- * Windows-like cycle
+--windowBind({"ctrl", "alt"}, {
+  --u = wm.cycleLeft,          -- ⌃⌥⌘ + u
+  --i = wm.cycleRight          -- ⌃⌥⌘ + i
+--})
