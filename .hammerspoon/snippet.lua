@@ -1,3 +1,5 @@
+-- https://github.com/sugood/hammerspoon
+
 local chooser = require("hs.chooser")
 
 local historyPath= "~/.hammerspoon/data/history.json"
@@ -53,6 +55,10 @@ function addToHistory()
     if str == nil then
         hs.alert.show("文本为空,请重新选择文本！")
     end
+    result,str = hs.dialog.textPrompt("片段内容", "内容|keyword|示例|说明", str, "确定", "取消")
+    if result == "取消" then
+        return
+    end
     local list = string.split(str, "|")
     if #list >1 then
         item.subText = trim(string.sub(str,#list[1]+2,string.len(str)))
@@ -79,7 +85,8 @@ function addToHistory()
 end
 -- 按下添加快捷键时映射到复制快捷键
 function bindCopyKey()
-    hs.eventtap.keyStroke({ "cmd" }, "C")
+    hs.eventtap.keyStroke({ "cmd" }, "c")
+    --hs.timer.usleep(500000)
 end
 -- 粘贴选中的片段
 local completionFn = function(result)
@@ -167,7 +174,5 @@ end)
 -- 添加片段（按下快捷键时做一个复制操作，并记录复制的内容到片段列表中）
 hs.hotkey.bind(hyperCmd, "X", function ()
     bindCopyKey()
-    --if hs.dialog.blockAlert("添加片段：‘|’为分隔符，建议按如下格式","内容|keyword|示例|说明","确定","取消","informational") == "确定" then
-    addToHistory()
-    --end
+    hs.timer.doAfter(0.5, addToHistory)
 end)

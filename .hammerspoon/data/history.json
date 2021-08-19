@@ -1,5 +1,9 @@
 [
   {
+    "subText" : "hs.timer.delayed",
+    "text" : "hs.timer.delayed"
+  },
+  {
     "subText" : "key|Command+Shift+.|显示隐藏文件",
     "text" : "Command+Shift+."
   }
