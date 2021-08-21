@@ -23,6 +23,36 @@ function wrapSelectedText(wrapCharacters)
   end)
 end
 
+function wrapBracket()
+  -- Preserve the current contents of the system clipboard
+  local originalClipboardContents = hs.pasteboard.getContents()
+
+  -- Copy the currently-selected text to the system clipboard
+  keyUpDown('cmd', 'c')
+
+  -- Allow some time for the command+c keystroke to fire asynchronously before
+  -- we try to read from the clipboard
+  hs.timer.doAfter(0.2, function()
+    -- Construct the formatted output and paste it over top of the
+    -- currently-selected text
+    local selectedText = hs.pasteboard.getContents()
+    local wrappedText = "(" .. selectedText .. ")"
+    hs.pasteboard.setContents(wrappedText)
+    keyUpDown('cmd', 'v')
+
+    keyUpDown('','escape')
+    keyUpDown('shift','f')
+    keyUpDown('shift','9')
+    keyUpDown('','i')
+
+    -- Allow some time for the command+v keystroke to fire asynchronously before
+    -- we restore the original clipboard
+    hs.timer.doAfter(0.2, function()
+      hs.pasteboard.setContents(originalClipboardContents)
+    end)
+  end)
+end
+
 function inlineLink()
   -- Fetch URL from the system clipboard
   local linkUrl = hs.pasteboard.getContents()
@@ -67,7 +97,7 @@ end
 markdownMode = hs.hotkey.modal.new({}, 'F20')
 
 local message = require('status-message')
-markdownMode.statusMessage = message.new('Markdown Mode (control-m)\nb for bold\nc for code\ni for italic\ns for strikethrough\nl for link')
+markdownMode.statusMessage = message.new('Markdown Mode (control-m)\nb for bold\nc for code\ni for italic\ns for strikethrough\nl for link\n9 for bracket')
 markdownMode.entered = function()
   markdownMode.statusMessage:show()
 end
@@ -101,6 +131,10 @@ end)
 
 markdownMode:bindWithAutomaticExit('c', function()
   wrapSelectedText('`')
+end)
+
+markdownMode:bindWithAutomaticExit('9', function()
+  wrapBracket()
 end)
 
 -- Use Control+m to toggle Markdown Mode
