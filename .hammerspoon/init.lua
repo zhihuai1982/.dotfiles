@@ -46,7 +46,7 @@ require "cursor-movement"
 --require "html-preview"
 require "remap-capslock"
 require "snippet"
---require "commons"
+require "commons"
 --require "launch-app"
 -- -----------------------------------------------------------------------
 --                            ** For Debug **                           --
