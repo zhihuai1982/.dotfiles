@@ -29,13 +29,16 @@ end)
 hs.hotkey.bind({'alt'}, ']', function()
   if isInTerminal() then
     keyUpDown({}, 'escape')
+    keyUpDown({}, 'l')
     keyUpDown({}, 'd')
+    keyUpDown({}, 'w')
+    keyUpDown({}, 'i')
   else
     keyUpDown({'alt'}, 'forwarddelete')
   end
 end)
 
--- Use ctrl + [ to move cursor previous word
+-- Use ctrl + [ to cursor previous word
 hs.hotkey.bind({'ctrl'}, '[', function()
   if isInTerminal() then
     keyUpDown({'ctrl'}, 'Left')
@@ -72,7 +75,7 @@ end))
 -- the end of the line (i.e., control+k). To maintain that very useful
 -- functionality, and to keep it on the home row, this hotkey binds control+; to
 -- delete to the end of the line.
-hs.hotkey.bind({'ctrl'}, 'i', function()
+hs.hotkey.bind({'ctrl'}, ';', function()
   -- If we're in the terminal, then temporarily disable our custom control+k
   -- hotkey used for pane navigation, then fire control+k to delete to the end
   -- of the line, and then renable the control+k hotkey.

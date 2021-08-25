@@ -54,3 +54,44 @@ windowBind({"alt", "ctrl"}, {
   --u = wm.cycleLeft,          -- ⌃⌥⌘ + u
   --i = wm.cycleRight          -- ⌃⌥⌘ + i
 --})
+
+-- window management
+--local application = require "hs.application"
+local hotkey = require "hs.hotkey"
+local window = require "hs.window"
+local screen = require "hs.screen"
+local fnutils = require "hs.fnutils"
+local geometry = require "hs.geometry"
+local mouse = require "hs.mouse"
+
+-- move cursor to previous monitor
+hotkey.bind({"alt","shift"}, "m", function ()
+  focusScreen(window.focusedWindow():screen():previous())
+end)
+
+-- move cursor to next monitor
+--hotkey.bind({"alt","shift"}, "u", function ()
+  --focusScreen(window.focusedWindow():screen():next())
+--end)
+
+
+--Predicate that checks if a window belongs to a screen
+function isInScreen(screen, win)
+  return win:screen() == screen
+end
+
+function focusScreen(screen)
+  --Get windows within screen, ordered from front to back.
+  --If no windows exist, bring focus to desktop. Otherwise, set focus on
+  --front-most application window.
+  local windows = fnutils.filter(
+      window.orderedWindows(),
+      fnutils.partial(isInScreen, screen))
+  local windowToFocus = #windows > 0 and windows[1] or window.desktop()
+  windowToFocus:focus()
+
+  -- move cursor to center of screen
+  local pt = geometry.rectMidPoint(screen:fullFrame())
+  mouse.setAbsolutePosition(pt)
+end
+
