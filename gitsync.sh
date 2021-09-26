@@ -5,6 +5,11 @@ git add .
 git commit -m "SyncDate `date '+%F'`"
 git push
 
+cd /home/zhihuai1982/Documents/predict_chat
+git add .
+git commit -m "SyncDate `date '+%F'`"
+git push
+
 cd /home/zhihuai1982/.dotfiles
 git add .
 git commit -m "SyncDate `date '+%F'`"
