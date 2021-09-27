@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 #export PATH=$HOME/opt/anaconda3/bin:$PATH
 # $HOME/Library/Python/2.7/bin:
