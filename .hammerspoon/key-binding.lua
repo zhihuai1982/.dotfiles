@@ -69,10 +69,10 @@ hotkey.bind({"alt","shift"}, "m", function ()
   focusScreen(window.focusedWindow():screen():previous())
 end)
 
--- move cursor to next monitor
---hotkey.bind({"alt","shift"}, "u", function ()
-  --focusScreen(window.focusedWindow():screen():next())
---end)
+ --move cursor to next monitor
+hotkey.bind({"alt","shift"}, "u", function ()
+  focusScreen(window.focusedWindow():screen():next())
+end)
 
 
 --Predicate that checks if a window belongs to a screen
