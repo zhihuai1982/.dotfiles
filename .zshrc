@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
@@ -10,7 +17,10 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -138,24 +148,6 @@ alias path='echo $PATH | tr ":" "\n"'
 alias scpvip='scp -P 6891 $file vip24@biotrainee.vip:~/Downloads'
 alias scphome='scp -P 44 $file zhihuai1982@www.digitalnomad.host:~/Downloads'
 
-# powerline install
-function powerline_precmd() {
-    PS1="$(powerline-shell --shell zsh $?)"
-}
-
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
-
-if [ "$TERM" != "linux" ]; then
-    install_powerline_precmd
-fi
-
 
 # 修改默认编辑器
 export EDITOR=nvim
@@ -211,45 +203,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # for ZSH
 case "$(uname -n)" in
-  Mac*)
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/Users/zhihuai1982/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/Users/zhihuai1982/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-            . "/Users/zhihuai1982/opt/anaconda3/etc/profile.d/conda.sh"
-        else
-            export PATH="/Users/zhihuai1982/opt/anaconda3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-    # <<< conda initialize <<<
-  ;;
-  bio1*)
-    NPM_PACKAGES="${HOME}/.npm-packages"
-
-    export PATH="$PATH:$NPM_PACKAGES/bin:$HOME/.local/bin:$HOME/Biosoft/Zotero_linux-x86_64"
-
-    # Preserve MANPATH if you already defined it somewhere in your config.
-    # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
-    export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
-
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/home/data/vip24/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/home/data/vip24/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/home/data/vip24/miniconda3/etc/profile.d/conda.sh"
-        else
-            export PATH="/home/data/vip24/miniconda3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-    # <<< conda initialize <<<
+  zhihuaideMacBook-Pro*)
+	
   ;;
   ubuntu*)
     NPM_PACKAGES="${HOME}/.npm-packages"
@@ -277,6 +232,25 @@ case "$(uname -n)" in
     fi
     unset __conda_setup
     # <<< conda initialize <<<
+
+	# powerline install
+	function powerline_precmd() {
+	    PS1="$(powerline-shell --shell zsh $?)"
+	}
+
+	function install_powerline_precmd() {
+	  for s in "${precmd_functions[@]}"; do
+	    if [ "$s" = "powerline_precmd" ]; then
+	      return
+	    fi
+	  done
+	  precmd_functions+=(powerline_precmd)
+	}
+
+	if [ "$TERM" != "linux" ]; then
+	    install_powerline_precmd
+	fi
+
    ;;
 esac
 
