@@ -5,7 +5,16 @@ local isInTerminal = function()
   return app == 'iTerm2' or app == 'Terminal'
 end
 
--- Use ctrl + p to format paragraph in rstudio
+-- Use ctrl + shift + j to format paragraph in rstudio
+hs.hotkey.bind({'ctrl','shift'}, 'y', function()
+    keyUpDown({'cmd'}, '/')
+    keyUpDown({}, 'escape')
+    keyUpDown({}, 'k')
+    keyUpDown({'shift'}, 'j')
+    keyUpDown({}, '0')
+end)
+
+-- Use ctrl + shift + p to format paragraph in rstudio
 hs.hotkey.bind({'ctrl','shift'}, 'p', function()
     keyUpDown({}, 'escape')
     keyUpDown({'shift'}, ']')
