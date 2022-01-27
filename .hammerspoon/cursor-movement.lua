@@ -12,6 +12,13 @@ hs.hotkey.bind({'ctrl','shift'}, 'y', function()
     keyUpDown({}, 'k')
     keyUpDown({'shift'}, 'j')
     keyUpDown({}, '0')
+    keyUpDown({}, 'f')
+    keyUpDown({}, '.')
+    keyUpDown({}, 'x')
+    keyUpDown({"shift"}, 'a')
+    keyUpDown({}, '.')
+    keyUpDown({}, 'escape')
+    keyUpDown({}, '0')
 end)
 
 -- Use ctrl + shift + p to format paragraph in rstudio
