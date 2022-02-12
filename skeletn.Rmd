@@ -1,0 +1,115 @@
+---
+title             : "Effectiveness of watchful waiting on mouth breathing in children with obstructive sleep apnea"
+shorttitle        : "Watchful waiting on mouth breathing"
+author: 
+  - name          : "Zhihuai Dong, MD"
+    affiliation   : "1"
+    email         : "zhihuai1982@zju.edu.cn"
+    role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
+      - Conceptualization
+      - Writing - Original Draft Preparation
+      - Writing - Review & Editing
+  - name          : "Jing Ye, MD"
+    affiliation   : "1"
+    email         : "yejin_123@163.com"
+    role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
+      - Writing - Original Draft Preparation
+      - Writing - Review & Editing
+  - name          : "Mang Xiao, MD"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "3 East Qingchun Road, Hangzhou, Zhejiang, China"
+    email         : "joelxm@zju.edu.cn"
+    role:
+      - Writing - Review & Editing
+affiliation:
+  - id            : "1"
+    institution   : "Department of Otolaryngology-Head and Neck Surgery, Sir Run Run Shaw Hospital, Medical College of Zhejiang University, Hangzhou, China"
+floatsintext      : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : yes
+mask              : no
+draft             : no
+documentclass     : "apa6"
+classoption       : "man"
+csl               : "american-medical-association.csl"
+output            : 
+  papaja::apa6_docx: 
+    fig_width: 6
+  papaja::apa6_pdf:
+    latex_engine: xelatex
+    extra_dependencies:
+      ctexcap: UTF8
+  bookdown::html_document2: default
+bibliography: references.bib
+---
+
+```{r setup, include = FALSE}
+library("papaja")
+library("magrittr")
+library("flextable")
+library("gtsummary")
+```
+
+```{r analysis-preferences, include=FALSE}
+# Seed for random number generatio
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
+
+```{r load Rdata, include=FALSE}
+
+load(file = "./data/Mouth-breathing.Rdata")
+load(file = "./data/Table1.Rdata")
+load(file = "./data/Logistic-regression-model.Rdata")
+
+```
+
+# Abstract
+
+**Objective:** 
+
+**Methods:**
+
+**Results:**
+
+**Conclusions:**
+
+keywords : 
+
+wordcount : 
+
+# Introduction
+
+
+
+# Methods
+
+
+
+# Results
+
+
+
+# Discussion
+
+
+
+\newpage
+
+# Tables
+
+
+\newpage
+
+
+# Figures
+
+
+# References
+
+::: {#refs custom-style="Bibliography"}
+:::
+
