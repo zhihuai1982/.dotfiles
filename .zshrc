@@ -206,6 +206,9 @@ case "$(uname -n)" in
   zhihuaideMacBook-Pro*)
 	
   ;;
+  dongzhihuaideiMac*)
+	 PATH="/Users/zhihuai1982/miniconda3/bin:$PATH"
+  ;;
   ubuntu*)
     NPM_PACKAGES="${HOME}/.npm-packages"
 
