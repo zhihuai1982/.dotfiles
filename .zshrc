@@ -203,8 +203,21 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # for ZSH
 case "$(uname -n)" in
-  zhihuaideMacBook-Pro*)
-	
+  zhihuaidembp*)
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/Users/zhihuai1982/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/Users/zhihuai1982/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/Users/zhihuai1982/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/Users/zhihuai1982/miniconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
   ;;
   dongzhihuaideiMac*)
     # >>> conda initialize >>>
