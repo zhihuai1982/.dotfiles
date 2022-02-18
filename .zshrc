@@ -200,6 +200,7 @@ bindkey "^P" history-beginning-search-backward
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+eval "$(mcfly init zsh)"
 
 # for ZSH
 case "$(uname -n)" in
