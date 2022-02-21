@@ -1,0 +1,9 @@
+/* For styling the entire Joplin app (except the rendered Markdown, which is defined in `userstyle.css`) */
+
+.cm-header-1 {
+	color: #7bed9f !important;
+}
+
+.cm-header-2 {
+	color: #4dd0e1 !important;
+}
