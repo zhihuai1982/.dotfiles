@@ -204,7 +204,7 @@ eval "$(mcfly init zsh)"
 
 # for ZSH
 case "$(uname -n)" in
-  zhihuaidembp*)
+  zhihuaideMacBook*)
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$('/Users/zhihuai1982/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
