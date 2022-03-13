@@ -5,7 +5,7 @@ local isInTerminal = function()
   return app == 'iTerm2' or app == 'Terminal'
 end
 
--- Use ctrl + shift + j to format paragraph in rstudio
+-- Use ctrl + shift + y to join citation in rstudio
 hs.hotkey.bind({'ctrl','shift'}, 'y', function()
     keyUpDown({'cmd'}, '/')
     keyUpDown({}, 'escape')
@@ -33,7 +33,7 @@ hs.hotkey.bind({'ctrl','shift'}, 'p', function()
 end)
 
 -- Use option + [ to delete previous word
-hs.hotkey.bind({'alt'}, '[', function()
+hs.hotkey.bind({'cmd'}, '[', function()
   if isInTerminal() then
     keyUpDown({'ctrl'}, 'w')
   else
@@ -42,7 +42,7 @@ hs.hotkey.bind({'alt'}, '[', function()
 end)
 
 -- Use option + ] to delete next word
-hs.hotkey.bind({'alt'}, ']', function()
+hs.hotkey.bind({'cmd'}, ']', function()
   if isInTerminal() then
     keyUpDown({}, 'escape')
     keyUpDown({}, 'l')
@@ -71,6 +71,14 @@ hs.hotkey.bind({'ctrl'}, ']', function()
     keyUpDown({'alt'}, 'Right')
   end
 end)
+
+-- Use ctrl + d to delete line wherever the cursor is
+-- this shortcut only works in nonterminal app
+local wf = hs.window.filter.new():setFilters({iTerm2 = false, Terminal = false})
+enableHotkeyForWindowsMatchingFilter(wf, hs.hotkey.new({'cmd'}, 'd', function()
+  keyUpDown({'ctrl'}, 'e')
+  keyUpDown({'cmd'}, 'delete')
+end))
 
 -- Use control + u to delete to beginning of line
 --
