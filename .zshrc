@@ -220,7 +220,7 @@ case "$(uname -n)" in
     unset __conda_setup
     # <<< conda initialize <<<
   ;;
-  dongzhihuaideiMac*)
+  zhihuaideiMac*)
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$('/Users/zhihuai1982/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
