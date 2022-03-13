@@ -22,3 +22,6 @@ remap({'ctrl', 'shift'}, 'j', pressFn({'shift'}, 'down'))
 remap({'ctrl', 'shift'}, 'k', pressFn({'shift'}, 'up'))
 remap({'ctrl', 'shift'}, 'l', pressFn({'shift'}, 'right'))
 
+remap({'ctrl', 'shift'}, '[', pressFn({'shift', 'alt'}, 'left'))
+remap({'ctrl', 'shift'}, ']', pressFn({'shift', 'alt'}, 'right'))
+
