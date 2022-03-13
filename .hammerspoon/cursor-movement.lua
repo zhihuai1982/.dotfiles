@@ -78,6 +78,7 @@ local wf = hs.window.filter.new():setFilters({iTerm2 = false, Terminal = false})
 enableHotkeyForWindowsMatchingFilter(wf, hs.hotkey.new({'cmd'}, 'd', function()
   keyUpDown({'ctrl'}, 'e')
   keyUpDown({'cmd'}, 'delete')
+  keyUpDown({}, 'forwarddelete')
 end))
 
 -- Use control + u to delete to beginning of line
