@@ -17,9 +17,9 @@ end
 -- * Move window to screen
 windowBind({"alt","ctrl"}, {
   h = wm.throwLeft,
-  left = wm.throwLeft,
+  --left = wm.throwLeft,
   l = wm.throwRight,
-  right = wm.throwRight
+  --right = wm.throwRight
 })
 
 -- * Set Window Position on screen
@@ -65,12 +65,12 @@ local geometry = require "hs.geometry"
 local mouse = require "hs.mouse"
 
 -- move cursor to previous monitor
-hotkey.bind({"alt","shift"}, "m", function ()
-  focusScreen(window.focusedWindow():screen():previous())
-end)
+--hotkey.bind({"alt","ctrl"}, "u", function ()
+  --focusScreen(window.focusedWindow():screen():previous())
+--end)
 
  --move cursor to next monitor
-hotkey.bind({"alt","shift"}, "u", function ()
+hotkey.bind({"alt","ctrl"}, "i", function ()
   focusScreen(window.focusedWindow():screen():next())
 end)
 

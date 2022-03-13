@@ -39,11 +39,9 @@ end
 -- -----------------------------------------------------------------------
 require "window-management"
 require "ctrl-hjkl"
---require "vim-binding"
 require "key-binding"
 require "markdown"
 require "cursor-movement"
---require "html-preview"
 require "remap-capslock"
 
 -- -----------------------------------------------------------------------
