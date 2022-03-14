@@ -23,6 +23,7 @@ modifier_handler = function(evt)
     elseif prev_modifiers["ctrl"]  and len(curr_modifiers) == 0 and send_escape then
 		send_escape = false
         hs.eventtap.keyStroke({}, "ESCAPE")
+	hs.keycodes.currentSourceID("com.apple.keylayout.ABC")
     else
         send_escape = false
 	end
