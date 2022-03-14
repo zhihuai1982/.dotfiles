@@ -32,6 +32,17 @@ hs.hotkey.bind({'ctrl','shift'}, 'p', function()
     keyUpDown({}, 'escape')
 end)
 
+-- Use ctrl + i to insert with chinese
+-- seems ctrl-i conflict with keyUpDown i, so i change with h and a combind 
+hs.hotkey.bind({'ctrl'}, 'i', function()
+    keyUpDown('', 'h')
+    keyUpDown('', 'a')
+    -- need delay to avoid input of h and a 
+    hs.timer.doAfter(0.1, function()
+        hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
+    end)
+end)
+
 -- Use option + [ to delete previous word
 hs.hotkey.bind({'cmd'}, '[', function()
   if isInTerminal() then
