@@ -32,7 +32,7 @@ statusmessage.new = function(messageText)
       }
     )
     background:setRoundedRectRadii(10, 10)
-    background:setFillColor({ red = 10, green = 10, blue = 100, alpha=0.4 })
+    background:setFillColor({ red = 10, green = 10, blue = 100, alpha=0.8 })
 
     return background, text
   end

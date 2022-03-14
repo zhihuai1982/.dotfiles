@@ -97,7 +97,7 @@ end
 markdownMode = hs.hotkey.modal.new({}, 'F20')
 
 local message = require('status-message')
-markdownMode.statusMessage = message.new('Markdown Mode (control-m)\nb for bold\nc for code\ni for italic\ns for strikethrough\nl for link\n9 for bracket\nq for double quotation\nd for double equal sign')
+markdownMode.statusMessage = message.new('Markdown Mode (control-m)\nb for bold\nc for code\nt for code block\ni for italic\ns for strikethrough\nl for link\n9 for bracket\nq for double quotation\nd for double equal sign')
 markdownMode.entered = function()
   markdownMode.statusMessage:show()
 end
@@ -135,6 +135,10 @@ end)
 
 markdownMode:bindWithAutomaticExit('c', function()
   wrapSelectedText('`')
+end)
+
+markdownMode:bindWithAutomaticExit('t', function()
+  wrapSelectedText('\n```\n')
 end)
 
 markdownMode:bindWithAutomaticExit('9', function()
