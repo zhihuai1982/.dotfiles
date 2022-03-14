@@ -302,9 +302,9 @@ Plug 'Yggdroot/LeaderF'
     "" R commands in R output are highlighted
     "" let g:Rout_more_colors = 1
 
-""if has('mac')
-        ""let g:python3_host_prog = '/usr/local/bin/python3'
-    ""endif
+if has('mac')
+        let g:python3_host_prog = '/Users/zhihuai1982/miniconda3/bin/python3'
+    endif
 
     "let uname = substitute(system('uname -n'), '\n', '', '')
     "if uname == "Machome.local"
@@ -703,6 +703,10 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
 call plug#end()
 
+
+if has('mac')
+        let g:python3_host_prog = '/Users/zhihuai1982/miniconda3/bin/python3'
+    endif
 
 "augroup qs_colors
   "autocmd!
