@@ -180,6 +180,9 @@ Plug 'machakann/vim-sandwich'
 
 Plug 'wellle/targets.vim'
 
+"vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
+"Automatically clears search highlight when cursor is moved
+"Improved star-search (visual-mode, highlighting without moving)
 Plug 'junegunn/vim-slash'
 
 Plug 'psliwka/vim-smoothie'
@@ -259,66 +262,66 @@ Plug 'Yggdroot/LeaderF'
     " If needs
     " set ambiwidth=double
 
-Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
-    let maplocalleader = ","
-    " make R vertical split at start
-    let R_rconsole_width = 57
-    let R_min_editor_width = 18
+"Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
+    "let maplocalleader = ","
+    "" make R vertical split at start
+    "let R_rconsole_width = 57
+    "let R_min_editor_width = 18
 
-    nmap <silent> <LocalLeader>sl :call RAction("levels")<CR>
-    vmap <silent> <LocalLeader>sl :call RAction("levels", "v")<CR>
-    nmap <silent> <LocalLeader>st :call RAction("table")<CR>
-    vmap <silent> <LocalLeader>st :call RAction("table", "v")<CR>
-    nmap <silent> <LocalLeader>sh :call RAction("head")<CR>
-    vmap <silent> <LocalLeader>sh :call RAction("head", "v")<CR>
-    nmap <silent> <LocalLeader>sk :call RAction("topleft")<CR>
-    vmap <silent> <LocalLeader>sk :call RAction("topleft", "v")<CR>
-    nmap <silent> <LocalLeader>sm :call RAction("summary")<CR>
-    vmap <silent> <LocalLeader>sm :call RAction("summary", "v")<CR>
-    nmap <silent> <LocalLeader>sc :call RAction("class")<CR>
-    vmap <silent> <LocalLeader>sc :call RAction("class", "v")<CR>
-    nmap <silent> <LocalLeader>sp :call RAction("typeof")<CR>
-    vmap <silent> <LocalLeader>sp :call RAction("typeof", "v")<CR>
-    nmap <silent> <LocalLeader>sn :call RAction("names")<CR>
-    vmap <silent> <LocalLeader>sn :call RAction("names", "v")<CR>
-    nmap <silent> <LocalLeader>sb :call RAction("dim")<CR>
-    vmap <silent> <LocalLeader>sb :call RAction("dim", "v")<CR>
-    nmap <silent> <LocalLeader>si :call RAction("unique")<CR>
-    vmap <silent> <LocalLeader>si :call RAction("unique", "v")<CR>
-    nmap <silent> <LocalLeader>sr :RSend library("colorout")<CR>
-    nmap <LocalLeader>sw :RSend 
-    "nmap <LocalLeader>sk :<C-U><C-R>=printf("RSend %s[1:5, 1:5]", expand("<cword>"))<CR><CR>
+    "nmap <silent> <LocalLeader>sl :call RAction("levels")<CR>
+    "vmap <silent> <LocalLeader>sl :call RAction("levels", "v")<CR>
+    "nmap <silent> <LocalLeader>st :call RAction("table")<CR>
+    "vmap <silent> <LocalLeader>st :call RAction("table", "v")<CR>
+    "nmap <silent> <LocalLeader>sh :call RAction("head")<CR>
+    "vmap <silent> <LocalLeader>sh :call RAction("head", "v")<CR>
+    "nmap <silent> <LocalLeader>sk :call RAction("topleft")<CR>
+    "vmap <silent> <LocalLeader>sk :call RAction("topleft", "v")<CR>
+    "nmap <silent> <LocalLeader>sm :call RAction("summary")<CR>
+    "vmap <silent> <LocalLeader>sm :call RAction("summary", "v")<CR>
+    "nmap <silent> <LocalLeader>sc :call RAction("class")<CR>
+    "vmap <silent> <LocalLeader>sc :call RAction("class", "v")<CR>
+    "nmap <silent> <LocalLeader>sp :call RAction("typeof")<CR>
+    "vmap <silent> <LocalLeader>sp :call RAction("typeof", "v")<CR>
+    "nmap <silent> <LocalLeader>sn :call RAction("names")<CR>
+    "vmap <silent> <LocalLeader>sn :call RAction("names", "v")<CR>
+    "nmap <silent> <LocalLeader>sb :call RAction("dim")<CR>
+    "vmap <silent> <LocalLeader>sb :call RAction("dim", "v")<CR>
+    "nmap <silent> <LocalLeader>si :call RAction("unique")<CR>
+    "vmap <silent> <LocalLeader>si :call RAction("unique", "v")<CR>
+    "nmap <silent> <LocalLeader>sr :RSend library("colorout")<CR>
+    "nmap <LocalLeader>sw :RSend 
+    ""nmap <LocalLeader>sk :<C-U><C-R>=printf("RSend %s[1:5, 1:5]", expand("<cword>"))<CR><CR>
 
-    " some nice keybindding, D = cursor down one line when finished the code
-    " localleader+rv = view data, +rg = plot(graphic), +rs = summary, all without sending lines to R buffer, very useful
-    " Other useful features like Rformat and R RBuildTags aren’t covered here, see Nvim-R for more info.
+    "" some nice keybindding, D = cursor down one line when finished the code
+    "" localleader+rv = view data, +rg = plot(graphic), +rs = summary, all without sending lines to R buffer, very useful
+    "" Other useful features like Rformat and R RBuildTags aren’t covered here, see Nvim-R for more info.
 
-    " R output is highlighted with current colorscheme
-    " let g:rout_follow_colorscheme = 1
+    "" R output is highlighted with current colorscheme
+    "" let g:rout_follow_colorscheme = 1
 
-    " R commands in R output are highlighted
-    " let g:Rout_more_colors = 1
+    "" R commands in R output are highlighted
+    "" let g:Rout_more_colors = 1
 
-"if has('mac')
-        "let g:python3_host_prog = '/usr/local/bin/python3'
-    "endif
+""if has('mac')
+        ""let g:python3_host_prog = '/usr/local/bin/python3'
+    ""endif
 
-    let uname = substitute(system('uname -n'), '\n', '', '')
-    if uname == "Machome.local"
-            let g:python3_host_prog = '/usr/local/bin/python3'
-        elseif uname == 'Macbook.local'
-            let g:python3_host_prog = '/usr/local/bin/python3'
-        elseif uname == 'ubuntuinPVE'
-            let g:python3_host_prog = '/usr/bin/python3'
-        elseif uname == 'tpm2-WD12.example.com'
-            let g:python3_host_prog = '/home/data/vip24/miniconda3/bin/python3'
-        elseif uname == 'ubuntu-home'
-            let g:python3_host_prog = '/home/zhihuai1982/miniconda3/bin/python3'
-        endif
+    "let uname = substitute(system('uname -n'), '\n', '', '')
+    "if uname == "Machome.local"
+            "let g:python3_host_prog = '/usr/local/bin/python3'
+        "elseif uname == 'Macbook.local'
+            "let g:python3_host_prog = '/usr/local/bin/python3'
+        "elseif uname == 'ubuntuinPVE'
+            "let g:python3_host_prog = '/usr/bin/python3'
+        "elseif uname == 'tpm2-WD12.example.com'
+            "let g:python3_host_prog = '/home/data/vip24/miniconda3/bin/python3'
+        "elseif uname == 'ubuntu-home'
+            "let g:python3_host_prog = '/home/zhihuai1982/miniconda3/bin/python3'
+        "endif
 
-Plug 'honza/vim-snippets'  " snippets repository
+"Plug 'honza/vim-snippets'  " snippets repository
 
-Plug 'chrisbra/csv.vim', {'for': ['r','rmarkdown']}    " for viewing data directly in vim R (Nvim-R)
+"Plug 'chrisbra/csv.vim', {'for': ['r','rmarkdown']}    " for viewing data directly in vim R (Nvim-R)
 
 "Plug 'vim-scripts/argtextobj.vim'
 
@@ -346,45 +349,45 @@ Plug 'voldikss/vim-floaterm'
     nnoremap   <silent>   <leader>ta    :FloatermNew ranger<CR>
     tnoremap   <silent>   <leader>ta    <C-\><C-n>:FloatermNew ranger<CR>
 
-Plug 'preservim/tagbar'
-    nnoremap <leader>tb :TagbarToggle<CR>
+"Plug 'preservim/tagbar'
+    "nnoremap <leader>tb :TagbarToggle<CR>
 
-    "for more language support
-    "https://github.com/preservim/tagbar/wiki
+    ""for more language support
+    ""https://github.com/preservim/tagbar/wiki
 
-    let g:tagbar_type_r = {
-        \ 'ctagstype' : 'r',
-        \ 'kinds'     : [
-            \ 'f:Functions',
-            \ 'g:GlobalVariables',
-            \ 'v:FunctionVariables',
-        \ ]
-    \ }
+    "let g:tagbar_type_r = {
+        "\ 'ctagstype' : 'r',
+        "\ 'kinds'     : [
+            "\ 'f:Functions',
+            "\ 'g:GlobalVariables',
+            "\ 'v:FunctionVariables',
+        "\ ]
+    "\ }
 
-    let g:tagbar_type_rmd = {
-            \   'ctagstype':'rmd'
-            \ , 'kinds':['h:header', 'c:chunk', 'f:function', 'v:variable']
-            \ , 'sro':'&&&'
-            \ , 'kind2scope':{'h':'header', 'c':'chunk'}
-            \ , 'sort':0
-            \ , 'ctagsbin':'~/.dotfiles/rmdtags.py'
-            \ , 'ctagsargs': ''
-            \ }
+    "let g:tagbar_type_rmd = {
+            "\   'ctagstype':'rmd'
+            "\ , 'kinds':['h:header', 'c:chunk', 'f:function', 'v:variable']
+            "\ , 'sro':'&&&'
+            "\ , 'kind2scope':{'h':'header', 'c':'chunk'}
+            "\ , 'sort':0
+            "\ , 'ctagsbin':'~/.dotfiles/rmdtags.py'
+            "\ , 'ctagsargs': ''
+            "\ }
 
-    let g:tagbar_type_markdown = {
-        \ 'ctagstype': 'markdown',
-        \ 'ctagsbin' : '~/.dotfiles/markdown2ctags.py',
-        \ 'ctagsargs' : '-f - --sort=yes',
-        \ 'kinds' : [
-            \ 's:sections',
-            \ 'i:images'
-        \ ],
-        \ 'sro' : '|',
-        \ 'kind2scope' : {
-            \ 's' : 'section',
-        \ },
-        \ 'sort': 0,
-    \ }
+    "let g:tagbar_type_markdown = {
+        "\ 'ctagstype': 'markdown',
+        "\ 'ctagsbin' : '~/.dotfiles/markdown2ctags.py',
+        "\ 'ctagsargs' : '-f - --sort=yes',
+        "\ 'kinds' : [
+            "\ 's:sections',
+            "\ 'i:images'
+        "\ ],
+        "\ 'sro' : '|',
+        "\ 'kind2scope' : {
+            "\ 's' : 'section',
+        "\ },
+        "\ 'sort': 0,
+    "\ }
 
 "Plug 'ferrine/md-img-paste.vim'
     "autocmd FileType html,markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
@@ -410,7 +413,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     \ 'coc-lists',
     \ 'coc-python',
     \ 'coc-snippets',
-    \ 'coc-r-lsp',
+    "\ 'coc-r-lsp',
     \ 'coc-zi',
     \ 'coc-translator',
     \ 'coc-vimlsp',
@@ -567,18 +570,18 @@ Plug 'MattesGroeger/vim-bookmarks'
     let g:bookmark_auto_close = 1
     "let g:bookmark_location_list = 1
 
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+"Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     " Start the preview :MarkdownPreview
     " Stop the preview" :MarkdownPreviewStop
 
 
-Plug 'jalvesaq/zotcite'
-    if has('mac')
-        Plug 'jalvesaq/zotcite'
-        "type @ then part of name of author then c+x c+o
-        "source the zshrc for newly added zotero reference
-    elseif has('unix')
-    endif
+"Plug 'jalvesaq/zotcite'
+    "if has('mac')
+        "Plug 'jalvesaq/zotcite'
+        ""type @ then part of name of author then c+x c+o
+        ""source the zshrc for newly added zotero reference
+    "elseif has('unix')
+    "endif
 
 Plug 'KabbAmine/vZoom.vim', {'on': ['<Plug>(vzoom)', 'VZoomAutoToggle']}
 
