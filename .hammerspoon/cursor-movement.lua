@@ -35,6 +35,7 @@ end)
 -- Use ctrl + i to insert with chinese
 -- seems ctrl-i conflict with keyUpDown i, so i change with h and a combind 
 hs.hotkey.bind({'ctrl'}, 'i', function()
+    keyUpDown({}, 'escape')
     keyUpDown('', 'h')
     keyUpDown('', 'a')
     -- need delay to avoid input of h and a 
