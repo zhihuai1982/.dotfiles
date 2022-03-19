@@ -154,9 +154,17 @@ Plug 'junegunn/goyo.vim', {'for': 'markdown'}
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-Plug 'godlygeek/tabular'
+"Plug 'godlygeek/tabular'
     "http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
     "选中需要对齐的区块  然后输入:tabu<tab> /: \zs
+
+Plug 'junegunn/vim-easy-align'
+    " Start interactive EasyAlign in visual mode (e.g. vipga)
+    xmap ga <Plug>(EasyAlign)
+
+    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+    nmap ga <Plug>(EasyAlign)
+
 
 "Plug 'tpope/vim-surround'
     "cs"'
