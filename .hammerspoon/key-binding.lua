@@ -24,8 +24,8 @@ windowBind({"alt","ctrl"}, {
 
 -- * Set Window Position on screen
 windowBind({"alt", "ctrl"}, {
-  m = wm.maximizeWindow,
-  n = wm.centerOnScreen,
+  --m = wm.maximizeWindow,
+  --n = wm.centerOnScreen,
   j = wm.leftHalf,
   --left = wm.leftHalf,
   k = wm.rightHalf,
@@ -35,19 +35,28 @@ windowBind({"alt", "ctrl"}, {
 })
 
 -- * Set Window Position on screen
---windowBind({"ctrl", "alt", "shift"}, {
+windowBind({"ctrl", "alt"}, {
+  y = wm.rightToLeft,      -- ⌃⌥⇧ + ←
+  o = wm.rightToRight,    -- ⌃⌥⇧ + →
+  i = wm.bottomUp,           -- ⌃⌥⇧ + ↑
+  u = wm.bottomDown        -- ⌃⌥⇧ + ↓
   --left = wm.rightToLeft,      -- ⌃⌥⇧ + ←
   --right = wm.rightToRight,    -- ⌃⌥⇧ + →
   --up = wm.bottomUp,           -- ⌃⌥⇧ + ↑
   --down = wm.bottomDown        -- ⌃⌥⇧ + ↓
---})
+})
+
 -- * Set Window Position on screen
---windowBind({"alt", "cmd", "shift"}, {
+windowBind({"ctrl", "alt"}, {
+  n = wm.leftToLeft,      -- ⌥⌘⇧ + ←
+  ["."] = wm.leftToRight,    -- ⌥⌘⇧ + →
+  [","] = wm.topUp,             -- ⌥⌘⇧ + ↑
+  m = wm.topDown          -- ⌥⌘⇧ + ↓
   --left = wm.leftToLeft,      -- ⌥⌘⇧ + ←
   --right = wm.leftToRight,    -- ⌥⌘⇧ + →
   --up = wm.topUp,             -- ⌥⌘⇧ + ↑
   --down = wm.topDown          -- ⌥⌘⇧ + ↓
---})
+})
 
 ---- * Windows-like cycle
 --windowBind({"ctrl", "alt"}, {
@@ -70,9 +79,9 @@ local mouse = require "hs.mouse"
 --end)
 
  --move cursor to next monitor
-hotkey.bind({"alt","ctrl"}, "i", function ()
-  focusScreen(window.focusedWindow():screen():next())
-end)
+--hotkey.bind({"alt","ctrl"}, "i", function ()
+  --focusScreen(window.focusedWindow():screen():next())
+--end)
 
 
 --Predicate that checks if a window belongs to a screen
