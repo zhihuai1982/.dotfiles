@@ -67,22 +67,32 @@ hs.hotkey.bind({'cmd'}, ']', function()
 end)
 
 -- Use ctrl + [ to cursor previous word
-hs.hotkey.bind({'ctrl'}, '[', function()
-  if isInTerminal() then
-    keyUpDown({'ctrl'}, 'Left')
-  else
-    keyUpDown({'alt'}, 'Left')
-  end
-end)
+--hs.hotkey.bind({'ctrl'}, '[', function()
+  --if isInTerminal() then
+    --keyUpDown({'ctrl'}, 'Left')
+  --else
+    --keyUpDown({'alt'}, 'Left')
+  --end
+--end)
+
+local wf = hs.window.filter.new():setFilters({iTerm2 = false, Terminal = false})
+enableHotkeyForWindowsMatchingFilter(wf, hs.hotkey.bind({'ctrl'}, '[', function()
+        keyUpDown({'alt'}, 'Left')
+end))
+
+local wf = hs.window.filter.new():setFilters({iTerm2 = false, Terminal = false})
+enableHotkeyForWindowsMatchingFilter(wf, hs.hotkey.bind({'ctrl'}, ']', function()
+        keyUpDown({'alt'}, 'Right')
+end))
 
 -- Use ctrl + ] to move cursor previous word
-hs.hotkey.bind({'ctrl'}, ']', function()
-  if isInTerminal() then
-    keyUpDown({'ctrl'}, 'Right')
-  else
-    keyUpDown({'alt'}, 'Right')
-  end
-end)
+--hs.hotkey.bind({'ctrl'}, ']', function()
+  --if isInTerminal() then
+    --keyUpDown({'ctrl'}, 'Right')
+  --else
+    --keyUpDown({'alt'}, 'Right')
+  --end
+--end)
 
 -- Use ctrl + d to delete line wherever the cursor is
 -- this shortcut only works in nonterminal app
