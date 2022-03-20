@@ -343,30 +343,20 @@ Plug 'voldikss/vim-floaterm'
 
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " fixqq:qqq the most annoying bug that coc has
-    "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
     let g:coc_global_extensions = [
     \ 'coc-css',
-    \ 'coc-actions',
     \ 'coc-pairs',
     \ 'coc-highlight',
-    \ 'coc-diagnostic',
     \ 'coc-explorer',
     \ 'coc-git',
     \ 'coc-json',
-    \ 'coc-tsserver',
     \ 'coc-html',
     \ 'coc-lists',
     \ 'coc-python',
-    \ 'coc-snippets',
-    "\ 'coc-r-lsp',
     \ 'coc-zi',
     \ 'coc-translator',
     \ 'coc-vimlsp',
     \ 'coc-yank']
-    "set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-    "nmap <silent> <TAB> <Plug>(coc-range-select)
-    "xmap <silent> <TAB> <Plug>(coc-range-select)
 
     " Use tab for trigger completion with characters ahead and navigate.
     " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -381,41 +371,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
     endfunction
-    " Use <c-space> to trigger completion.
-    " Use <c-u> to trigger completion.
-    inoremap <silent><expr> <c-u> coc#refresh()
 
-    " Use `[g` and `]g` to navigate diagnostics
-    " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-    nmap <silent> g[ <Plug>(coc-diagnostic-prev)
-    nmap <silent> g] <Plug>(coc-diagnostic-next)
+    inoremap <silent><expr> <c-u> coc#refresh()
 
     " Open up coc-commands
     nnoremap <c-c> :CocCommand<CR>
-    " Text Objects
-    xmap kf <Plug>(coc-funcobj-i)
-    xmap af <Plug>(coc-funcobj-a)
-    omap kf <Plug>(coc-funcobj-i)
-    omap af <Plug>(coc-funcobj-a)
-
-    " Use K to show documentation in preview window.
-    nnoremap <silent> <leader>h :call <SID>show_documentation()<CR>
-
-    function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
-    endfunction
 
     " Useful commands
     nnoremap <silent> <space>y :<C-u>CocList --normal yank<cr>
-
-    nmap <silent> gd <Plug>(coc-definition)
-    nmap <silent> gy <Plug>(coc-type-definition)
-    nmap <silent> gi <Plug>(coc-implementation)
-    nmap <silent> gr <Plug>(coc-references)
 
     " Symbol renaming.
     nmap <leader>rn <Plug>(coc-rename)
@@ -423,31 +386,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " coc-translator
     nmap <leader>vv <Plug>(coc-translator-e)
     vmap <leader>vv <Plug>(coc-translator-ev)
-
-    "Remap for do codeAction of selected region
-    "function! s:cocActionsOpenFromSelected(type) abort
-    "execute 'CocCommand actions.open ' . a:type
-    "endfunction
-    "xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-    "nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-
-    " coc-snippets
-    let g:coc_snippet_next = '<tab>'
-    xmap <Tab> <Plug>(coc-snippets-select)
-    " Use <C-p> for trigger snippet expand.
-    "smap <c-p> <Plug>(coc-snippets-expand)
-
-    "Use :CocList snippets to open snippets list.
-    "Use :CocCommand snippets.editSnippets to edit user snippet of current filetype.
-    "Use :CocCommand snippets.openSnippetFiles to open snippet files of current filetype.
-    "Use the command :CocConfig to open your user configuration file
-        "snippets.userSnippetsDirectory, Directory that contains custom user ultisnips snippets, use ultisnips in extension root by default. 自定义模板目录
-
-    " Formatting selected code.
-    xmap <leader>af  <Plug>(coc-format-selected)
-    nmap <leader>af  <Plug>(coc-format)
-    " Apply AutoFix to problem on the current line.
-    nmap <leader>qf  <Plug>(coc-fix-current)
 
 
 Plug 'itchyny/lightline.vim'
@@ -595,7 +533,6 @@ if has('mac')
 " copy to system clipboard
 vnoremap y "+y
 
-" ============================ key map ============================
 " 折叠后移动快捷键修改
 nnoremap k gk
 nnoremap gk k
