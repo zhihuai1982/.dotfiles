@@ -1,3 +1,6 @@
+"----------------------------------------------------------------------
+" Set
+"----------------------------------------------------------------------
 set nocompatible                " don't bother with vi compatibility
 set hidden                      " 允许 vim 未保存 跳转 buffer
 set autoread                    " reload files when changed on disk, i.e. via `git checkout`
@@ -24,42 +27,15 @@ set textwidth=0
 set wrapmargin=2
 set showmatch
 
+" 显示括号匹配的时间
+set matchtime=2
 
-" syntax
-syntax on
+"Disable "bracketed paste mode" by clearing 't_BE'
+"防止 vim 把粘贴内容当成输入
+set t_BE=
 
 " history : how many lines of history VIM has to remember
 set history=2000
-
-set nobackup                    " do not keep a backup file
-set swapfile
-set directory^=$HOME/.swap//
-set updatetime=300
-set updatecount=60
-set undofile
-set undodir=~/.undodir
-
-set lazyredraw
-
-set nofoldenable                " 启动时关闭代码折叠
-"za，打开或关闭当前折叠；zM，关闭所有折叠；zR，打开所有折叠
-
-set cursorline
-
-" 设置 alt 键不映射到菜单栏
-set winaltkeys=no
-" movement
-set scrolloff=7                 " keep 7 lines when scrolling
-
-" Vim 的默认寄存器和系统剪贴板共享
-" set clipboard+=unnamed
-
-" 解决 tmux 真彩问题
-set termguicolors
-if &term =~# '^screen'
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
 
 " show
 set ruler                       " show the current row and column
@@ -68,7 +44,19 @@ set showcmd                     " display incomplete commands
 set showmode                    " display current modes
 set showmatch                   " jump to matches when entering parentheses
 set matchtime=2                 " tenths of a second to show the matching parenthesis  eol:$
-set list listchars=extends:❯,precedes:❮,tab:▸\ ,trail:˽
+
+" 如遇Unicode值大于255的文本，不必等到空格再折行
+set formatoptions+=m
+
+" 合并两行中文时，不在中间加空格
+set formatoptions+=B
+
+" 文件换行符，默认使用 unix 换行符
+set ffs=unix,dos,mac
+
+" 显示最后一行
+set display=lastline
+set laststatus=2
 
 " search
 set hlsearch                    " highlight searches
@@ -92,16 +80,9 @@ set softtabstop=4                " insert mode tab and backspace use 4 spaces
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set termencoding=utf-8
-set ffs=unix,dos,mac
-set formatoptions+=m
-set formatoptions+=B
 
 " select & complete
 set selection=inclusive  "指定在选择文本时，光标所在位置也属于被选中的范围。如果指定 selection=exclusive 的话，可能会出现某些文本无法被选中的情况。
-
-set wildmenu                           " show a navigable menu for tab completion"
-set wildmode=longest,list,full
-set wildignore=*.o,*~,*.pyc,*.class
 
 " others
 set backspace=indent,eol,start  " make that backspace key work the way it should
@@ -111,17 +92,107 @@ set backspace=indent,eol,start  " make that backspace key work the way it should
 " Enable basic mouse behavior such as resizing buffers.
 set mouse=a
 
-" leader
+"----------------------------------------------------------------------
+" 备份设置
+"----------------------------------------------------------------------
 
-let mapleader = "\<space>"
+" 允许备份
+set backup
 
+" 保存时备份
+set writebackup
+
+" 备份文件地址，统一管理
+set backupdir=~/.vim/tmp
+
+" 备份文件扩展名
+set backupext=.bak
+
+" 禁用交换文件
+set noswapfile
+
+" 禁用 undo文件
+set noundofile
+
+" 创建目录，并且忽略可能出现的警告
+silent! call mkdir(expand('~/.vim/tmp'), "p", 0755)
+
+set updatetime=300
+set updatecount=60
+
+" 延迟绘制（提升性能）
+set lazyredraw
+
+" 错误格式
+set errorformat+=[%f:%l]\ ->\ %m,[%f:%l]:%m
+
+" 设置分隔符可视
+set listchars=tab:\|\ ,trail:.,extends:>,precedes:<
+
+set nofoldenable                " 启动时关闭代码折叠
+"za，打开或关闭当前折叠；zM，关闭所有折叠；zR，打开所有折叠
+
+
+set cursorline
+
+" 设置 alt 键不映射到菜单栏
+set winaltkeys=no
+
+" movement
+set scrolloff=7                 " keep 7 lines when scrolling
+
+" Vim 的默认寄存器和系统剪贴板共享
+" set clipboard+=unnamed
+
+"----------------------------------------------------------------------
+" 文件类型设置
+"----------------------------------------------------------------------
+
+autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
+
+" 防止 markdown 空格红色
+autocmd FileType markdown,rmd hi link markdownError NONE
+
+" 文件搜索和补全时忽略下面扩展名
+set wildmenu                           " show a navigable menu for tab completion"
+set wildmode=longest,list,full
+set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.pyc,.pyo,.egg-info,.class
+set wildignore=*.o,*.obj,*~,*.exe,*.a,*.pdb,*.lib "stuff to ignore when tab completing
+set wildignore+=*.so,*.dll,*.swp,*.egg,*.jar,*.class,*.pyc,*.pyo,*.bin,*.dex
+set wildignore+=*.zip,*.7z,*.rar,*.gz,*.tar,*.gzip,*.bz2,*.tgz,*.xz    " MacOSX/Linux
+set wildignore+=*DS_Store*,*.ipch
+set wildignore+=*.gem
+set wildignore+=*.png,*.jpg,*.gif,*.bmp,*.tga,*.pcx,*.ppm,*.img,*.iso
+set wildignore+=*.so,*.swp,*.zip,*/.Trash/**,*.pdf,*.dmg,*/.rbenv/**
+set wildignore+=*/.nx/**,*.app,*.git,.git
+set wildignore+=*.wav,*.mp3,*.ogg,*.pcm
+set wildignore+=*.mht,*.suo,*.sdf,*.jnlp
+set wildignore+=*.chm,*.epub,*.pdf,*.mobi,*.ttf
+set wildignore+=*.mp4,*.avi,*.flv,*.mov,*.mkv,*.swf,*.swc
+set wildignore+=*.ppt,*.pptx,*.docx,*.xlt,*.xls,*.xlsx,*.odt,*.wps
+set wildignore+=*.msi,*.crx,*.deb,*.vfd,*.apk,*.ipa,*.bin,*.msu
+set wildignore+=*.gba,*.sfc,*.078,*.nds,*.smd,*.smc
+set wildignore+=*.linux2,*.win32,*.darwin,*.freebsd,*.linux,*.android
+
+" syntax
+syntax enable
+syntax on
 " filetype
 filetype on
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
 
+"----------------------------------------------------------------------
+" Leader
+"----------------------------------------------------------------------
+
+let mapleader = "\<space>"
+
+"----------------------------------------------------------------------
 " Vim-plug
+"----------------------------------------------------------------------
+
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'morhetz/gruvbox'
@@ -135,31 +206,19 @@ Plug 'godlygeek/tabular'
     nmap <Leader>a; :Tabularize /:\zs<CR>
     vmap <Leader>a; :Tabularize /:\zs<CR>
 
-"Plug 'junegunn/vim-easy-align'
-    "" Start interactive EasyAlign in visual mode (e.g. vipga)
-    "xmap ga <Plug>(EasyAlign)
-
-    "" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-    "nmap ga <Plug>(EasyAlign)
-
-    "if !exists('g:easy_align_delimiters')
-        "let g:easy_align_delimiters = {}
-    "endif
-    "let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
-
 Plug 'machakann/vim-sandwich'
-     " NOTE: To prevent unintended operation, the following setting is strongly recommended to add to your vimrc.
-     " |s| could be easily replaced by |c|l| commands.k
+    " NOTE: To prevent unintended operation, the following setting is strongly recommended to add to your vimrc.
+    " |s| could be easily replaced by |c|l| commands.k
 	nmap s <Nop>
 	xmap s <Nop>
 
 Plug 'wellle/targets.vim'
 
-"改善"/"搜索体验
-"vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
-"Automatically clears search highlight when cursor is moved
-"Improved star-search (visual-mode, highlighting without moving)
 Plug 'junegunn/vim-slash'
+    "改善"/"搜索体验
+    "vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
+    "Automatically clears search highlight when cursor is moved
+    "Improved star-search (visual-mode, highlighting without moving)
 
 Plug 'psliwka/vim-smoothie'
 
@@ -179,10 +238,10 @@ Plug 'Lokaltog/vim-easymotion'
 
 Plug 'preservim/nerdcommenter'
 
-"Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
-"Vim by default closes all windows that have the buffer (file) open when you do :bdelete. If you've just got your splits and columns perfectly tuned, having them messed up equals a punch in the face and that's no way to tango.
 Plug 'moll/vim-bbye'
-
+    "Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
+    "Vim by default closes all windows that have the buffer (file) open when you do :bdelete. If you've just got your splits and columns perfectly tuned, having them messed up equals a punch in the face and that's no way to tango.
+    
 Plug 'mhinz/vim-startify'
 
 Plug 'Yggdroot/LeaderF'
@@ -256,8 +315,6 @@ Plug 'Yggdroot/LeaderF'
     "" R commands in R output are highlighted
     "" let g:Rout_more_colors = 1
 
-"Plug 'honza/vim-snippets'  " snippets repository
-
 "Plug 'vim-scripts/argtextobj.vim'
 
 Plug 'luochen1990/rainbow'
@@ -286,7 +343,7 @@ Plug 'voldikss/vim-floaterm'
 
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " fix the most annoying bug that coc has
+    " fixqq:qqq the most annoying bug that coc has
     "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
     let g:coc_global_extensions = [
     \ 'coc-css',
@@ -407,19 +464,18 @@ Plug 'itchyny/lightline.vim'
 
     autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
-"Vim plugin for automatically highlighting other uses of the current word under the cursor
 Plug 'RRethy/vim-illuminate'
+    "Vim plugin for automatically highlighting other uses of the current word under the cursor
     let g:Illuminate_delay = 250
     let g:Illuminate_highlightUnderCursor = 0
     "hi illuminatedWord cterm=undercurl gui=undercurl
     hi link illuminatedWord Visual
-
     
 Plug 'mg979/vim-visual-multi'
     let g:VM_theme             = 'iceblue'
     let g:VM_show_warnings = 1
 
-Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
+Plug 'gcmt/wildfire.vim'
 
 Plug 'KabbAmine/vZoom.vim', {'on': ['<Plug>(vzoom)', 'VZoomAutoToggle']}
 
@@ -499,72 +555,45 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
         \ '?' : ['buffers'   , 'fzf-buffer']      ,
         \ }
 
-
-     "l is for language server protocol
-    "let g:which_key_map.l = {
-        "\ 'name' : '+lsp' ,
-        "\ '.' : [':CocConfig'                          , 'config'],
-        "\ ';' : ['<Plug>(coc-refactor)'                , 'refactor'],
-        "\ 'a' : ['<Plug>(coc-codeaction)'              , 'line action'],
-        "\ 'A' : ['<Plug>(coc-codeaction-selected)'     , 'selected action'],
-        "\ 'b' : [':CocNext'                            , 'next action'],
-        "\ 'B' : [':CocPrev'                            , 'prev action'],
-        "\ 'c' : [':CocList commands'                   , 'commands'],
-        "\ 'd' : ['<Plug>(coc-definition)'              , 'definition'],
-        "\ 'D' : ['<Plug>(coc-declaration)'             , 'declaration'],
-        "\ 'e' : [':CocList extensions'                 , 'extensions'],
-        "\ 'f' : ['<Plug>(coc-format-selected)'         , 'format selected'],
-        "\ 'F' : ['<Plug>(coc-format)'                  , 'format'],
-        "\ 'h' : ['<Plug>(coc-float-hide)'              , 'hide'],
-        "\ 'i' : ['<Plug>(coc-implementation)'          , 'implementation'],
-        "\ 'I' : [':CocList diagnostics'                , 'diagnostics'],
-        "\ 'j' : ['<Plug>(coc-float-jump)'              , 'float jump'],
-        "\ 'l' : ['<Plug>(coc-codelens-action)'         , 'code lens'],
-        "\ 'n' : ['<Plug>(coc-diagnostic-next)'         , 'next diagnostic'],
-        "\ 'N' : ['<Plug>(coc-diagnostic-next-error)'   , 'next error'],
-        "\ 'o' : ['<Plug>(coc-openlink)'                , 'open link'],
-        "\ 'O' : [':CocList outline'                    , 'outline'],
-        "\ 'p' : ['<Plug>(coc-diagnostic-prev)'         , 'prev diagnostic'],
-        "\ 'P' : ['<Plug>(coc-diagnostic-prev-error)'   , 'prev error'],
-        "\ 'q' : ['<Plug>(coc-fix-current)'             , 'quickfix'],
-        "\ 'r' : ['<Plug>(coc-rename)'                  , 'rename'],
-        "\ 'R' : ['<Plug>(coc-references)'              , 'references'],
-        "\ 's' : [':CocList -I symbols'                 , 'references'],
-        "\ 'S' : [':CocList snippets'                   , 'snippets'],
-        "\ 't' : ['<Plug>(coc-type-definition)'         , 'type definition'],
-        "\ 'u' : [':CocListResume'                      , 'resume list'],
-        "\ 'U' : [':CocUpdate'                          , 'update CoC'],
-        "\ 'v' : [':Vista!!'                            , 'tag viewer'],
-        "\ 'z' : [':CocDisable'                         , 'disable CoC'],
-        "\ 'Z' : [':CocEnable'                          , 'enable CoC'],
-        "\ }
-
 call plug#end()
 
+"----------------------------------------------------------------------
+" 显示设置
+"----------------------------------------------------------------------
 
-if has('mac')
-        let g:python3_host_prog = '/Users/zhihuai1982/miniconda3/bin/python3'
-    endif
-
+" 这一行要在前面
 colorscheme gruvbox
 
-" copy to system clipboard
-vnoremap y "+y
-
-" ============================ theme and status line ============================
-
+"改变光标模式
+let &t_SI.="\e[5 q" "SI = INSERT mode
+let &t_SR.="\e[4 q" "SR ="REPLACE mode
+let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 
 " set mark column color 设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr
 hi! link ShowMarksHLl DiffAdd
 hi! link ShowMarksHLu DiffChange
 
-" status line
-set laststatus=2   " Always show the status line - use 2 lines for the status bar
+" background transpant
+hi Normal guibg=NONE ctermbg=NONE
 
-" ============================ specific file type ===========================
+" 解决 tmux 真彩问题
+set termguicolors
+if &term =~# '^screen'
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
 
-autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
+if has('mac')
+        let g:python3_host_prog = '/Users/zhihuai1982/miniconda3/bin/python3'
+    endif
+
+"----------------------------------------------------------------------
+" 键盘映射
+"----------------------------------------------------------------------
+
+" copy to system clipboard
+vnoremap y "+y
 
 " ============================ key map ============================
 " 折叠后移动快捷键修改
@@ -572,10 +601,6 @@ nnoremap k gk
 nnoremap gk k
 nnoremap j gj
 nnoremap gj j
-
-"Disable "bracketed paste mode" by clearing 't_BE'
-"防止 vim 把粘贴内容当成输入
-set t_BE=
 
 "Keep search pattern at the center of the screen."
 nnoremap <silent> n nzz
@@ -587,20 +612,11 @@ nnoremap <silent> g* g*zz
 " save
 cmap w!! w !sudo tee >/dev/null %
 
-"改变光标模式
-
-let &t_SI.="\e[5 q" "SI = INSERT mode
-let &t_SR.="\e[4 q" "SR ="REPLACE mode
-let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
-
 " 光标在窗口内移动
 nnoremap H <c-w>h
 nnoremap L <c-w>l
 nnoremap K <c-w>k
 nnoremap M <c-w>j
-
-" 防止 markdown 空格红色
-autocmd FileType markdown,rmd hi link markdownError NONE
 
 " Resize splits with arrow keys
 "noremap <up> :res +5<CR>
@@ -618,37 +634,4 @@ noremap <leader>sv <C-w>t<C-w>H
 
 " Press ` to change case (instead of ~)
 noremap ` ~
-
-"noremap <silent><tab>m :tabnew<cr>
-"noremap <silent><tab>e :tabclose<cr>
-"noremap <silent><tab>n :tabn<cr>
-"noremap <silent><tab>p :tabp<cr>
-""noremap <silent><leader>t :tabnew<cr>
-""noremap <silent><leader>g :tabclose<cr>
-"noremap <silent><leader>1 :tabn 1<cr>
-"noremap <silent><leader>2 :tabn 2<cr>
-"noremap <silent><leader>3 :tabn 3<cr>
-"noremap <silent><leader>4 :tabn 4<cr>
-"noremap <silent><leader>5 :tabn 5<cr>
-"noremap <silent><leader>6 :tabn 6<cr>
-"noremap <silent><leader>7 :tabn 7<cr>
-"noremap <silent><leader>8 :tabn 8<cr>
-"noremap <silent><leader>9 :tabn 9<cr>
-"noremap <silent><leader>0 :tabn 10<cr>
-"let g:which_key_map.1 = 'which_key_ignore'
-"let g:which_key_map.2 = 'which_key_ignore'
-"let g:which_key_map.3 = 'which_key_ignore'
-"let g:which_key_map.4 = 'which_key_ignore'
-"let g:which_key_map.5 = 'which_key_ignore'
-"let g:which_key_map.6 = 'which_key_ignore'
-"let g:which_key_map.7 = 'which_key_ignore'
-"let g:which_key_map.8 = 'which_key_ignore'
-"let g:which_key_map.9 = 'which_key_ignore'
-"let g:which_key_map.0 = 'which_key_ignore'
-"noremap <silent><s-tab> :tabnext<CR>
-"inoremap <silent><s-tab> <ESC>:tabnext<CR>
-
-" background transpant
-hi Normal guibg=NONE ctermbg=NONE
-
 
