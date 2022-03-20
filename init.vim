@@ -127,67 +127,35 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'
     let g:gruvbox_italic = '1'
 
-Plug 'junegunn/goyo.vim', {'for': 'markdown'}
-    let g:goyo_margin_top = 2
-    let g:goyo_margin_bottom = 2
-
-    function! s:goyo_enter()
-    if executable('tmux') && strlen($TMUX)
-        silent !tmux set status off
-        silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-    endif
-    set noshowmode
-    set noshowcmd
-    set scrolloff=999
-    endfunction
-
-    function! s:goyo_leave()
-    if executable('tmux') && strlen($TMUX)
-        silent !tmux set status on
-        silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-    endif
-    set showmode
-    set showcmd
-    set scrolloff=7
-    endfunction
-
-    autocmd! User GoyoEnter nested call <SID>goyo_enter()
-    autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-"Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
     "http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
     "选中需要对齐的区块  然后输入:tabu<tab> /: \zs
+    nmap <Leader>a= :Tabularize /=<CR>
+    vmap <Leader>a= :Tabularize /=<CR>
+    nmap <Leader>a; :Tabularize /:\zs<CR>
+    vmap <Leader>a; :Tabularize /:\zs<CR>
 
-Plug 'junegunn/vim-easy-align'
-    " Start interactive EasyAlign in visual mode (e.g. vipga)
-    xmap ga <Plug>(EasyAlign)
+"Plug 'junegunn/vim-easy-align'
+    "" Start interactive EasyAlign in visual mode (e.g. vipga)
+    "xmap ga <Plug>(EasyAlign)
 
-    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-    nmap ga <Plug>(EasyAlign)
+    "" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+    "nmap ga <Plug>(EasyAlign)
 
-
-"Plug 'tpope/vim-surround'
-    "cs"'
-    "ds"
-    "ysiw"   word
-    "yss"    whole sentence
-    "yssb    (sentence)
-    "visual mode  "S"
+    "if !exists('g:easy_align_delimiters')
+        "let g:easy_align_delimiters = {}
+    "endif
+    "let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
 
 Plug 'machakann/vim-sandwich'
+     " NOTE: To prevent unintended operation, the following setting is strongly recommended to add to your vimrc.
+     " |s| could be easily replaced by |c|l| commands.k
 	nmap s <Nop>
 	xmap s <Nop>
-    "Add
-    "Press sa{motion/textobject}{addition}. For example, a key sequence saiw( makes foo to (foo).
-
-    "Delete
-    "Press sdb or sd{deletion}. For example, key sequences sdb or sd( makes (foo) to foo. sdb searches a set of surrounding automatically.
-
-    "Replace
-    "Press srb{addition} or sr{deletion}{addition}. For example, key sequences srb" or sr(" makes (foo) to "foo".
 
 Plug 'wellle/targets.vim'
 
+"改善"/"搜索体验
 "vim-slash provides a set of mappings for enhancing in-buffer search experience in Vim.
 "Automatically clears search highlight when cursor is moved
 "Improved star-search (visual-mode, highlighting without moving)
@@ -210,17 +178,12 @@ Plug 'Lokaltog/vim-easymotion'
     nmap m <Plug>(easymotion-overwin-f2)
 
 Plug 'preservim/nerdcommenter'
-    let g:NERDCreateDefaultMappings = 0
-    nmap <Leader>cc <Plug>NERDCommenterToggle
-    vmap <Leader>cc <Plug>NERDCommenterToggle
 
+"Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
+"Vim by default closes all windows that have the buffer (file) open when you do :bdelete. If you've just got your splits and columns perfectly tuned, having them messed up equals a punch in the face and that's no way to tango.
 Plug 'moll/vim-bbye'
 
 Plug 'mhinz/vim-startify'
-
-Plug 'airblade/vim-rooter'
-    "let g:rooter_patterns = ['.git', 'Makefile', '*.sln', 'build/env.sh']
-    let g:rooter_silent_chdir = 1
 
 Plug 'Yggdroot/LeaderF'
     let g:Lf_ReverseOrder = 1
@@ -238,37 +201,20 @@ Plug 'Yggdroot/LeaderF'
     let g:Lf_ShowHidden = 0
 
     let g:Lf_ShortcutF = "<leader>ff"
-    let g:Lf_ShortcutB = "<leader>bb"
     noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-    noremap <leader>fv :<C-U><C-R>=printf("Leaderf file %s %s/.dotfiles/", "", getenv("HOME"))<CR><CR>
+    "noremap <leader>fv :<C-U><C-R>=printf("Leaderf file %s %s/.dotfiles/", "", getenv("HOME"))<CR><CR>
     noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-    noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
     noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
-
     noremap <leader>fj :<C-U><C-R>=printf("Leaderf! rg --max-filesize 500K --wd-mode 'Ac' -e %s ", expand("<cword>"))<CR><CR>
+    "--wd-mode <MODE>      Specify the working directory mode, value has the same meaning as g:Lf_WorkingDirectoryMode.
     noremap <leader>fg :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR><CR>
     noremap <leader>fh :<C-U>Leaderf rg --max-filesize 500K<CR>
     " search visually selected text literally
     xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
     noremap go :<C-U>Leaderf! rg --recall<CR>
 
-    " should use `Leaderf gtags --update` first
-    " ubuntu下需要把 g:Lf_Gtagsconf='/usr/local/share/gtags/gtags.conf'，或者把这个文件拷贝到自己目录下，重命名为.globalrc，否则不能生成tags。
-    "let g:Lf_GtagsAutoGenerate = 1
-    "let g:Lf_Gtagslabel = 'native-pygments'
-    "let g:Lf_Gtagsconf='/usr/local/share/gtags/gtags.conf'
-    "noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
-    "noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
-    "noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
-    "noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
-    "noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>u
-
     " Show icons, icons are shown by default
     let g:Lf_ShowDevIcons = 0
-    " For GUI vim, the icon font can be specify like this, for example
-    " let g:Lf_DevIconsFont = "DroidSansMono Nerd Font Mono"
-    " If needs
-    " set ambiwidth=double
 
 "Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
     "let maplocalleader = ","
@@ -310,26 +256,7 @@ Plug 'Yggdroot/LeaderF'
     "" R commands in R output are highlighted
     "" let g:Rout_more_colors = 1
 
-if has('mac')
-        let g:python3_host_prog = '/Users/zhihuai1982/miniconda3/bin/python3'
-    endif
-
-    "let uname = substitute(system('uname -n'), '\n', '', '')
-    "if uname == "Machome.local"
-            "let g:python3_host_prog = '/usr/local/bin/python3'
-        "elseif uname == 'Macbook.local'
-            "let g:python3_host_prog = '/usr/local/bin/python3'
-        "elseif uname == 'ubuntuinPVE'
-            "let g:python3_host_prog = '/usr/bin/python3'
-        "elseif uname == 'tpm2-WD12.example.com'
-            "let g:python3_host_prog = '/home/data/vip24/miniconda3/bin/python3'
-        "elseif uname == 'ubuntu-home'
-            "let g:python3_host_prog = '/home/zhihuai1982/miniconda3/bin/python3'
-        "endif
-
 "Plug 'honza/vim-snippets'  " snippets repository
-
-"Plug 'chrisbra/csv.vim', {'for': ['r','rmarkdown']}    " for viewing data directly in vim R (Nvim-R)
 
 "Plug 'vim-scripts/argtextobj.vim'
 
@@ -357,52 +284,6 @@ Plug 'voldikss/vim-floaterm'
     nnoremap   <silent>   <leader>ta    :FloatermNew ranger<CR>
     tnoremap   <silent>   <leader>ta    <C-\><C-n>:FloatermNew ranger<CR>
 
-"Plug 'preservim/tagbar'
-    "nnoremap <leader>tb :TagbarToggle<CR>
-
-    ""for more language support
-    ""https://github.com/preservim/tagbar/wiki
-
-    "let g:tagbar_type_r = {
-        "\ 'ctagstype' : 'r',
-        "\ 'kinds'     : [
-            "\ 'f:Functions',
-            "\ 'g:GlobalVariables',
-            "\ 'v:FunctionVariables',
-        "\ ]
-    "\ }
-
-    "let g:tagbar_type_rmd = {
-            "\   'ctagstype':'rmd'
-            "\ , 'kinds':['h:header', 'c:chunk', 'f:function', 'v:variable']
-            "\ , 'sro':'&&&'
-            "\ , 'kind2scope':{'h':'header', 'c':'chunk'}
-            "\ , 'sort':0
-            "\ , 'ctagsbin':'~/.dotfiles/rmdtags.py'
-            "\ , 'ctagsargs': ''
-            "\ }
-
-    "let g:tagbar_type_markdown = {
-        "\ 'ctagstype': 'markdown',
-        "\ 'ctagsbin' : '~/.dotfiles/markdown2ctags.py',
-        "\ 'ctagsargs' : '-f - --sort=yes',
-        "\ 'kinds' : [
-            "\ 's:sections',
-            "\ 'i:images'
-        "\ ],
-        "\ 'sro' : '|',
-        "\ 'kind2scope' : {
-            "\ 's' : 'section',
-        "\ },
-        "\ 'sort': 0,
-    "\ }
-
-"Plug 'ferrine/md-img-paste.vim'
-    "autocmd FileType html,markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
-    "let g:mdip_imgdir = '.'
-    "let g:mdip_imgname = 'image'
-
-" Use release branch (recommend)
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " fix the most annoying bug that coc has
@@ -512,10 +393,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     nmap <leader>qf  <Plug>(coc-fix-current)
 
 
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle'}
-    "<leader>tm to start 
-    "h table-mode
-
 Plug 'itchyny/lightline.vim'
     let g:lightline = {
     \ 'colorscheme': 'wombat',
@@ -530,6 +407,7 @@ Plug 'itchyny/lightline.vim'
 
     autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
+"Vim plugin for automatically highlighting other uses of the current word under the cursor
 Plug 'RRethy/vim-illuminate'
     let g:Illuminate_delay = 250
     let g:Illuminate_highlightUnderCursor = 0
@@ -539,57 +417,9 @@ Plug 'RRethy/vim-illuminate'
     
 Plug 'mg979/vim-visual-multi'
     let g:VM_theme             = 'iceblue'
-    "let g:VM_default_mappings = 0
-    let g:VM_show_warnings = 0
-    let g:VM_mouse_mappings   = 1
-    let g:VM_maps = {}
-    let g:VM_maps["Undo"]     = 'u'
-    let g:VM_maps["Redo"]     = '<C-r>'
-    "let g:VM_leader = '\'
-    "let g:VM_custom_motions             = {'n': 'h', 'i': 'l', 'u': 'k', 'e': 'j', 'N': '0', 'I': '$', 'h': 'e'}
-    "let g:VM_maps['i']                  = 'k'
-    "let g:VM_maps['I']                  = 'K'
-    "let g:VM_maps['Find Under']         = '<C-k>'
-    "let g:VM_maps['Find Subword Under'] = '<C-k>'
-    "let g:VM_maps['Find Next']          = ''
-    "let g:VM_maps['Find Prev']          = ''
-    "let g:VM_maps['Skip Region']        = '<c-n>'
-    "let g:VM_maps['Remove Region']      = 'q'
-    "let g:VM_maps["undo"]               = 'l'
-    "let g:VM_maps["Redo"]               = '<C-r>'
+    let g:VM_show_warnings = 1
 
 Plug 'gcmt/wildfire.vim' " in Visual mode, type k' to select all text in '', or type k) k] k} kp
-
-Plug 'MattesGroeger/vim-bookmarks'
-    let g:bookmark_no_default_key_mappings = 1
-    nmap <leader>mt <Plug>BookmarkToggle
-    nmap <leader>ma <Plug>BookmarkAnnotate
-    nmap <leader>ml <Plug>BookmarkShowAll
-    nmap <leader>mi <Plug>BookmarkNext
-    nmap <leader>mn <Plug>BookmarkPrev
-    nmap <leader>mC <Plug>BookmarkClear
-    nmap <leader>mX <Plug>BookmarkClearAll
-    nmap <leader>mu <Plug>BookmarkMoveUp
-    nmap <leader>me <Plug>BookmarkMoveDown
-    nmap <Leader>mg <Plug>BookmarkMoveToLine
-    let g:bookmark_auto_save = 1
-    let g:bookmark_highlight_lines = 1
-    let g:bookmark_center = 1
-    let g:bookmark_auto_close = 1
-    "let g:bookmark_location_list = 1
-
-"Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-    " Start the preview :MarkdownPreview
-    " Stop the preview" :MarkdownPreviewStop
-
-
-"Plug 'jalvesaq/zotcite'
-    "if has('mac')
-        "Plug 'jalvesaq/zotcite'
-        ""type @ then part of name of author then c+x c+o
-        ""source the zshrc for newly added zotero reference
-    "elseif has('unix')
-    "endif
 
 Plug 'KabbAmine/vZoom.vim', {'on': ['<Plug>(vzoom)', 'VZoomAutoToggle']}
 
@@ -716,16 +546,9 @@ if has('mac')
         let g:python3_host_prog = '/Users/zhihuai1982/miniconda3/bin/python3'
     endif
 
-"augroup qs_colors
-  "autocmd!
-  "autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-  "autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
-"augroup END
-
 colorscheme gruvbox
-"set background=dark    " setting dark mode
-" copy to system clipboard
 
+" copy to system clipboard
 vnoremap y "+y
 
 " ============================ theme and status line ============================
@@ -737,7 +560,6 @@ hi! link ShowMarksHLl DiffAdd
 hi! link ShowMarksHLu DiffChange
 
 " status line
-"set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 set laststatus=2   " Always show the status line - use 2 lines for the status bar
 
 " ============================ specific file type ===========================
@@ -751,17 +573,8 @@ nnoremap gk k
 nnoremap j gj
 nnoremap gj j
 
-set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
-                                "    paste mode, where you can paste mass data
-                                "    that won't be autoindented
-
-"nnoremap <leader>g :Goyo<CR>
-
-"定义以下快捷键，用于快速编辑和重载vimrc配置文件：
-"nnoremap <leader>ev :vsp $MYVIMRC<CR>
-
-" jk 替换 Esc
-"inoremap jk <Esc>
+"Disable "bracketed paste mode" by clearing 't_BE'
+"防止 vim 把粘贴内容当成输入
 set t_BE=
 
 "Keep search pattern at the center of the screen."
@@ -780,25 +593,18 @@ let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR ="REPLACE mode
 let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 
-
-"nnoremap ; :
-"vnoremap ; :
-"nnoremap ' `
-"nnoremap ` '
-
+" 光标在窗口内移动
 nnoremap H <c-w>h
 nnoremap L <c-w>l
 nnoremap K <c-w>k
 nnoremap M <c-w>j
 
+" 防止 markdown 空格红色
 autocmd FileType markdown,rmd hi link markdownError NONE
 
-noremap <leader>tl :tabe<CR>:-tabmove<CR>:term lazygit<CR>
-noremap <leader>tr :tabe<CR>:-tabmove<CR>:term ranger<CR>
-
 " Resize splits with arrow keys
-noremap <up> :res +5<CR>
-noremap <down> :res -5<CR>
+"noremap <up> :res +5<CR>
+"noremap <down> :res -5<CR>
 noremap <left> :vertical resize-5<CR>
 noremap <right> :vertical resize+5<CR>
 
@@ -810,47 +616,39 @@ noremap <leader>sh <C-w>t<C-w>K
 " Place the two screens side by side
 noremap <leader>sv <C-w>t<C-w>H
 
-" find and replace
-"noremap fr :%s//g<left><left>
-nnoremap <silent> <leader>ar V:s/, /,\r/g<CR>:noh<CR>
-"参数换行
-vnoremap <silent> <leader>ar :s/, /,\r/g<CR>gv=
-
-"nnoremap <leader>v :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
-
 " Press ` to change case (instead of ~)
 noremap ` ~
 
-noremap <silent><tab>m :tabnew<cr>
-noremap <silent><tab>e :tabclose<cr>
-noremap <silent><tab>n :tabn<cr>
-noremap <silent><tab>p :tabp<cr>
-"noremap <silent><leader>t :tabnew<cr>
-"noremap <silent><leader>g :tabclose<cr>
-noremap <silent><leader>1 :tabn 1<cr>
-noremap <silent><leader>2 :tabn 2<cr>
-noremap <silent><leader>3 :tabn 3<cr>
-noremap <silent><leader>4 :tabn 4<cr>
-noremap <silent><leader>5 :tabn 5<cr>
-noremap <silent><leader>6 :tabn 6<cr>
-noremap <silent><leader>7 :tabn 7<cr>
-noremap <silent><leader>8 :tabn 8<cr>
-noremap <silent><leader>9 :tabn 9<cr>
-noremap <silent><leader>0 :tabn 10<cr>
-let g:which_key_map.1 = 'which_key_ignore'
-let g:which_key_map.2 = 'which_key_ignore'
-let g:which_key_map.3 = 'which_key_ignore'
-let g:which_key_map.4 = 'which_key_ignore'
-let g:which_key_map.5 = 'which_key_ignore'
-let g:which_key_map.6 = 'which_key_ignore'
-let g:which_key_map.7 = 'which_key_ignore'
-let g:which_key_map.8 = 'which_key_ignore'
-let g:which_key_map.9 = 'which_key_ignore'
-let g:which_key_map.0 = 'which_key_ignore'
-noremap <silent><s-tab> :tabnext<CR>
-inoremap <silent><s-tab> <ESC>:tabnext<CR>
+"noremap <silent><tab>m :tabnew<cr>
+"noremap <silent><tab>e :tabclose<cr>
+"noremap <silent><tab>n :tabn<cr>
+"noremap <silent><tab>p :tabp<cr>
+""noremap <silent><leader>t :tabnew<cr>
+""noremap <silent><leader>g :tabclose<cr>
+"noremap <silent><leader>1 :tabn 1<cr>
+"noremap <silent><leader>2 :tabn 2<cr>
+"noremap <silent><leader>3 :tabn 3<cr>
+"noremap <silent><leader>4 :tabn 4<cr>
+"noremap <silent><leader>5 :tabn 5<cr>
+"noremap <silent><leader>6 :tabn 6<cr>
+"noremap <silent><leader>7 :tabn 7<cr>
+"noremap <silent><leader>8 :tabn 8<cr>
+"noremap <silent><leader>9 :tabn 9<cr>
+"noremap <silent><leader>0 :tabn 10<cr>
+"let g:which_key_map.1 = 'which_key_ignore'
+"let g:which_key_map.2 = 'which_key_ignore'
+"let g:which_key_map.3 = 'which_key_ignore'
+"let g:which_key_map.4 = 'which_key_ignore'
+"let g:which_key_map.5 = 'which_key_ignore'
+"let g:which_key_map.6 = 'which_key_ignore'
+"let g:which_key_map.7 = 'which_key_ignore'
+"let g:which_key_map.8 = 'which_key_ignore'
+"let g:which_key_map.9 = 'which_key_ignore'
+"let g:which_key_map.0 = 'which_key_ignore'
+"noremap <silent><s-tab> :tabnext<CR>
+"inoremap <silent><s-tab> <ESC>:tabnext<CR>
 
 " background transpant
 hi Normal guibg=NONE ctermbg=NONE
 
-noremap <leader>l <c-w>l?^><CR>
+
