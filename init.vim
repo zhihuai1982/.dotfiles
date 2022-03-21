@@ -201,10 +201,14 @@ Plug 'morhetz/gruvbox'
 Plug 'godlygeek/tabular'
     "http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
     "选中需要对齐的区块  然后输入:tabu<tab> /: \zs
+    nmap <Leader>a\ :Tabularize /\|<CR>
+    vmap <Leader>a\ :Tabularize /\|<CR>
     nmap <Leader>a= :Tabularize /=<CR>
     vmap <Leader>a= :Tabularize /=<CR>
     nmap <Leader>a; :Tabularize /:\zs<CR>
     vmap <Leader>a; :Tabularize /:\zs<CR>
+    nmap <Leader>al :Tabularize /
+    vmap <Leader>al :Tabularize /
 
 Plug 'machakann/vim-sandwich'
     " NOTE: To prevent unintended operation, the following setting is strongly recommended to add to your vimrc.
@@ -345,14 +349,14 @@ Plug 'voldikss/vim-floaterm'
     " Set floaterm window background to gray once the cursor moves out from it
     hi FloatermNC guibg=gray
 
-    nnoremap   <silent>   <leader>tw    :FloatermNew<CR>
-    tnoremap   <silent>   <leader>tw    <C-\><C-n>:FloatermNew<CR>
-    nnoremap   <silent>   <leader>tp    :FloatermPrev<CR>
-    tnoremap   <silent>   <leader>tp    <C-\><C-n>:FloatermPrev<CR>
-    nnoremap   <silent>   <leader>tn    :FloatermNext<CR>
-    tnoremap   <silent>   <leader>tn    <C-\><C-n>:FloatermNext<CR>
-    nnoremap   <silent>   <leader>tg   :FloatermToggle<CR>
-    tnoremap   <silent>   <leader>tg   <C-\><C-n>:FloatermToggle<CR>
+    "nnoremap   <silent>   <leader>tw    :FloatermNew<CR>
+    "tnoremap   <silent>   <leader>tw    <C-\><C-n>:FloatermNew<CR>
+    "nnoremap   <silent>   <leader>tp    :FloatermPrev<CR>
+    "tnoremap   <silent>   <leader>tp    <C-\><C-n>:FloatermPrev<CR>
+    "nnoremap   <silent>   <leader>tn    :FloatermNext<CR>
+    "tnoremap   <silent>   <leader>tn    <C-\><C-n>:FloatermNext<CR>
+    nnoremap   <silent>   <leader>tf   :FloatermToggle<CR>
+    tnoremap   <silent>   <leader>tf   <C-\><C-n>:FloatermToggle<CR>
     nnoremap   <silent>   <leader>tk    :FloatermKill<CR>
     tnoremap   <silent>   <leader>tk    <C-\><C-n>:FloatermKill<CR>
     nnoremap   <silent>   <leader>ta    :FloatermNew ranger<CR>
