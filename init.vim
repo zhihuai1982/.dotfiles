@@ -231,12 +231,24 @@ Plug 'unblevable/quick-scope'
     autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
     augroup END
 
-Plug 'Lokaltog/vim-easymotion'
-    let g:EasyMotion_do_mapping = 0 " Disable default mappings
+Plug 'easymotion/vim-easymotion'
+    "let g:EasyMotion_do_mapping = 0 " Disable default mappings
     let g:EasyMotion_smartcase = 1
-    nmap m <Plug>(easymotion-overwin-f2)
+
+    "For symbols and numerals. 1 will match 1 and !; ! matches ! only.
+    let g:EasyMotion_use_smartsign_us = 1 " US layout
+    map m <Plug>(easymotion-overwin-f)
+
+    " Gif config
+    map  / <Plug>(easymotion-sn)
+    omap / <Plug>(easymotion-tn)
+
+    map <Leader>j <Plug>(easymotion-j)
+    map <Leader>k <Plug>(easymotion-k)
 
 Plug 'preservim/nerdcommenter'
+    vmap <Leader>cc <Plug>NERDCommenterToggle
+    nmap <Leader>cc <Plug>NERDCommenterToggle
 
 Plug 'moll/vim-bbye'
     "Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
@@ -260,16 +272,21 @@ Plug 'Yggdroot/LeaderF'
     let g:Lf_ShowHidden = 0
 
     let g:Lf_ShortcutF = "<leader>ff"
+
+    """""""""""""""""""""
+    "use :Leaderf <subcommand> -h to get specific help of subcommand, e.g., :Leaderf rg -h
+    """""""""""""""""""""
     noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
     "noremap <leader>fv :<C-U><C-R>=printf("Leaderf file %s %s/.dotfiles/", "", getenv("HOME"))<CR><CR>
     noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-    noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
-    noremap <leader>fj :<C-U><C-R>=printf("Leaderf! rg --max-filesize 500K --wd-mode 'Ac' -e %s ", expand("<cword>"))<CR><CR>
+    "noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+    noremap <leader>fh :<C-U><C-R>=printf("Leaderf! rg --max-filesize 500K --wd-mode 'Ac' -e %s ", expand("<cword>"))<CR><CR>
+    "noremap <leader>fk :<C-U><C-R>=printf("Leaderf file %s ", "")<CR><CR>
     "--wd-mode <MODE>      Specify the working directory mode, value has the same meaning as g:Lf_WorkingDirectoryMode.
-    noremap <leader>fg :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR><CR>
-    noremap <leader>fh :<C-U>Leaderf rg --max-filesize 500K<CR>
+    "noremap <leader>fg :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR><CR>
+    noremap <leader>fj :<C-U>Leaderf rg --max-filesize 500K<CR>
     " search visually selected text literally
-    xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+    "xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
     noremap go :<C-U>Leaderf! rg --recall<CR>
 
     " Show icons, icons are shown by default
@@ -558,8 +575,8 @@ nnoremap M <c-w>j
 " Resize splits with arrow keys
 "noremap <up> :res +5<CR>
 "noremap <down> :res -5<CR>
-noremap <left> :vertical resize-5<CR>
-noremap <right> :vertical resize+5<CR>
+noremap <left> <c-w>h:vertical resize-5<CR>
+noremap <right> <c-w>h:vertical resize+5<CR>
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
 noremap <leader>sb :set splitbelow<CR>:split<CR>
