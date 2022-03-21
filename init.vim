@@ -216,6 +216,7 @@ Plug 'machakann/vim-sandwich'
 	nmap s <Nop>
 	xmap s <Nop>
 
+
 Plug 'wellle/targets.vim'
 
 Plug 'junegunn/vim-slash'
@@ -515,6 +516,20 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
         \ }
 
 call plug#end()
+
+"----------------------------------------------------------------------
+" setting of sandwich
+"----------------------------------------------------------------------
+" it would be better to copy the default settings in g:sandwich#default_recipes
+" due to vim-plug delay loading, the sandwich#recipes need to add after plug#end
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+let g:sandwich#recipes += [
+                \ {
+                \ 'buns'       : ['```', '```'],
+                \ 'kind'       : ['add','delete'],
+                \ 'input'      : ['c'],
+                \  },
+                \ ]
 
 "----------------------------------------------------------------------
 " 显示设置
