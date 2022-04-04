@@ -129,10 +129,8 @@ alias vi="/usr/local/bin/nvim"
 alias gacp="git add . && git commit -m sync && git push"
 alias lg="lazygit"
 alias gitl="git log --graph --decorate --oneline --simplify-by-decoration --all"
-alias pms="pm2 start npm -- start"
 alias c="clear"
 alias ra='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias gu="gitup"
 alias panref='pandoc -F $HOME/.config/nvim/plugged/zotcite/python3/zotref.py -F pandoc-citeproc --reference-doc=reference.docx'
 alias proxy='export all_proxy=socks5://127.0.0.1:1086'
 alias unproxy='unset all_proxy'
@@ -142,12 +140,11 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias shome='ssh -Y -p 44 zhihuai1982@13715f706af888a5.sn.mynetname.net'
-alias svip='ssh -Y vip24@biotrainee.vip -p 6891'
 alias path='echo $PATH | tr ":" "\n"'
 
-alias scpvip='scp -P 6891 $file vip24@biotrainee.vip:~/Downloads'
 alias scphome='scp -P 44 $file zhihuai1982@www.digitalnomad.host:~/Downloads'
 
+alias ds='destrat'
 
 # 修改默认编辑器
 export EDITOR=nvim
