@@ -39,7 +39,7 @@ hs.hotkey.bind({'ctrl'}, 'i', function()
     keyUpDown('', 'h')
     keyUpDown('', 'a')
     -- need delay to avoid input of h and a 
-    hs.timer.doAfter(0.1, function()
+    hs.timer.doAfter(0.5, function()
         hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
     end)
 end)
@@ -57,15 +57,33 @@ end)
 hs.hotkey.bind({'cmd'}, ']', function()
   if isInTerminal() then
     keyUpDown({}, 'escape')
-    keyUpDown({}, 'l')
     keyUpDown({}, 'd')
+    keyUpDown({}, 'a')
     keyUpDown({}, 'w')
-    keyUpDown({}, 'i')
+    keyUpDown({}, 'a')
   else
     keyUpDown({'alt'}, 'forwarddelete')
   end
 end)
 
+
+--Use ctrl + [ to cursor previous word
+hs.hotkey.bind({'ctrl'}, '[', function()
+  if isInTerminal() then
+    keyUpDown({'ctrl'}, 'Left')
+  else
+    keyUpDown({'alt'}, 'Left')
+  end
+end)
+
+--Use ctrl + ] to cursor previous word
+hs.hotkey.bind({'ctrl'}, ']', function()
+  if isInTerminal() then
+    keyUpDown({'ctrl'}, 'Right')
+  else
+    keyUpDown({'alt'}, 'Right')
+  end
+end)
 -- Use ctrl + [ to cursor previous word
 --hs.hotkey.bind({'ctrl'}, '[', function()
   --if isInTerminal() then
@@ -75,24 +93,15 @@ end)
   --end
 --end)
 
-local wf = hs.window.filter.new():setFilters({iTerm2 = false, Terminal = false})
-enableHotkeyForWindowsMatchingFilter(wf, hs.hotkey.bind({'ctrl'}, '[', function()
-        keyUpDown({'alt'}, 'Left')
-end))
+--local wf = hs.window.filter.new():setFilters({iTerm2 = false, Terminal = false})
+--enableHotkeyForWindowsMatchingFilter(wf, hs.hotkey.bind({'ctrl'}, '[', function()
+        --keyUpDown({'alt'}, 'Left')
+--end))
 
-local wf = hs.window.filter.new():setFilters({iTerm2 = false, Terminal = false})
-enableHotkeyForWindowsMatchingFilter(wf, hs.hotkey.bind({'ctrl'}, ']', function()
-        keyUpDown({'alt'}, 'Right')
-end))
-
--- Use ctrl + ] to move cursor previous word
---hs.hotkey.bind({'ctrl'}, ']', function()
-  --if isInTerminal() then
-    --keyUpDown({'ctrl'}, 'Right')
-  --else
-    --keyUpDown({'alt'}, 'Right')
-  --end
---end)
+--local wf = hs.window.filter.new():setFilters({iTerm2 = false, Terminal = false})
+--enableHotkeyForWindowsMatchingFilter(wf, hs.hotkey.bind({'ctrl'}, ']', function()
+        --keyUpDown({'alt'}, 'Right')
+--end))
 
 -- Use ctrl + d to delete line wherever the cursor is
 -- this shortcut only works in nonterminal app
