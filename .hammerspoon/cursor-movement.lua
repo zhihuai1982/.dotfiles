@@ -84,6 +84,21 @@ hs.hotkey.bind({'ctrl'}, ']', function()
     keyUpDown({'alt'}, 'Right')
   end
 end)
+
+--Use ctrl + y to capital the word
+hs.hotkey.bind({'ctrl'}, 'y', function()
+  if isInTerminal() then
+    keyUpDown({}, 'escape')
+    keyUpDown({}, 'g')
+    keyUpDown({'shift'}, 'U')
+    keyUpDown({}, 'i')
+    keyUpDown({}, 'w')
+    keyUpDown({}, 'e')
+    keyUpDown({}, 'a')
+    keyUpDown({}, 'space')
+  end
+
+end)
 -- Use ctrl + [ to cursor previous word
 --hs.hotkey.bind({'ctrl'}, '[', function()
   --if isInTerminal() then
