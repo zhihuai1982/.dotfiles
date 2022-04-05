@@ -515,10 +515,6 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
         \ '?' : ['buffers'   , 'fzf-buffer']      ,
         \ }
 
-Plug 'mzlogin/vim-markdown-toc'
-
-    noremap <leader>gt O<ESC>:GenTocRedcarpet<CR>o<ESC>
-
 call plug#end()
 
 "----------------------------------------------------------------------
