@@ -242,7 +242,7 @@ Plug 'easymotion/vim-easymotion'
 
     "For symbols and numerals. 1 will match 1 and !; ! matches ! only.
     let g:EasyMotion_use_smartsign_us = 1 " US layout
-    map m <Plug>(easymotion-overwin-f)
+    map s <Plug>(easymotion-overwin-f)
 
     " Gif config
     map  / <Plug>(easymotion-sn)
