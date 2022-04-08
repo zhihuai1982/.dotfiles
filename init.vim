@@ -141,8 +141,15 @@ set winaltkeys=no
 " movement
 set scrolloff=7                 " keep 7 lines when scrolling
 
+"Centering with scrolloff
+"https://vim.fandom.com/wiki/Keep_your_cursor_centered_vertically_on_the_screen
+"set scrolloff=999
+
+" 如果是 set startofline 的话，翻页或者 gg/G 等会将光标移到行首第一个非空字符
+set nostartofline
+
 " Vim 的默认寄存器和系统剪贴板共享
-" set clipboard+=unnamed
+set clipboard+=unnamed
 
 "----------------------------------------------------------------------
 " 文件类型设置
@@ -618,3 +625,6 @@ noremap <leader>sv <C-w>t<C-w>H
 " Press ` to change case (instead of ~)
 noremap ` ~
 
+" jump to end of line while in Insert Mode
+inoremap <C-e> <C-o>$
+inoremap <C-a> <C-o>0
