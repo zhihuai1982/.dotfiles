@@ -522,12 +522,22 @@ call plug#end()
 "----------------------------------------------------------------------
 " it would be better to copy the default settings in g:sandwich#default_recipes
 " due to vim-plug delay loading, the sandwich#recipes need to add after plug#end
+"
+" help url https://github.com/machakann/vim-sandwich
+
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 let g:sandwich#recipes += [
                 \ {
                 \ 'buns'       : ['```', '```'],
                 \ 'kind'       : ['add','delete'],
                 \ 'input'      : ['c'],
+                \  },
+                \ ]
+let g:sandwich#recipes += [
+                \ {
+                \ 'buns'       : ['==', '=='],
+                \ 'kind'       : ['add','delete'],
+                \ 'input'      : ['d'],
                 \  },
                 \ ]
 
