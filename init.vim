@@ -232,7 +232,7 @@ Plug 'junegunn/vim-slash'
     "Automatically clears search highlight when cursor is moved
     "Improved star-search (visual-mode, highlighting without moving)
 
-Plug 'psliwka/vim-smoothie'
+"Plug 'psliwka/vim-smoothie'
 
 Plug 'unblevable/quick-scope'
     " Trigger a highlight in the appropriate direction when pressing these keys:
@@ -607,6 +607,9 @@ nnoremap H <c-w>h
 nnoremap L <c-w>l
 nnoremap K <c-w>k
 nnoremap M <c-w>j
+
+"nnoremap K Hzb
+"nnoremap M Lzt
 
 " Resize splits with arrow keys
 "noremap <up> :res +5<CR>
