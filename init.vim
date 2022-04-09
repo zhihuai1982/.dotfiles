@@ -92,6 +92,10 @@ set backspace=indent,eol,start  " make that backspace key work the way it should
 " Enable basic mouse behavior such as resizing buffers.
 set mouse=a
 
+"E363: pattern uses more memory than ‘maxmempattern’
+" vim searching error
+set maxmempattern=90000
+
 "----------------------------------------------------------------------
 " 备份设置
 "----------------------------------------------------------------------
