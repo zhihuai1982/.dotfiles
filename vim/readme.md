@@ -10,6 +10,8 @@
 
 分别软连接到 
 
-/usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/syntax
+/usr/local/Cellar/neovim/0.6.1/share/nvim/runtime/syntax # macos
 
-~/.config/nvim/plugged/gruvbox/colors
+/squashfs-root/usr/share/nvim/runtime/syntax             # ubuntu
+
+~/.config/nvim/plugged/gruvbox/colors                    # gruvbox 配色文件
