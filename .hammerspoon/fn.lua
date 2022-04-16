@@ -13,6 +13,7 @@ hs.hotkey.bind({}, "f9", function()
 end)
 
 --https://github.com/Hammerspoon/hammerspoon/issues/1275
+-- 需要在系统设置键盘里把显示桌面的快捷键改为其他，而且取消勾选
 local function sendSystemKey(key)
     hs.eventtap.event.newSystemKeyEvent(key, true):post()
     hs.eventtap.event.newSystemKeyEvent(key, false):post()
