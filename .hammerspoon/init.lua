@@ -37,11 +37,11 @@ end
 -- -----------------------------------------------------------------------
 --                            ** Requires **                            --
 -- -----------------------------------------------------------------------
-require "window-management"
+require "hotkeybind"
 require "ctrl-hjkl"
-require "key-binding"
+require "window-management-keybind"
 require "markdown"
-require "cursor-movement"
+--require "cursor-movement"
 require "remap-capslock"
 require "fn"
 

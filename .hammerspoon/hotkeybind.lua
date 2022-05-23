@@ -5,6 +5,28 @@ local isInTerminal = function()
   return app == 'iTerm2' or app == 'Terminal'
 end
 
+--# ====================
+--# = python 
+--# ====================
+
+-- Use ctrl + shift + u to execute code block
+hs.hotkey.bind({'ctrl','shift'}, 'u', function()
+    keyUpDown({}, 'escape')
+    keyUpDown({}, 'v')
+    keyUpDown({}, 'i')
+    keyUpDown({}, 'p')
+    hs.timer.doAfter(0.5, function()
+        keyUpDown({"shift"}, 'return')
+    end)
+    hs.timer.doAfter(0.5, function()
+        keyUpDown({}, 'escape')
+    end)
+end)
+
+--# ====================
+--# = rstudio
+--# ====================
+
 -- Use ctrl + shift + y to join citation in rstudio
 hs.hotkey.bind({'ctrl','shift'}, 'y', function()
     keyUpDown({'cmd'}, '/')
@@ -32,6 +54,10 @@ hs.hotkey.bind({'ctrl','shift'}, 'p', function()
     keyUpDown({}, 'escape')
 end)
 
+--# ====================
+--# = input method
+--# ====================
+
 -- Use ctrl + i to insert with chinese
 -- seems ctrl-i conflict with keyUpDown i, so i change with h and a combind 
 hs.hotkey.bind({'ctrl'}, ',', function()
@@ -43,6 +69,10 @@ hs.hotkey.bind({'ctrl'}, ',', function()
         hs.keycodes.currentSourceID("com.sogou.inputmethod.sogou.pinyin")
     end)
 end)
+
+--# ====================
+--# = emace like keybind
+--# ====================
 
 -- Use option + [ to delete previous word
 hs.hotkey.bind({'cmd'}, '[', function()
