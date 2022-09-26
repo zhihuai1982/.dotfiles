@@ -131,6 +131,7 @@ alias mkdir="mkdir -vp"
 alias vi="/usr/local/bin/nvim"
 alias gacp="git add . && git commit -m sync && git push"
 alias lg="lazygit"
+alias gu="gitui"
 alias gitl="git log --graph --decorate --oneline --simplify-by-decoration --all"
 alias c="clear"
 alias ra='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
