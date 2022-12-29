@@ -194,6 +194,8 @@ filetype on
 filetype plugin on
 filetype indent on
 
+au BufRead,BufNewFile *.luna set filetype=luna
+
 "----------------------------------------------------------------------
 " Leader
 "----------------------------------------------------------------------
@@ -265,6 +267,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'preservim/nerdcommenter'
     vmap <Leader>cc <Plug>NERDCommenterToggle
     nmap <Leader>cc <Plug>NERDCommenterToggle
+    let g:NERDCustomDelimiters = { 'luna': { 'left': '% '} }
 
 Plug 'moll/vim-bbye'
     "Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
