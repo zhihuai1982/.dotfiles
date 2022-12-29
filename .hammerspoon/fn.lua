@@ -1,19 +1,18 @@
 -- https://kevinmarsh.com/2016/10/24/spotify-volume-control-with-hammerspoon.html
 -- Remap Fn keys to itune-priority equivalents
---hs.hotkey.bind({}, "f7", function()
-  ----hs.itunes.previous()
-  --keyUpDown({'cmd', 'alt'}, 'l')
---end)
-
-hs.hotkey.bind({}, "f8", function()
-  --hs.itunes.playpause()
-  keyUpDown({'cmd', 'alt'}, 'm')
+hs.hotkey.bind({}, "f7", function()
+  hs.itunes.previous()
 end)
 
---hs.hotkey.bind({}, "f9", function()
-  ----hs.itunes.next()
+hs.hotkey.bind({}, "f8", function()
+  hs.itunes.playpause()
+  --keyUpDown({'cmd', 'alt'}, 'm')
+end)
+
+hs.hotkey.bind({}, "f9", function()
+  hs.itunes.next()
   --keyUpDown({'cmd', 'alt'}, 'r')
---end)
+end)
 
 --https://github.com/Hammerspoon/hammerspoon/issues/1275
 -- 需要在系统设置键盘里把显示桌面的快捷键改为其他，而且取消勾选
