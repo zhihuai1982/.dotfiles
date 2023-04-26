@@ -88,7 +88,7 @@ export HISTSIZE=10000
 
 plugins=(
 	git
-	z
+	zsh-z
     extract
     safe-paste
     colored-man-pages
