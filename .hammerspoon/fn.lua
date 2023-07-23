@@ -1,16 +1,19 @@
 -- https://kevinmarsh.com/2016/10/24/spotify-volume-control-with-hammerspoon.html
 -- Remap Fn keys to itune-priority equivalents
 hs.hotkey.bind({}, "f7", function()
-  hs.itunes.previous()
+  --hs.itunes.previous()
+  hs.spotify.previous()
 end)
 
 hs.hotkey.bind({}, "f8", function()
-  hs.itunes.playpause()
+  --hs.itunes.playpause()
+  hs.spotify.playpause()
   --keyUpDown({'cmd', 'alt'}, 'm')
 end)
 
 hs.hotkey.bind({}, "f9", function()
-  hs.itunes.next()
+  --hs.itunes.next()
+  hs.spotify.next()
   --keyUpDown({'cmd', 'alt'}, 'r')
 end)
 
