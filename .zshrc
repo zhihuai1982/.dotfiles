@@ -143,7 +143,7 @@ alias axel='axel -n 10'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias shome='ssh -Y -p 44 zhihuai1982@13715f706af888a5.sn.mynetname.net'
+alias shome='ssh -Y -p 44 zhihuai1982@8aff0838de2c.sn.mynetname.net'
 alias path='echo $PATH | tr ":" "\n"'
 
 alias scphome='scp -P 44 $file zhihuai1982@www.digitalnomad.host:~/Downloads'
