@@ -275,41 +275,41 @@ Plug 'moll/vim-bbye'
     
 Plug 'mhinz/vim-startify'
 
-Plug 'Yggdroot/LeaderF'
-    let g:Lf_ReverseOrder = 1
-    " don't show the help in normal mode
-    let g:Lf_HideHelp = 1
-    let g:Lf_UseCache = 0
-    let g:Lf_UseVersionControlTool = 0
-    let g:Lf_IgnoreCurrentBufferName = 1
-    " popup mode
-    let g:Lf_WindowPosition = 'popup'
-    let g:Lf_PreviewInPopup = 1
-    let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
-    let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
-    let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
-    let g:Lf_ShowHidden = 0
+"Plug 'Yggdroot/LeaderF'
+    "let g:Lf_ReverseOrder = 1
+    "" don't show the help in normal mode
+    "let g:Lf_HideHelp = 1
+    "let g:Lf_UseCache = 0
+    "let g:Lf_UseVersionControlTool = 0
+    "let g:Lf_IgnoreCurrentBufferName = 1
+    "" popup mode
+    "let g:Lf_WindowPosition = 'popup'
+    "let g:Lf_PreviewInPopup = 1
+    "let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+    "let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+    "let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
+    "let g:Lf_ShowHidden = 0
 
-    let g:Lf_ShortcutF = "<leader>ff"
+    "let g:Lf_ShortcutF = "<leader>ff"
 
-    """""""""""""""""""""
-    "use :Leaderf <subcommand> -h to get specific help of subcommand, e.g., :Leaderf rg -h
-    """""""""""""""""""""
-    noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-    "noremap <leader>fv :<C-U><C-R>=printf("Leaderf file %s %s/.dotfiles/", "", getenv("HOME"))<CR><CR>
-    noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-    "noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
-    noremap <leader>fh :<C-U><C-R>=printf("Leaderf! rg --max-filesize 500K --wd-mode 'Ac' -e %s ", expand("<cword>"))<CR><CR>
-    "noremap <leader>fk :<C-U><C-R>=printf("Leaderf file %s ", "")<CR><CR>
-    "--wd-mode <MODE>      Specify the working directory mode, value has the same meaning as g:Lf_WorkingDirectoryMode.
-    "noremap <leader>fg :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR><CR>
-    noremap <leader>fj :<C-U>Leaderf rg --max-filesize 500K<CR>
-    " search visually selected text literally
-    "xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
-    noremap go :<C-U>Leaderf! rg --recall<CR>
+    """"""""""""""""""""""
+    ""use :Leaderf <subcommand> -h to get specific help of subcommand, e.g., :Leaderf rg -h
+    """"""""""""""""""""""
+    "noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+    ""noremap <leader>fv :<C-U><C-R>=printf("Leaderf file %s %s/.dotfiles/", "", getenv("HOME"))<CR><CR>
+    "noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+    ""noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+    "noremap <leader>fh :<C-U><C-R>=printf("Leaderf! rg --max-filesize 500K --wd-mode 'Ac' -e %s ", expand("<cword>"))<CR><CR>
+    ""noremap <leader>fk :<C-U><C-R>=printf("Leaderf file %s ", "")<CR><CR>
+    ""--wd-mode <MODE>      Specify the working directory mode, value has the same meaning as g:Lf_WorkingDirectoryMode.
+    ""noremap <leader>fg :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR><CR>
+    "noremap <leader>fj :<C-U>Leaderf rg --max-filesize 500K<CR>
+    "" search visually selected text literally
+    ""xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+    "noremap go :<C-U>Leaderf! rg --recall<CR>
 
-    " Show icons, icons are shown by default
-    let g:Lf_ShowDevIcons = 0
+    "" Show icons, icons are shown by default
+    "let g:Lf_ShowDevIcons = 0
 
 "Plug 'jalvesaq/Nvim-R', {'for': ['r','rmarkdown']}
     "let maplocalleader = ","
