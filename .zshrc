@@ -131,11 +131,10 @@ alias mkdir="mkdir -vp"
 alias vi="/usr/local/bin/nvim"
 alias gacp="git add . && git commit -m sync && git push"
 alias lg="lazygit"
-alias gu="gitui"
 alias gitl="git log --graph --decorate --oneline --simplify-by-decoration --all"
 alias c="clear"
 alias ra='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias panref='pandoc -F $HOME/.config/nvim/plugged/zotcite/python3/zotref.py -F pandoc-citeproc --reference-doc=reference.docx'
+#alias panref='pandoc -F $HOME/.config/nvim/plugged/zotcite/python3/zotref.py -F pandoc-citeproc --reference-doc=reference.docx'
 alias proxy='export all_proxy=socks5://127.0.0.1:1086'
 alias unproxy='unset all_proxy'
 alias axel='axel -n 10'
@@ -143,12 +142,9 @@ alias axel='axel -n 10'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias shome='ssh -Y -p 44 zhihuai1982@8aff0838de2c.sn.mynetname.net'
+alias sserv='ssh -Y -p 56 zhihuai1982@8aff0838de2c.sn.mynetname.net'
+alias smedia='ssh -Y -p 76 zhihuai1982@8aff0838de2c.sn.mynetname.net'
 alias path='echo $PATH | tr ":" "\n"'
-
-alias scphome='scp -P 44 $file zhihuai1982@www.digitalnomad.host:~/Downloads'
-
-alias ds='destrat'
 
 # 修改默认编辑器
 export EDITOR=nvim
@@ -202,51 +198,4 @@ bindkey '^e' edit-command-line
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 eval "$(mcfly init zsh)"
-
-# for ZSH
-case "$(uname -s)" in
-    Darwin)
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/Users/zhihuai1982/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/Users/zhihuai1982/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/Users/zhihuai1982/miniconda3/etc/profile.d/conda.sh"
-        else
-            export PATH="/Users/zhihuai1982/miniconda3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-    # <<< conda initialize <<<
-  ;;
-  Linux)
-    NPM_PACKAGES="${HOME}/.npm-packages"
-
-    export PATH="$PATH:$NPM_PACKAGES/bin:$HOME/.local/bin"
-
-    # Preserve MANPATH if you already defined it somewhere in your config.
-    # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
-    export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
-
-    # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-    export PATH="$PATH:$HOME/.rvm/bin"
-    
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/home/zhihuai1982/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/home/zhihuai1982/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/home/zhihuai1982/miniconda3/etc/profile.d/conda.sh"
-        else
-            export PATH="/home/zhihuai1982/miniconda3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-    # <<< conda initialize <<<
-   ;;
-esac
 
