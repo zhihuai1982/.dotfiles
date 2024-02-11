@@ -136,6 +136,7 @@ alias c="clear"
 alias ra='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 #alias panref='pandoc -F $HOME/.config/nvim/plugged/zotcite/python3/zotref.py -F pandoc-citeproc --reference-doc=reference.docx'
 alias proxy='export all_proxy=socks5://127.0.0.1:1086'
+alias proxymacbook='export all_proxy=socks5://127.0.0.1:10808'
 alias unproxy='unset all_proxy'
 alias axel='axel -n 10'
 
@@ -144,6 +145,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias sserv='ssh -Y -p 56 zhihuai1982@8aff0838de2c.sn.mynetname.net'
 alias smedia='ssh -Y -p 76 zhihuai1982@8aff0838de2c.sn.mynetname.net'
+alias swork='ssh -Y -p 8879 zhihuai1982@8aff0838de2c.sn.mynetname.net'
 alias path='echo $PATH | tr ":" "\n"'
 
 # 修改默认编辑器
