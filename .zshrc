@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:$PATH
 
 #export PATH=$HOME/opt/anaconda3/bin:$PATH
 # $HOME/Library/Python/2.7/bin:
@@ -94,6 +94,7 @@ plugins=(
     colored-man-pages
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+    poetry
 )
 
 source $ZSH/oh-my-zsh.sh
