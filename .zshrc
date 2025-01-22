@@ -6,7 +6,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=\
+$HOME/bin:\
+/usr/local/bin:\
+/usr/local/sbin:\
+$HOME/.local/bin:\
+/opt/homebrew/bin:\
+$PATH
 
 #export PATH=$HOME/opt/anaconda3/bin:$PATH
 # $HOME/Library/Python/2.7/bin:
@@ -89,11 +95,12 @@ export HISTSIZE=10000
 plugins=(
 	git
 	zsh-z
-    extract
-    safe-paste
-    colored-man-pages
+  extract
+  safe-paste
+  colored-man-pages
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+  poetry
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -200,4 +207,15 @@ bindkey '^e' edit-command-line
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 eval "$(mcfly init zsh)"
+
+#yazi
+#Then use y instead of yazi to start, and press q to quit, you'll see the CWD changed. Sometimes, you don't want to change, press Q to quit.
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"	
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
