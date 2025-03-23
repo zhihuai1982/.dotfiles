@@ -153,6 +153,7 @@ alias egrep='egrep --color=auto'
 alias sserv='ssh -Y -p 56 zhihuai1982@8aff0838de2c.sn.mynetname.net'
 alias smedia='ssh -Y -p 76 zhihuai1982@8aff0838de2c.sn.mynetname.net'
 alias swork='ssh -Y -p 8879 zhihuai1982@8aff0838de2c.sn.mynetname.net'
+alias stest='ssh -Y -p 43 zhihuai1982@8aff0838de2c.sn.mynetname.net'
 alias path='echo $PATH | tr ":" "\n"'
 
 # 修改默认编辑器
