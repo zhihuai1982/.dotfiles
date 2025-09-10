@@ -10,7 +10,7 @@ CONTAINER_NAME="postgres"                                # PostgreSQL 容器名
 DB_USER="zhihuai1982"                                    # 数据库用户名
 DB_PASSWORD="pg-password"                                # 数据库密码
 DB_NAME="otology-db"                                     # 数据库名称
-BACKUP_DIR="/home/zhihuai1982/Dockers/pgsql/pg-backups"  # 备份目录（相对于脚本位置）
+BACKUP_DIR="/home/zhihuai1982/Dockers/pgsql/pg-sync"     # 备份目录（相对于脚本位置）
 RETENTION_DAYS=7                                         # 备份保留天数
 TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)                     # 时间戳
 BACKUP_FILE="$BACKUP_DIR/${DB_NAME}_${TIMESTAMP}.sql.gz" # 备份文件名
@@ -49,4 +49,4 @@ curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/587cab59-f8d9-41f3-bf
 #  2. 终止可能得活跃连接(重新还原 docker 就不需要)
 #  docker exec -it postgres psql -U zhihuai1982 -d postgres -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname='otology-db' AND pid <> pg_backend_pid();"
 #  3. 还原命令
-#  PGPASSWORD=pg-password sh -c 'gunzip -c ./pg-backups/otology-db_2025-09-10_02-30-00.sql.gz | docker exec -e PGPASSWORD=pg-password -i postgres psql -U zhihuai1982 -d otology-db'
+#  PGPASSWORD=pg-password sh -c 'gunzip -c ./pg-sync/otology-db_2025-09-10_02-30-00.sql.gz | docker exec -e PGPASSWORD=pg-password -i postgres psql -U zhihuai1982 -d otology-db'
