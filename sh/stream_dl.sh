@@ -68,13 +68,12 @@ main() {
     fi
 
     ffmpeg -hide_banner \
-      -reconnect 1 \                   # 启用自动重连
-    -reconnect_at_eof 1 \              # 在文件结束时重连
-    -reconnect_streamed 1 \            # 流式传输重连
-    -reconnect_delay_max 60 \          # 最大重试间隔（秒）
-    -reconnect_delay_total_max 3600 \  # 总重试时间（秒）
-    -timeout 5000000 \                 # 超时设置（微秒）
-    -rw_timeout 3000000 \
+      -reconnect 1 \
+      -reconnect_at_eof 1 \
+      -reconnect_streamed 1 \
+      -reconnect_delay_max 60 \
+      -timeout 5000000 \
+      -rw_timeout 3000000 \
       -user_agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
       -ss "${resume_point:-0}" -i "$url" \
       -c copy -f matroska \
