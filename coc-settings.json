@@ -1,4 +1,0 @@
-{
-"copyto": "~/.config/nvim",
-"snippets.userSnippetsDirectory": "~/.dotfiles/UltiSnips"
-}
