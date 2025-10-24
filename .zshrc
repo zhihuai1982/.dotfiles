@@ -142,7 +142,7 @@ alias gitl="git log --graph --decorate --oneline --simplify-by-decoration --all"
 alias c="clear"
 alias ra='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 #alias panref='pandoc -F $HOME/.config/nvim/plugged/zotcite/python3/zotref.py -F pandoc-citeproc --reference-doc=reference.docx'
-alias proxy='export all_proxy=socks5://192.168.1.88:1080'
+alias proxy='export all_proxy=http://192.168.1.114:7893'
 alias proxymacbook='export all_proxy=socks5://127.0.0.1:10808'
 alias unproxy='unset all_proxy'
 alias axel='axel -n 10'
